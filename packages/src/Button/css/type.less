@@ -1,0 +1,57 @@
+.adorn-btn {
+  border: 1px solid var(--adorn-border-color);
+  background-color: transparent;
+  color: var(--adorn-text-color);
+
+  &:hover {
+    border-color: var(--adorn-primary-color);
+    color: var(--adorn-primary-color);
+    cursor: pointer;
+  }
+
+  &:not(.disabled):active {
+    filter: brightness(0.9);
+  }
+
+  &--primary {
+    border-color: transparent;
+    background-color: var(--adorn-primary-color);
+    color: var(--adorn-white-color);
+
+    &:not(.disabled):hover {
+      border-color: transparent;
+      color: var(--adorn-white-color);
+      filter: brightness(1.15);
+    }
+
+    &:not(.disabled):active {
+      filter: brightness(0.9);
+    }
+  }
+
+  &--dashed {
+    border-style: dashed;
+  }
+
+  &--link {
+    border: none;
+    color: var(--adorn-primary-color);
+
+    &:not(.disabled):hover {
+      filter: brightness(1.15);
+    }
+
+    &:not(.disabled):active {
+      filter: brightness(0.9);
+    }
+  }
+
+  &--text {
+    border: none;
+
+    &&:not(.disabled):hover {
+      background-color: var(--adorn-bg-color);
+      color: var(--adorn-text-color);
+    }
+  }
+}

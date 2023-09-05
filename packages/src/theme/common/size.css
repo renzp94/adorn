@@ -1,0 +1,23 @@
+/* 大小 */
+:root{
+  --adorn-size-mini: 2px;
+  --adorn-size-sm: 4px;
+  --adorn-size: 8px;
+  --adorn-size-xl: 12px;
+  --adorn-size-xxl: 16px;
+  --adorn-font-size: 14px;
+
+  /* 圆角 */
+  --adorn-radius-mini: var(--adorn-size-mini);
+  --adorn-radius-sm: var(--adorn-size-sm);
+  --adorn-radius: var(--adorn-size);
+  --adorn-radius-xl: var(--adorn-size-xl);
+  --adorn-radius-xxl: var(--adorn-size-xxl);
+
+  /* 内边距 */
+  --adorn-padding-mini: var(--adorn-size-mini);
+  --adorn-padding-sm: var(--adorn-size-sm);
+  --adorn-padding: var(--adorn-size);
+  --adorn-padding-xl: var(--adorn-size-xl);
+  --adorn-padding-xxl: var(--adorn-size-xxl);
+}

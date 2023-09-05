@@ -1,0 +1,15 @@
+{
+	"name": "adorn-monorepo",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "pnpm run package:dev & pnpm docs:dev",
+		"docs:dev": "pnpm run --filter docs docs:dev",
+		"docs:build": "pnpm run package && pnpm run --filter docs docs:build",
+		"package:dev": "pnpm run --filter adorn-ui package:dev",
+		"package": "pnpm run --filter adorn-ui package",
+    "pub": "zx ./scripts/publish.mjs"
+	},
+	"devDependencies": {
+		"zx": "^7.2.3"
+	}
+}

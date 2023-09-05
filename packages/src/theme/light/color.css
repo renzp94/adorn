@@ -1,0 +1,30 @@
+/* 颜色 */
+:root{
+  /* 主题色 */
+  --adorn-primary-color: #4170FF;
+
+  /* 成功色 */
+  --adorn-success-color: #00C48C;
+
+  /* 警告色 */
+  --adorn-warn-color: #FFC245;
+
+  /* 错误色 */
+  --adorn-error-color: #FF4D4F;
+
+  /* 文字色 */
+  --adorn-text-color: #3C4761;
+  --adorn-disabled-text-color: #C5CEE0;
+
+  /* 白色 */
+  --adorn-white-color: #fff;
+
+  /* 边框色 */
+  --adorn-border-color: #C5CEE0;
+
+  /* 背景色 */
+  --adorn-bg-color: #F6F9FB;
+
+  /* 禁用背景色 */
+  --adorn-disabled-bg-color: #F6F9FB;
+}
