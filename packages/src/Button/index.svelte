@@ -1,6 +1,8 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { createEventDispatcher } from 'svelte'
+  import type { IconName } from '../utils/types'
+  import { Icon } from '..'
 
   type ButtonType = 'primary' | 'dashed' | 'link' | 'text' | 'default'
   type ButtonHtmlType = 'submit' | 'reset' | 'button' | undefined | null
@@ -21,7 +23,8 @@
   export let shape: ButtonShape = 'default'
   export let size: ButtonSize = 'middle'
   export let target: ButtonTarget = ''
-  const classLst = classes([
+  export let icon: IconName
+  $: classLst = classes([
     'adorn-btn',
     className,
     { [`adorn-btn--${type}`]: !!type },
@@ -48,7 +51,14 @@
   {...$$restProps}
   type={href ? undefined : htmlType}
 >
-  <slot />
+  {#if loading}
+    <Icon name="loader-line" />
+  {:else if icon}
+    <Icon name={icon} />
+  {/if}
+  {#if $$slots.default}
+    <span><slot /></span>
+  {/if}
 </svelte:element>
 
 <style lang="less">
