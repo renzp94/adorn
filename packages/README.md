@@ -4,21 +4,9 @@
 
 ## 安装
 
-::: code-group
-
-```bash [pnpm]
-pnpm add adorn-ui
-```
-
-```bash [yarn]
-yarn add adorn-ui
-```
-
-```bash [npm]
+```bash
 npm install adorn-ui
 ```
-
-:::
 
 ## 使用
 
