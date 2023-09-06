@@ -3,7 +3,7 @@ import { applyPlugins } from './plugins/code';
 
 const components = [
     {
-      text: '基础',
+      text: '通用',
       collapsed: false,
       items: [
         {
@@ -13,6 +13,16 @@ const components = [
         {
           text: 'Icon 图标',
           link: '/components/Icon'
+        }
+      ]
+    },
+    {
+      text: '布局',
+      collapsed: false,
+      items: [
+        {
+          text: 'Divider 分割线',
+          link: '/components/Divider'
         }
       ]
     },
