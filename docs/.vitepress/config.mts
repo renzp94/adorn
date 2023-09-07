@@ -23,6 +23,10 @@ const components = [
         {
           text: 'Divider 分割线',
           link: '/components/Divider'
+        },
+        {
+          text: 'Grid 栅格',
+          link: '/components/Grid'
         }
       ]
     },
