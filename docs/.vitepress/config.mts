@@ -27,6 +27,10 @@ const components = [
         {
           text: 'Grid 栅格',
           link: '/components/Grid'
+        },
+        {
+          text: 'Layout 布局',
+          link: '/components/Layout'
         }
       ]
     },
