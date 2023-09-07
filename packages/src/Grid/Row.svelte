@@ -59,7 +59,7 @@
     space-between: space-between;
     space-evenly: space-evenly;
   };
-  @alignCenterList: {
+  @alignItemsList: {
     top: flex-start;
     middle: center;
     bottom: flex-end;
@@ -81,7 +81,7 @@
         justify-content: @value;
       }
     });
-    each(@alignCenterList, {
+    each(@alignItemsList, {
       &-@{key} {
         align-items: @value;
       }
