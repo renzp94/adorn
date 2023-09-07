@@ -17,13 +17,13 @@
   ])
 </script>
 
-<div class={classLst} class:dashed class:plain>
+<div class={classLst} {...$$restProps} class:dashed class:plain>
   {#if $$slots.default}
     <span class="adorn-divider-inner-text"><slot /></span>
   {/if}
 </div>
 
-<style lang="less">
+<style lang="less" global>
   .adorn-divider {
     border-block-start: 1px solid var(--adorn-border-color);
 

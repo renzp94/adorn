@@ -47,8 +47,8 @@
   class:loading
   {href}
   {target}
-  on:click={loading || disabled ? undefined : onClick}
   {...$$restProps}
+  on:click={loading || disabled ? undefined : onClick}
   type={href ? undefined : htmlType}
 >
   {#if loading}
@@ -61,7 +61,7 @@
   {/if}
 </svelte:element>
 
-<style lang="less">
+<style lang="less" global>
   @import url('./css/default.less');
   @import url('./css/type.less');
   @import url('./css/bool-props.less');

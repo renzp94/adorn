@@ -14,9 +14,9 @@
   $: classNames = classes(['adorn-icon', className, prefixConcat(name, 'adorn-icon-')])
 </script>
 
-<i class={classNames} style={styles} />
+<i {...$$restProps} class={classNames} style={styles} />
 
-<style>
+<style global>
   @import url('./fonts/remixicon.css');
   .adorn-icon {
     display: inline-block;
