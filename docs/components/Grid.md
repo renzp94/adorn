@@ -69,3 +69,25 @@ lang: zh-CN
 `Col`提供`flex`属性以支持填充。
 
 <demo src="../../../../example/grid/flex.svelte"  github='Grid/Row'></demo>
+
+## API
+
+### Row
+
+| 属性    | 说明                                                                    | 类型                                                                     | 默认值  | 版本 |
+| ------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------- | ---- |
+| align   | 垂直对齐方式                                                            | `top  \| middle  \| bottom\| stretch`                                    | `top`   |      |
+| gutter  | 栅格间隔，可以写成像素值。或者使用数组形式同时设置 [水平间距, 垂直间距] | `number \| number[]`                                                     | -       |      |
+| justify | 水平排列方式                                                            | `start  \| end  \| center\| space-around\| space-between\| space-evenly` | `start` |      |
+| wrap    | 是否自动换行                                                            | `boolean`                                                                | `true`  |      |
+
+### Col
+
+| 属性   | 说明                                       | 类型                | 默认值 | 版本 |
+| ------ | ------------------------------------------ | ------------------- | ------ | ---- |
+| flex   | flex 布局属性                              | `string  \| number` | -      |      |
+| offset | 栅格左侧的间隔格数，间隔内不可以有栅格     | `number`            | -      |      |
+| order  | 栅格顺序                                   | `number`            | -      |      |
+| pull   | 栅格向左移动格数                           | `number`            | -      |      |
+| push   | 栅格向右移动格数                           | `number`            | -      |      |
+| span   | 栅格占位格数，为 0 时相当于`display: none` | `number`            | -      |      |
