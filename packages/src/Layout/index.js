@@ -1,5 +1,13 @@
-export { default as Content } from './Content.svelte'
-export { default as Footer } from './Footer.svelte'
-export { default as Header } from './Header.svelte'
-export { default as Layout } from './Layout.svelte'
-export { default as Sidebar } from './Sidebar.svelte'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+import Layout from './Layout.svelte'
+import Content from './Content.svelte'
+import Footer from './Footer.svelte'
+import Header from './Header.svelte'
+import Sidebar from './Sidebar.svelte'
+Layout["Content"] = Content
+Layout["Footer"] = Footer
+Layout["Header"] = Header
+Layout["Sidebar"] = Sidebar
+
+export { Layout }
