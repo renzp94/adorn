@@ -1,5 +1,6 @@
 <script>
-  import { Layout, Header, Content, Footer, Sidebar } from 'adorn-ui'
+  import { Layout } from 'adorn-ui'
+  const { Header, Content, Footer, Sidebar } = Layout
 </script>
 
 <div class="basic">
