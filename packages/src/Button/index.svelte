@@ -23,7 +23,7 @@
   export let shape: ButtonShape = 'default'
   export let size: ButtonSize = 'middle'
   export let target: ButtonTarget = ''
-  export let icon: IconName
+  export let icon: IconName | undefined = undefined
   $: classLst = classes([
     'adorn-btn',
     className,
