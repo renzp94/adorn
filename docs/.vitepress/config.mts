@@ -31,6 +31,10 @@ const components = [
         {
           text: 'Layout 布局',
           link: '/components/Layout'
+        },
+        {
+          text: 'Space 间距',
+          link: '/components/Space'
         }
       ]
     },
