@@ -19,13 +19,13 @@
   <Button type="link" {size}>Link</Button>
 </p>
 <p>
-  <Button type="primary" icon="inbox-archive-line" {size} />
-  <Button type="primary" shape="circle" icon="inbox-archive-line" {size} />
-  <Button type="primary" shape="round" icon="inbox-archive-line" {size} />
-  <Button type="primary" shape="round" icon="inbox-archive-line" {size}
+  <Button type="primary" icon="download-cloud" {size} />
+  <Button type="primary" shape="circle" icon="download-cloud" {size} />
+  <Button type="primary" shape="round" icon="download-cloud" {size} />
+  <Button type="primary" shape="round" icon="download-cloud" {size}
     >Download</Button
   >
 </p>
 <p>
-  <Button type="primary" icon="inbox-archive-line" {size}>Download</Button>
+  <Button type="primary" icon="download-cloud" {size}>Download</Button>
 </p>

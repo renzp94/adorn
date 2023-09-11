@@ -52,7 +52,7 @@
   type={href ? undefined : htmlType}
 >
   {#if loading}
-    <Icon name="loader-line" />
+    <Icon name="loader" />
   {:else if icon}
     <Icon name={icon} />
   {/if}
