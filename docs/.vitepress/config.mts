@@ -11,6 +11,10 @@ const components = [
           link: '/components/Button'
         },
         {
+          text: 'FloatButton 悬浮按钮',
+          link: '/components/FloatButton'
+        },
+        {
           text: 'Icon 图标',
           link: '/components/Icon'
         }
