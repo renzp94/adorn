@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-
 // https://remixicon.com网址上的图标class
 const icons = [
   // Arrows

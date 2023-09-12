@@ -1,11 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-import FloatButton from "./FloatButton.svelte";
+import Component from "./FloatButton.svelte";
 import Group from "./Group.svelte";
 import BackTop from "./BackTop.svelte";
 
-FloatButton["Group"] = Group;
-FloatButton["BackTop"] = BackTop;
+const FloatButton = Object.assign(
+  Component,
+  {
+    Group,
+    BackTop,
+  }
+)
 
 export { FloatButton }
 
