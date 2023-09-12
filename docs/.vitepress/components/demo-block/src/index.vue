@@ -93,7 +93,7 @@ const onCopy = async () => {
 	margin-top: 24px;
 	border: 1px solid var(--vp-c-divider);
 	border-radius: 4px;
-	padding: 16px;
+	padding: 16px 16px 0;
 }
 .docs-code {
 	width: 100%;
@@ -103,8 +103,11 @@ const onCopy = async () => {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	padding-top: 16px;
+	padding: 16px 0;
 	color: var(--vp-c-text-2);
+	position: sticky;
+	bottom: 0;
+	background-color: var(--vp-c-bg);
 }
 
 .link{
