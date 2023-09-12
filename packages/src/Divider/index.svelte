@@ -13,7 +13,7 @@
     className,
     { [`adorn-divider-with-text`]: $$slots.default },
     { [`adorn-divider-with-text-${orientation}`]: $$slots.default },
-    { [`adorn-divider-${type}`]: type }
+    { [`adorn-divider-${$$slots.default ? 'horizontal' : type}`]: type }
   ])
 </script>
 
