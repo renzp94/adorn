@@ -14,3 +14,17 @@ export const prefixConcat = <T,K>(val: T, prefix = '', concatVal: K | undefined 
  * @returns 如果变量定义则返回true,否则返回false
 */
 export const isUndef = (v: unknown): boolean => v === undefined || v === null
+
+export const copyText = async (text: string) => {
+	// navigator.clipboard只能用于https或者localhost。
+	if (navigator?.clipboard?.writeText) {
+		navigator.clipboard.writeText(text)
+		return
+	}
+	const input = document.createElement('input')
+	document.body.appendChild(input)
+	input.value = text
+	input.select()
+	document.execCommand('copy')
+	document.body.removeChild(input)
+}
