@@ -95,6 +95,15 @@ const onCopy = async () => {
 	border-radius: 4px;
 	padding: 16px 16px 0;
 }
+.container:deep(h1),
+.container:deep(h2),
+.container:deep(h3),
+.container:deep(h4),
+.container:deep(h5) {
+	border-top: none;
+	margin: 0;
+	padding: 0;
+}
 .docs-code {
 	width: 100%;
 	font-size: 14px;
