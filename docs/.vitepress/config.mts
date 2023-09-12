@@ -17,6 +17,10 @@ const components = [
         {
           text: 'Icon 图标',
           link: '/components/Icon'
+        },
+        {
+          text: 'Typography 排版',
+          link: '/components/Typography'
         }
       ]
     },
