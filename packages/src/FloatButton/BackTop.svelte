@@ -2,6 +2,7 @@
   import classes from '@renzp/classes'
   import { FloatButton } from '.'
   import type { IconName } from '../utils/types'
+  import { scrollTo } from '../utils/tools'
   import { createEventDispatcher, onMount, tick } from 'svelte'
   import { fade } from 'svelte/transition'
 
@@ -49,14 +50,7 @@
 
   const dispatch = createEventDispatcher()
   const onClick = () => {
-    const step = (top / duration) * 10
-    timer = setInterval(() => {
-      if (top <= 0) {
-        clearInterval(timer)
-        return
-      }
-      scrollEl?.scrollTo(0, top - step)
-    }, 10)
+    timer = scrollTo(scrollEl, duration)
     dispatch('click')
   }
 </script>
