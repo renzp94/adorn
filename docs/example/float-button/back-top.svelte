@@ -1,6 +1,6 @@
 <script>
   import { FloatButton } from 'adorn-ui'
-  import FloatButtonIframe from './FloatButtonIframe.svelte'
+  import FloatButtonIframe from '../FloatButtonIframe.svelte'
 
   let scrollEl
 </script>
