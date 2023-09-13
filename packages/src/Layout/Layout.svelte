@@ -1,10 +1,11 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { onMount } from 'svelte'
+  import type { Direction } from '../utils/types'
 
   let className = ''
   export { className as class }
-  export let direction: 'horizontal' | 'vertical' = 'vertical'
+  export let direction: Direction = 'vertical'
   let layoutEl: HTMLElement
 
   onMount(() => {

@@ -823,3 +823,5 @@ export type IconName =
   | 'cross-fill'
   | 'infinity'
   | 'infinity-fill'
+
+export type Direction = 'horizontal' | 'vertical'

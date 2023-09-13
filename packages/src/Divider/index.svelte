@@ -1,10 +1,11 @@
 <script lang="ts">
   import classes from '@renzp/classes'
+  import type { Direction } from '../utils/types'
 
   let className = ''
   export { className as class }
   export let dashed: boolean = false
-  export let type: 'horizontal' | 'vertical' = 'horizontal'
+  export let type: Direction = 'horizontal'
   export let orientation: 'left' | 'center' | 'right' = 'center'
   export let plain: boolean = false
 

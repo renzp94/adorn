@@ -1,5 +1,6 @@
 <script lang="ts">
   import classes from '@renzp/classes'
+  import type { Direction } from '../utils/types'
   const getGap = (size: Size) => {
     const gaps = {
       small: 8,
@@ -19,7 +20,7 @@
   let className = ''
   export { className as class }
   export let align: 'start' | 'end' | 'center' | 'baseline' | undefined = undefined
-  export let direction: 'horizontal' | 'vertical' = 'horizontal'
+  export let direction: Direction = 'horizontal'
   type Size = 'small' | 'middle' | 'large' | number
   export let size: Size | [Size, Size] = 'small'
   export let style: string | undefined = undefined
