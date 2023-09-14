@@ -1,5 +1,6 @@
 import './theme/light/index.css'
 export { default as Button } from './Button/index.svelte'
+export { default as Breadcrumb } from './Breadcrumb/index.svelte'
 export { default as Divider } from './Divider/index.svelte'
 export { FloatButton } from './FloatButton'
 export { Row, Col } from './Grid'
