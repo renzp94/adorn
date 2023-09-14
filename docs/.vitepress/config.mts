@@ -46,6 +46,16 @@ const components = [
         }
       ]
     },
+    {
+      text: '导航',
+      collapsed: false,
+      items: [
+        {
+          text: 'Breadcrumb 面包屑',
+          link: '/components/Breadcrumb'
+        },
+      ]
+    },
 ]
 
 const nav = [
