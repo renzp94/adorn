@@ -1,9 +1,7 @@
 <script>
   import { FloatButton } from 'adorn-ui'
-  import FloatButtonIframe from '../FloatButtonIframe.svelte'
 </script>
 
-<FloatButtonIframe>
-  <FloatButton type="primary" icon="arrow-up" />
-  <FloatButton icon="arrow-up" style="right: 94px;" />
-</FloatButtonIframe>
+<div>请看网站右下方，安卓图标的按钮</div>
+<FloatButton type="primary" icon="android-fill" style="bottom: 400px;" />
+<FloatButton icon="android-fill" style="right: 80px;bottom: 400px;" />

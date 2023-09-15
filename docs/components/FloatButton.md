@@ -7,6 +7,8 @@ lang: zh-CN
 
 ## 基本使用
 
+最基本的使用。
+
 <demo src="../../../../example/float-button/basic.svelte"  github='FloatButton'></demo>
 
 ## 类型

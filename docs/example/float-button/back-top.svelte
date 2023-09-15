@@ -1,53 +1,6 @@
 <script>
   import { FloatButton } from 'adorn-ui'
-  import FloatButtonIframe from '../FloatButtonIframe.svelte'
-
-  let scrollEl
 </script>
 
-<FloatButtonIframe>
-  <div class="scroll">
-    <FloatButton.BackTop target={scrollEl} />
-    <div class="scroll-container" bind:this={scrollEl}>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-      <h1>asdasdas</h1>
-    </div>
-  </div>
-</FloatButtonIframe>
-
-<style>
-  .scroll {
-    position: relative;
-  }
-
-  .scroll-container {
-    height: 368px;
-    overflow-y: auto;
-  }
-
-  .scroll :global(.adorn-float-btn) {
-    position: absolute !important;
-  }
-</style>
+<div>请看网站右下方，箭头图标的按钮</div>
+<FloatButton.BackTop style="bottom: 80px;" />

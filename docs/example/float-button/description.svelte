@@ -1,20 +1,18 @@
 <script>
   import { FloatButton } from 'adorn-ui'
-  import FloatButtonIframe from '../FloatButtonIframe.svelte'
 </script>
 
-<FloatButtonIframe>
-  <FloatButton
-    type="primary"
-    shape="circle"
-    icon="arrow-up"
-    description="描述"
-  />
-  <FloatButton
-    type="primary"
-    shape="square"
-    icon="arrow-up"
-    style="right: 94px;"
-    description="描述"
-  />
-</FloatButtonIframe>
+<div>请看网站右下方，B站图标的按钮</div>
+<FloatButton
+  type="primary"
+  shape="circle"
+  icon="bilibili-fill"
+  style="bottom: 300px;"
+/>
+<FloatButton
+  type="primary"
+  shape="square"
+  icon="bilibili-fill"
+  style="right: 80px;bottom: 295px;"
+  description="B站"
+/>
