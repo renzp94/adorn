@@ -12,7 +12,7 @@
   export let shape: 'circle' | 'square' = 'circle'
   export let href = ''
   export let duration = 450
-  export let target: HTMLElement | Window | undefined = undefined
+  export let target: HTMLElement | Window = window
   export let visibilityHeight = 100
 
   let className = ''
@@ -24,24 +24,20 @@
   let scrollEl: HTMLElement | Window
 
   const onScroll = (e: Event) => {
-    top = (e.target as any).scrollTop
-  }
-
-  $: {
-    if (target) {
-      scrollEl.removeEventListener('scroll', onScroll)
-      scrollEl = target
+    if ((e.target as any).scrollTop) {
+      top = (e.target as any).scrollTop
     } else {
-      scrollEl = window
+      top = window.document.documentElement.scrollTop ?? window.document.body.scrollTop
     }
-
-    scrollEl.addEventListener('scroll', onScroll)
   }
 
   let timer: any
   onMount(() => {
+    scrollEl = target
+    target.addEventListener('scroll', onScroll)
+
     return () => {
-      scrollEl.removeEventListener('scroll', onScroll)
+      target.removeEventListener('scroll', onScroll)
       if (timer) {
         clearInterval(timer)
       }
