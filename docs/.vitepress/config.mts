@@ -51,6 +51,10 @@ const components = [
       collapsed: false,
       items: [
         {
+          text: 'Affix 固钉',
+          link: '/components/Affix'
+        },
+        {
           text: 'Breadcrumb 面包屑',
           link: '/components/Breadcrumb'
         },
