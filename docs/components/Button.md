@@ -85,10 +85,7 @@ lang: zh-CN
 
 <demo src="../../../../example/button/block.svelte"  github='Button'></demo>
 
-
-## API
-
-### Props 属性
+## Props 属性
 
 | 属性     | 说明                                                  | 类型                                           | 默认值    | 版本 |
 | -------- | ----------------------------------------------------- | ---------------------------------------------- | --------- | ---- |
@@ -105,8 +102,14 @@ lang: zh-CN
 | target   | 相当于`a`链接的`target`属性，`href`存在时生效         | `string`                                       | -         |      |
 | type     | 设置按钮类型                                          | `primary  \| dashed  \| link\| text\| default` | `default` |      |
 
-### Event 事件
+## Events 事件
 
 | 事件  | 说明     | 类型                                        |
 | ----- | -------- | ------------------------------------------- |
 | click | 点击事件 | `MouseEventHandler<T> \| undefined \| null` |
+
+## Slots 插槽
+
+| 插槽名  | 说明           |
+| ------- | -------------- |
+| default | 自定义默认内容 |

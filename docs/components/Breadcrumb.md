@@ -37,9 +37,7 @@ lang: zh-CN
 
 <demo src="../../../../example/breadcrumb/separator.svelte"  github='Breadcrumb'></demo>
 
-## API
-
-### Props 属性
+## Props 属性
 
 | 属性  | 说明         | 类型               | 默认值 | 版本 |
 | ----- | ------------ | ------------------ | ------ | ---- |
@@ -54,14 +52,14 @@ interface BreadcrumbItem {
 }
 ```
 
-### Event 事件
+## Events 事件
 
 | 事件  | 说明     | 类型                                        |
 | ----- | -------- | ------------------------------------------- |
 | click | 点击事件 | `MouseEventHandler<T> \| undefined \| null` |
 
 
-### Slot 插槽
+## Slots 插槽
 
 | 事件      | 说明         |
 | --------- | ------------ |

@@ -12,10 +12,7 @@ lang: zh-CN
 <demo src="../../../../example/icon/basic.svelte" github="Icon"></demo>
 <demo src="../../../../example/icon/index.svelte" github="Icon"></demo>
 
-
-## API
-
-### Props 属性
+## Props 属性
 
 | 属性 | 说明     | 类型     | 默认值 | 版本 |
 | ---- | -------- | -------- | ------ | ---- |

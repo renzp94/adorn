@@ -36,3 +36,18 @@ lang: zh-CN
 使用`type="vertical"`设置为行内的垂直分割线。
 
 <demo src="../../../../example/divider/vertical.svelte"  github='Divider'></demo>
+
+## Props 属性
+
+| 属性        | 说明                       | 类型                        | 默认值       | 版本 |
+| ----------- | -------------------------- | --------------------------- | ------------ | ---- |
+| dashed      | 是否虚线                   | `boolean`                   | `false`      |      |
+| type        | 水平还是垂直类型           | `vertical  \| horizontal`   | `horizontal` |      |
+| orientation | 分割线标题的位置           | `left  \| center  \| right` | `center`     |      |
+| plain       | 文字是否显示为普通正文样式 | `boolean`                   | `false`      |      |
+
+## Slots 插槽
+
+| 插槽名  | 说明           |
+| ------- | -------------- |
+| default | 自定义默认内容 |

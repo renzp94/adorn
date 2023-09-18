@@ -48,9 +48,7 @@ lang: zh-CN
 <demo src="../../../../example/space/split.svelte"  github='Space'></demo>
 
 
-## API
-
-### Props 属性
+## Props 属性
 
 | 属性      | 说明         | 类型                                  | 默认值     | 版本 |
 | --------- | ------------ | ------------------------------------- | ---------- | ---- |
@@ -63,8 +61,7 @@ lang: zh-CN
 type Size = 'small' | 'middle' | 'large' | number
 ```
 
-### Slot 插槽
-
+## Slots 插槽
 
 | 插槽名 | 说明         | 类型          | 默认值 | 版本 |
 | ------ | ------------ | ------------- | ------ | ---- |

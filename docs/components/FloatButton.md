@@ -55,9 +55,7 @@ lang: zh-CN
 
 <demo src="../../../../example/float-button/back-top.svelte"  github='FloatButton'></demo>
 
-## API
-
-### 共同Props 属性
+## 共同属性
 
 | 属性        | 说明                                                  | 类型               | 默认值   | 版本 |
 | ----------- | ----------------------------------------------------- | ------------------ | -------- | ---- |
@@ -67,16 +65,7 @@ lang: zh-CN
 | href        | 点击跳转的地址，指定此属性`button`的行为和`a`链接一致 | `string`           | -        |      |
 | target      | 相当于`a`标签的`target`属性，`href`存在时生效         | `string`           | -        |      |
 
-### Slot 插槽
-
-
-| 插槽名  | 说明           | 类型          | 默认值 | 版本 |
-| ------- | -------------- | ------------- | ------ | ---- |
-| default | 自定义内容     | `HTMLElement` | -      |      |
-| icon    | 自定义图标元素 | `HTMLElement` | -      |      |
-
-
-### FloatButton.Group
+## FloatButton.Group Props 属性
 
 | 属性    | 说明                              | 类型               | 默认值   | 版本 |
 | ------- | --------------------------------- | ------------------ | -------- | ---- |
@@ -85,13 +74,13 @@ lang: zh-CN
 | open    | 受控展开，需配合`trigger`一起使用 | `boolean`          | -        |      |
 
 
-### FloatButton.Group事件
+## FloatButton.Group Events 事件
 
 | 事件       | 说明     | 类型                          |
 | ---------- | -------- | ----------------------------- |
 | openChange | 点击事件 | `({detail: boolean}) => void` |
 
-### FloatButton.BackTop
+### FloatButton.BackTop Props 属性
 
 | 属性             | 说明                               | 类型                    | 默认值 | 版本 |
 | ---------------- | ---------------------------------- | ----------------------- | ------ | ---- |
@@ -100,10 +89,15 @@ lang: zh-CN
 | visibilityHeight | 滚动高度达到此参数值才出现 BackTop | `number`                | 400    |      |
 
 
-### FloatButton.BackTop事件
+## FloatButton.BackTop Events事件
 
 | 事件  | 说明     | 类型         |
 | ----- | -------- | ------------ |
 | click | 点击事件 | `() => void` |
 
+### Slots 插槽
 
+| 插槽名  | 说明           |
+| ------- | -------------- |
+| default | 自定义默认内容 |
+| icon    | 自定义图标     |
