@@ -15,4 +15,4 @@ lang: zh-CN
 
 最简单的用法。
 
-<demo src="../../../../example/anchor/basic.svelte"  github='Anchor'></demo>
+<!-- <demo src="../../../../example/anchor/basic.svelte"  github='Anchor'></demo> -->
