@@ -1,13 +1,12 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { createEventDispatcher } from 'svelte'
-  import type { IconName } from '../utils/types'
+  import type { IconName, Target } from '../utils/types'
   import { Icon } from '..'
 
   type ButtonType = 'primary' | 'dashed' | 'link' | 'text' | 'default'
   type ButtonHtmlType = 'submit' | 'reset' | 'button' | undefined | null
   type ButtonShape = 'default' | 'circle' | 'round'
-  type ButtonTarget = '_self' | '_blank' | '_parent' | '_top' | string
   type ButtonSize = 'large' | 'middle' | 'small'
 
   export let block = false
@@ -22,7 +21,7 @@
   export let htmlType: ButtonHtmlType = 'button'
   export let shape: ButtonShape = 'default'
   export let size: ButtonSize = 'middle'
-  export let target: ButtonTarget = ''
+  export let target: Target = ''
   export let icon: IconName | undefined = undefined
   $: classLst = classes([
     'adorn-btn',

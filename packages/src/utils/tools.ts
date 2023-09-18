@@ -36,7 +36,7 @@ export const copyText = async (text: string) => {
  * @returns 
  */
 export const scrollTo = (container:HTMLElement | Window = window,duration = 450, {top = 0,left = 0}: {top?:number;left?:number} = {top:0,left:0}) => {
-	const scrollEl = container instanceof Window ? container.document.documentElement.scrollTop ? container.document.documentElement : container.document.body : container
+	const scrollEl = getElement(container)
 	
 	let scrollTop = scrollEl.scrollTop
 	let scrollLeft = scrollEl.scrollLeft
@@ -55,3 +55,55 @@ export const scrollTo = (container:HTMLElement | Window = window,duration = 450,
 
 	return timer
 }
+
+
+const camelizeRE = /-(\w)/g;
+const camelize = (str:string) => {
+  return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
+}
+export const getStyle = (element: HTMLElement,styleName:string) => {
+  if (!element || !styleName) return ''
+
+  let key = camelize(styleName)
+  if (key === 'float') key = 'cssFloat'
+  try {
+    const style = (element.style as any)[key]
+    if (style) return style
+    const computed: any = document.defaultView?.getComputedStyle(element, '')
+    return computed ? computed[key] : ''
+  } catch {
+    return (element.style as any)[key]
+  }
+}
+export const isScroll = (el: HTMLElement, isVertical?: boolean): boolean => {
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const key = (
+    {
+      undefined: 'overflow',
+      true: 'overflow-y',
+      false: 'overflow-x',
+    } as const
+  )[String(isVertical)]!
+  const overflow = getStyle(el, key)
+  return ['scroll', 'auto', 'overlay'].some((s) => overflow.includes(s))
+}
+
+export const getScrollContainer = (
+  el: HTMLElement,
+  isVertical?: boolean
+): Window | HTMLElement | undefined => {
+  let parent: HTMLElement = el
+  while (parent) {
+    if ([window, document, document.documentElement].includes(parent))
+      return window
+
+    if (isScroll(parent, isVertical)) return parent
+
+    parent = parent.parentNode as HTMLElement
+  }
+
+  return parent
+}
+
+export const getElement = (el?:Window|HTMLElement):HTMLElement => isUndef(el) || el instanceof Window ? document.documentElement : el as HTMLElement
