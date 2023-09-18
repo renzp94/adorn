@@ -1,26 +1,26 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte'
   import Base from './Base.svelte'
-  import type { BaseType, CopyConfig } from './types'
+  import type { BaseType, CopyConfig, EllipsisConfig } from './types'
+  import type { Target } from '../utils/types'
 
   export let href: string | undefined = undefined
+  export let target: Target = '_self'
   export let title: string | undefined = undefined
-  // export let editable: boolean | EditConfig | undefined = undefined
-  export let copyable: boolean | CopyConfig | undefined = undefined
+  // export let editable: boolean | EditConfig = false
+  export let copyable: boolean | CopyConfig = false
   export let type: BaseType | undefined = undefined
-  export let disabled: boolean | undefined = undefined
-  // export let ellipsis: boolean | EllipsisConfig | undefined = undefined
-  export let underline: boolean | undefined = undefined
-  export let deleted: boolean | undefined = undefined
-  export { deleted as delete }
-  export let strong: boolean | undefined = undefined
-  export let italic: boolean | undefined = undefined
+  export let disabled: boolean = false
+  export let ellipsis: boolean | EllipsisConfig = false
+  export let underline: boolean = false
+  export let deleted: boolean = false
+  export let strong: boolean = false
+  export let italic: boolean = false
 
+  const dispatch = createEventDispatcher()
   const onClick = () => {
-    if (disabled) {
-      return
-    }
-
-    window.open(href, $$restProps.target ?? '_self')
+    dispatch('click')
+    window.open(href, $$restProps.target ?? target)
   }
 </script>
 
@@ -31,12 +31,13 @@
   {copyable}
   {type}
   {disabled}
+  {ellipsis}
   {underline}
   {deleted}
   {strong}
   {italic}
   {...$$restProps}
-  on:click
+  on:click={onClick}
   on:copy
 >
   <slot />

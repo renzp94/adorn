@@ -825,3 +825,5 @@ export type IconName =
   | 'infinity-fill'
 
 export type Direction = 'horizontal' | 'vertical'
+
+export type Target = '_self' | '_blank' | '_parent' | '_top' | string

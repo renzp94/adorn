@@ -8,17 +8,17 @@
 
   export let tag = 'span'
   export let title: string | undefined = undefined
-  // export let editable: boolean | EditConfig | undefined = undefined
-  export let copyable: boolean | CopyConfig | undefined = undefined
+  // export let editable: boolean | EditConfig = false
+  export let copyable: boolean | CopyConfig = false
   export let type: BaseType | undefined = undefined
-  export let disabled: boolean | undefined = undefined
-  export let ellipsis: boolean | EllipsisConfig | undefined = undefined
-  export let keyboard: boolean | undefined = undefined
-  export let mark: boolean | undefined = undefined
-  export let underline: boolean | undefined = undefined
-  export let deleted: boolean | undefined = undefined
-  export let strong: boolean | undefined = undefined
-  export let italic: boolean | undefined = undefined
+  export let disabled: boolean = false
+  export let ellipsis: boolean | EllipsisConfig = false
+  export let keyboard: boolean = false
+  export let mark: boolean = false
+  export let underline: boolean = false
+  export let deleted: boolean = false
+  export let strong: boolean = false
+  export let italic: boolean = false
 
   let className = ''
   export { className as class }
@@ -48,6 +48,13 @@
 
     dispatch('copy')
   }
+  const onClick = () => {
+    if (disabled) {
+      return
+    }
+
+    dispatch('click')
+  }
 
   $: copyIcon = ((copyable as CopyConfig)?.icon ?? 'file-copy') as IconName
 </script>
@@ -66,7 +73,7 @@
   class:ellipsis
   style={styles}
   {...$$restProps}
-  on:click
+  on:click={onClick}
 >
   {#if keyboard}
     <kbd>
