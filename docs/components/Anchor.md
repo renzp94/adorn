@@ -15,4 +15,31 @@ lang: zh-CN
 
 最简单的用法。
 
-<!-- <demo src="../../../../example/anchor/basic.svelte"  github='Anchor'></demo> -->
+<demo src="../../../../example/anchor/basic.svelte"  github='Anchor'></demo>
+
+## 横向 Anchor
+
+横向 Anchor。
+
+<demo src="../../../../example/anchor/direction.svelte"  github='Anchor'></demo>
+
+## 静态位置
+
+不浮动，状态不随页面滚动变化。
+
+<demo src="../../../../example/anchor/affix.svelte"  github='Anchor'></demo>
+
+
+## Props 属性
+
+| 属性      | 说明                             | 类型                     | 默认值     | 版本 |
+| --------- | -------------------------------- | ------------------------ | ---------- | ---- |
+| affix     | 固定模式                         | `boolean`                | `true`     |      |
+| offsetTop | 距离窗口顶部达到指定偏移量后触发 | `number`                 | `0`        |      |
+| direction | 设置导航方向                     | `vertical \| horizontal` | `vertical` |      |
+
+## Events 事件
+
+| 事件  | 说明     | 类型                                        |
+| ----- | -------- | ------------------------------------------- |
+| click | 点击事件 | `MouseEventHandler<T> \| undefined \| null` |

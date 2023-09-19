@@ -55,6 +55,10 @@ const components = [
           link: '/components/Affix'
         },
         {
+          text: 'Anchor 锚点',
+          link: '/components/Anchor'
+        },
+        {
           text: 'Breadcrumb 面包屑',
           link: '/components/Breadcrumb'
         },
