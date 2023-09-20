@@ -62,6 +62,10 @@ const components = [
           text: 'Breadcrumb 面包屑',
           link: '/components/Breadcrumb'
         },
+        {
+          text: 'Pagination 分页',
+          link: '/components/Pagination'
+        },
       ]
     },
 ]
