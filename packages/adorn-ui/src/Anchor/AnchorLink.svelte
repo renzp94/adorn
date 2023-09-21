@@ -23,6 +23,7 @@
     display: inline-block;
     position: relative;
     padding: 4px 0 4px 16px;
+    cursor: pointer;
 
     &.active {
       .adorn-anchor-link-title {

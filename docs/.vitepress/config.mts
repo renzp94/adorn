@@ -63,6 +63,10 @@ const components = [
           link: '/components/Breadcrumb'
         },
         {
+          text: 'Menu 导航菜单',
+          link: '/components/Menu'
+        },
+        {
           text: 'Pagination 分页',
           link: '/components/Pagination'
         },
