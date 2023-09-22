@@ -40,6 +40,17 @@
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
+	"keywords": [
+		"ui",
+		"svelte-components",
+		"svelte",
+		"sveltejs",
+		"svelte-ui",
+		"svelte-ui-components",
+		"svelte4",
+		"adorn",
+		"adorn-ui"
+	],
 	"peerDependencies": {
 		"svelte": "^4.0.0"
 	},
