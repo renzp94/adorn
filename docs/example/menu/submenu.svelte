@@ -69,4 +69,4 @@
   ]
 </script>
 
-<Menu {items} mode="horizontal" active="mail" />
+<Menu {items} mode="inline" active="mail" />

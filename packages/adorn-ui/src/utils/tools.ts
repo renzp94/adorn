@@ -107,3 +107,21 @@ export const getScrollContainer = (
 }
 
 export const getElement = (el?:Window|HTMLElement):HTMLElement => isUndef(el) || el instanceof Window ? document.documentElement : el as HTMLElement
+
+type FlattenDeepByKey<T = any> = (list: Array<T>, key: string) => Array<T>
+/**
+ * 通过指定key深度递归扁平化数组
+ * @param list 要扁平化的数组
+ * @param key 扁平化依据的字段
+ * @returns 返回扁平化后的数组
+ */
+export const flattenDeepByKey: FlattenDeepByKey = (list, key) => {
+  return list.reduce(
+    (prev: Parameters<FlattenDeepByKey>[0], curr: Parameters<FlattenDeepByKey>[0][0]) => [
+      ...prev,
+      curr,
+      ...(curr[key] ? flattenDeepByKey(curr[key], key) : []),
+    ],
+    []
+  ) as ReturnType<FlattenDeepByKey>
+}

@@ -14,7 +14,6 @@
 
   export let defaultOpenKeys: string[] | undefined = undefined
   export let defaultActive: string | undefined = undefined
-  export let expandIcon: IconName = 'arrow-down-s'
   export let inlineCollapsed = false
   export let inlineIndent = 24
   export let items: MenuItem[] = []

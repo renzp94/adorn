@@ -4,10 +4,11 @@
   import { default as Item } from './MenuItem.svelte'
   import type { IconName } from '../utils/types'
   import type { MenuContext, MenuItem } from './types'
-  import { createEventDispatcher, getContext } from 'svelte'
+  import { createEventDispatcher, getContext, tick } from 'svelte'
   import { MENU_CONTEXT } from '.'
   import type { Writable } from 'svelte/store'
   import { slide } from 'svelte/transition'
+  import { flattenDeepByKey } from '../utils/tools'
 
   const dispatch = createEventDispatcher()
 
@@ -18,15 +19,22 @@
   export let children: MenuItem[] = []
   export let disabled = false
   export let danger = false
+  export let hasSubmenu = false
   export let triggerSubMenuAction: 'hover' | 'click' = 'hover'
   let open = false
+  let itemClick = false
 
   const ctx = getContext<Writable<MenuContext>>(MENU_CONTEXT)
 
-  $: active = !!children.find(item => item.key === $ctx.activeKey)
+  $: active = !!flattenDeepByKey(children, 'children').find(item => item.key === $ctx.activeKey)
   $: {
-    open = !!(key && $ctx.openKeys?.includes(key))
+    if (!itemClick) {
+      open = !!(key && $ctx.openKeys?.includes(key))
+    } else {
+      itemClick = false
+    }
   }
+  $: openIcon = `arrow-${hasSubmenu ? 'right' : open ? 'up' : 'down'}-s`
 
   let className = ''
   export { className as class }
@@ -38,6 +46,18 @@
     }
 
     dispatch('itemClick', target.key)
+    if (triggerSubMenuAction === 'click') {
+      itemClick = true
+      open = false
+    }
+  }
+  const onSubmenuItemClick = (e: CustomEvent<string>) => {
+    dispatch('itemClick', e.detail)
+
+    if (triggerSubMenuAction === 'click') {
+      itemClick = true
+      open = false
+    }
   }
 
   const onClick = () => {
@@ -46,6 +66,9 @@
     }
     open = !open
     dispatch('openChange', { key, open })
+  }
+  const onSubmenuOpenChange = (e: CustomEvent<{ key: string; open: boolean }>) => {
+    dispatch('openChange', e.detail)
   }
 
   $: isHoverOpen = !disabled && $ctx.mode === 'horizontal' && triggerSubMenuAction === 'hover'
@@ -59,12 +82,24 @@
       open = false
     }
   }
+
+  let rootEl: HTMLElement
+  const onWindowClick = ({ target }: any) => {
+    if (triggerSubMenuAction === 'click') {
+      if (open && rootEl && target && !rootEl.contains(target)) {
+        open = false
+      }
+    }
+  }
 </script>
 
+<svelte:window on:click={onWindowClick} />
 <li
+  bind:this={rootEl}
   class={classList}
   class:disabled
   class:active
+  class:hasSubmenu
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
 >
@@ -72,13 +107,19 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="adorn-menu-submenu-title" on:click={onClick}>
     <Item {label} {title} {icon} {disabled} {danger} />
-    <Icon name={`arrow-${open ? 'up' : 'down'}-s`} size="18px" />
+    <Icon name={openIcon} size="18px" />
   </div>
   {#if open}
     <div class="adorn-menu-submenu-container" transition:slide>
       {#each children as item (item.key)}
         {#if item?.children?.length}
-          <svelte:self {...item} />
+          <svelte:self
+            {...item}
+            {triggerSubMenuAction}
+            on:itemClick={onSubmenuItemClick}
+            on:openChange={onSubmenuOpenChange}
+            hasSubmenu={$ctx.mode === 'horizontal'}
+          />
         {:else}
           <Item {...item} on:click={() => onItemClick(item)} />
         {/if}
@@ -96,19 +137,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
+      padding-right: 12px;
+
       &:hover {
         color: var(--adorn-primary-color);
       }
     }
 
-    &.active &-title {
+    &.active > &-title {
       color: var(--adorn-primary-color);
     }
 
     &-container {
       display: inline-flex;
       flex-direction: column;
-      padding: var(--adorn-padding);
       background-color: var(--adorn-bg-color);
       border-radius: var(--adorn-radius);
     }
@@ -120,10 +163,6 @@
 
   :global(.adorn-menu--horizontal) {
     .adorn-menu-submenu {
-      &-title {
-        margin-right: 16px;
-      }
-
       &-container {
         position: absolute;
         top: 42px;
@@ -133,6 +172,28 @@
         box-shadow: 0px 16px 24px 0px rgba(96, 97, 112, 0.16),
           0px 2px 8px 0px rgba(40, 41, 61, 0.04);
       }
+
+      &.hasSubmenu {
+        .adorn-menu-submenu-container {
+          left: calc(100% + 8px);
+          top: 0;
+
+          &::before {
+            position: absolute;
+            top: 0;
+            left: -8px;
+            content: '';
+            height: 100%;
+            width: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  :global(.adorn-menu--inline) {
+    .adorn-menu-submenu-container {
+      padding: 4px 12px 4px 20px;
     }
   }
 </style>

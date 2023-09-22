@@ -32,3 +32,9 @@ lang: zh-CN
 垂直菜单，子菜单内嵌在菜单区域。
 
 <demo src="../../../../example/menu/inline.svelte"  github='Menu'></demo>
+
+## 多级嵌套菜单
+
+多级嵌套菜单。
+
+<demo src="../../../../example/menu/submenu.svelte"  github='Menu'></demo>
