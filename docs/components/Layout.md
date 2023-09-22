@@ -9,7 +9,7 @@ lang: zh-CN
 
 ## 基本使用
 
-<demo src="../../../../example/layout/basic.svelte"  github='Layout'></demo>
+<demo src="../../../../example/layout/basic.svelte"></demo>
 
 ## Props 属性
 

@@ -9,19 +9,19 @@ lang: zh-CN
 
 最基本的使用。
 
-<demo src="../../../../example/float-button/basic.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/basic.svelte"></demo>
 
 ## 类型
 
 通过`type`改变悬浮按钮的类型。
 
-<demo src="../../../../example/float-button/type.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/type.svelte"></demo>
 
 ## 形状
 
 通过`shape`设置不同的形状。
 
-<demo src="../../../../example/float-button/shape.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/shape.svelte"></demo>
 
 ## 描述
 
@@ -29,31 +29,31 @@ lang: zh-CN
 
 > 仅当`shape`属性为`square`时支持。由于空间较小，推荐使用比较精简的双数文字。
 
-<demo src="../../../../example/float-button/description.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/description.svelte"></demo>
 
 ## 悬浮按钮组
 
 按钮组合使用时，推荐使用`<FloatButton.Group />`，并通过设置`shape`属性改变悬浮按钮组的形状。悬浮按钮组的`shape`会覆盖内部`FloatButton`的`shape`属性。
 
-<demo src="../../../../example/float-button/group-basic.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/group-basic.svelte"></demo>
 
 ## 菜单模式
 
 设置`trigger`属性即可开启菜单模式。提供`hover`和`click`两种触发方式。
 
-<demo src="../../../../example/float-button/group-trigger.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/group-trigger.svelte"></demo>
 
 ## 受控模式
 
 设置`open`设置组件为受控模式，需要配合`trigger`一起使用。
 
-<demo src="../../../../example/float-button/group-open.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/group-open.svelte"></demo>
 
 ## 回到顶部
 
 返回页面顶部的操作按钮。
 
-<demo src="../../../../example/float-button/back-top.svelte"  github='FloatButton'></demo>
+<demo src="../../../../example/float-button/back-top.svelte"></demo>
 
 ## 共同属性
 

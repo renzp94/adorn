@@ -30,7 +30,7 @@ lang: zh-CN
 
 按钮有五种类型：主按钮、次按钮、虚线按钮、文本按钮和链接按钮。主按钮在同一个操作区域最多出现一次。
 
-<demo src="../../../../example/button/type.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/type.svelte"></demo>
 
 ## 图标按钮
 
@@ -38,7 +38,7 @@ lang: zh-CN
 
 如果想控制`Icon`具体的位置，只能直接使用`Icon`组件，而非`icon`属性。
 
-<demo src="../../../../example/button/icon.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/icon.svelte"></demo>
 
 
 ## 按钮尺寸
@@ -48,21 +48,21 @@ lang: zh-CN
 通过设置`size`为`large`, `small`分别把按钮设为大、小尺寸。若不设置`size`，则尺寸为中。
 
 
-<demo src="../../../../example/button/size.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/size.svelte"></demo>
 
 ## 不可用状态
 
 添加`disabled`属性即可让按钮处于不可用状态，同时按钮样式也会改变。
 
 
-<demo src="../../../../example/button/disabled.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/disabled.svelte"></demo>
 
 ## 加载中状态
 
 添加`loading`属性即可让按钮处于加载状态，最后三个按钮演示点击后进入加载状态。
 
 
-<demo src="../../../../example/button/loading.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/loading.svelte"></demo>
 
 
 
@@ -71,19 +71,19 @@ lang: zh-CN
 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
 
 
-<demo src="../../../../example/button/ghost.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/ghost.svelte"></demo>
 
 ## 危险按钮
 
 危险按钮表示操作危险，常用在删除，不可逆更新操作。
 
-<demo src="../../../../example/button/danger.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/danger.svelte"></demo>
 
 ## Block 按钮
 
 `block`属性将使按钮适合其父宽度。
 
-<demo src="../../../../example/button/block.svelte"  github='Button'></demo>
+<demo src="../../../../example/button/block.svelte"></demo>
 
 ## Props 属性
 

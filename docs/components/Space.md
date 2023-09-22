@@ -11,13 +11,13 @@ lang: zh-CN
 
 相邻组件水平间距。
 
-<demo src="../../../../example/space/basic.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/basic.svelte"></demo>
 
 ## 垂直间距
 
 相邻组件垂直间距。
 
-<demo src="../../../../example/space/direction.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/direction.svelte"></demo>
 
 ## 间距大小
 
@@ -25,7 +25,7 @@ lang: zh-CN
 
 通过设置`size`为`large`、`middle`分别把间距设为大、中间距。若不设置`size`，则间距为小。
 
-<demo src="../../../../example/space/size.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/size.svelte"></demo>
 
 ## 间距大小
 
@@ -33,19 +33,19 @@ lang: zh-CN
 
 通过设置`size`为`large`、`middle`分别把间距设为大、中间距。若不设置`size`，则间距为小。
 
-<demo src="../../../../example/space/align.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/align.svelte"></demo>
 
 ## 自动换行
 
 自动换行。
 
-<demo src="../../../../example/space/wrap.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/wrap.svelte"></demo>
 
 ## 分隔符
 
 相邻组件分隔符。
 
-<demo src="../../../../example/space/split.svelte"  github='Space'></demo>
+<demo src="../../../../example/space/split.svelte"></demo>
 
 
 ## Props 属性

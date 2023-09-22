@@ -11,20 +11,20 @@ lang: zh-CN
 
 通过设置`offset`属性来改变吸顶距离，默认值为`0`。
 
-<demo src="../../../../example/affix/basic.svelte"  github='Affix'></demo>
+<demo src="../../../../example/affix/basic.svelte"></demo>
 
 ## 指定容器
 
 通过设置`target`属性，让固钉始终保持在容器内， 超过范围则隐藏。
 请注意容器避免出现滚动条。
 
-<demo src="../../../../example/affix/target.svelte"  github='Affix'></demo>
+<demo src="../../../../example/affix/target.svelte"></demo>
 
 ## 固定位置
 
 通过设置`position`属性设置固定位置，默认为`top`。
 
-<demo src="../../../../example/affix/position.svelte"  github='Affix'></demo>
+<demo src="../../../../example/affix/position.svelte"></demo>
 
 ## Props 属性
 

@@ -7,9 +7,6 @@ const props = defineProps({
 	src: {
 		type: String
 	},
-	github: {
-		type: String
-	},
 	source: {
 		type: String,
 		default: ''
@@ -26,6 +23,7 @@ onMounted(async () => {
 });
 const showCode = ref(false);
 const code = computed(() => decodeURIComponent(props.source));
+const github = computed(() => props.src.replaceAll('../',""))
 const copyText = (text) => {
   // navigator.clipboard只能用于https或者localhost。
   if (navigator?.clipboard?.writeText) {
@@ -68,7 +66,7 @@ const onCopy = async () => {
 					</path>
 				</svg>
 				<a
-					:href="`https://github.com/renzp94/adorn/blob/main/packages/${github}`"
+					:href="`https://github.com/renzp94/adorn/blob/main/docs/${github}`"
 					target="_blank"
 					class="link"
 				>

@@ -17,25 +17,25 @@ lang: zh-CN
 
 最简单的用法。
 
-<demo src="../../../../example/breadcrumb/basic.svelte"  github='Breadcrumb'></demo>
+<demo src="../../../../example/breadcrumb/basic.svelte"></demo>
 
 ## 带图标的
 
 图标放在文字前面。如果使用`icon`指定的话只能使用`Icon`组件支持的图标。
 
-<demo src="../../../../example/breadcrumb/icon.svelte"  github='Breadcrumb'></demo>
+<demo src="../../../../example/breadcrumb/icon.svelte"></demo>
 
 ## 自定义内容
 
 可通过插槽`item`来自定义内容。
 
-<demo src="../../../../example/breadcrumb/item.svelte"  github='Breadcrumb'></demo>
+<demo src="../../../../example/breadcrumb/item.svelte"></demo>
 
 ## 分隔符
 
 可通过插槽`separator`来自定义分隔符。
 
-<demo src="../../../../example/breadcrumb/separator.svelte"  github='Breadcrumb'></demo>
+<demo src="../../../../example/breadcrumb/separator.svelte"></demo>
 
 ## Props 属性
 

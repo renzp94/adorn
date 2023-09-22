@@ -15,19 +15,19 @@ lang: zh-CN
 
 最简单的用法。
 
-<demo src="../../../../example/anchor/basic.svelte"  github='Anchor'></demo>
+<demo src="../../../../example/anchor/basic.svelte"></demo>
 
 ## 横向 Anchor
 
 横向 Anchor。
 
-<demo src="../../../../example/anchor/direction.svelte"  github='Anchor'></demo>
+<demo src="../../../../example/anchor/direction.svelte"></demo>
 
 ## 静态位置
 
 不浮动，状态不随页面滚动变化。
 
-<demo src="../../../../example/anchor/affix.svelte"  github='Anchor'></demo>
+<demo src="../../../../example/anchor/affix.svelte"></demo>
 
 
 ## Props 属性

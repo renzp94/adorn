@@ -24,25 +24,25 @@ lang: zh-CN
 
 使用单一的一组`Row`和`Col`栅格组件，就可以创建一个基本的栅格系统，所有列（Col）必须放在`Row`内。
 
-<demo src="../../../../example/grid/basic.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/basic.svelte"></demo>
 
 ## 区块间隔
 
 栅格常常需要和间隔进行配合，你可以使用`Row`的`gutter`属性，我们推荐使用 (16+8n)px 作为栅格间隔(n 是自然数)。
 
-<demo src="../../../../example/grid/gutter.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/gutter.svelte"></demo>
 
 ## 左右偏移
 
 使用`offset`可以将列向右侧偏。例如，`offset={4}`将元素向右侧偏移了 4 个列（column）的宽度。
 
-<demo src="../../../../example/grid/offset.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/offset.svelte"></demo>
 
 ## 栅格排序
 
 通过使用`push`和`pull`类就可以很容易的改变列（column）的顺序。
 
-<demo src="../../../../example/grid/push.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/push.svelte"></demo>
 
 ## 排版
 
@@ -50,25 +50,25 @@ lang: zh-CN
 
 子元素根据不同的值`start`、`center`、`end`、`space-between`、`space-around` 和 `space-evenly`，分别定义其在父节点里面的排版方式。
 
-<demo src="../../../../example/grid/justify.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/justify.svelte"></demo>
 
 ## 对齐
 
 子元素垂直对齐。
 
-<demo src="../../../../example/grid/align.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/align.svelte"></demo>
 
 ## 排序
 
 通过`order`来改变元素的排序。
 
-<demo src="../../../../example/grid/order.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/order.svelte"></demo>
 
 ## Flex 填充
 
 `Col`提供`flex`属性以支持填充。
 
-<demo src="../../../../example/grid/flex.svelte"  github='Grid/Row'></demo>
+<demo src="../../../../example/grid/flex.svelte"></demo>
 
 ## Row Props 属性
 

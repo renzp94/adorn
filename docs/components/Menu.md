@@ -19,22 +19,22 @@ lang: zh-CN
 
 水平的顶部导航菜单。
 
-<demo src="../../../../example/menu/top.svelte"  github='Menu'></demo>
+<demo src="../../../../example/menu/top.svelte"></demo>
 
 ## 顶部导航滚动
 
 水平的顶部导航菜单如果太多将出现可滚动的图标，可通过`scrollGap`属性来指定一次滚动几个菜单长度。
 
-<demo src="../../../../example/menu/top-more.svelte"  github='Menu'></demo>
+<demo src="../../../../example/menu/top-more.svelte"></demo>
 
 ## 内嵌菜单
 
 垂直菜单，子菜单内嵌在菜单区域。
 
-<demo src="../../../../example/menu/inline.svelte"  github='Menu'></demo>
+<demo src="../../../../example/menu/inline.svelte"></demo>
 
 ## 多级嵌套菜单
 
 多级嵌套菜单。
 
-<demo src="../../../../example/menu/submenu.svelte"  github='Menu'></demo>
+<demo src="../../../../example/menu/submenu.svelte"></demo>

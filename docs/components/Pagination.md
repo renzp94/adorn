@@ -11,38 +11,38 @@ lang: zh-CN
 
 基本分页。
 
-<demo src="../../../../example/pagination/basic.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/basic.svelte"></demo>
 
 ## 更多
 
 更多分页。
 
-<demo src="../../../../example/pagination/more-page.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/more-page.svelte"></demo>
 
 
 ## 改变
 
 改变每页显示条目数。
 
-<demo src="../../../../example/pagination/size-options.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/size-options.svelte"></demo>
 
 ## 跳转
 
 快速跳转到某一页。
 
-<demo src="../../../../example/pagination/quick-jumper.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/quick-jumper.svelte"></demo>
 
 ## 总计
 
 使用`total`插槽展示总计。
 
-<demo src="../../../../example/pagination/total.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/total.svelte"></demo>
 
 ## 全部展示
 
 展示所有配置选项。
 
-<demo src="../../../../example/pagination/all.svelte"  github='Pagination'></demo>
+<demo src="../../../../example/pagination/all.svelte"></demo>
 
 ## Props 属性
 
