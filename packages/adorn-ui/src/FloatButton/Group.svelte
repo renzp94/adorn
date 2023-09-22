@@ -3,7 +3,7 @@
   import { createEventDispatcher, setContext } from 'svelte'
   import { FLOAT_BUTTON_CONTEXT } from '.'
   import type { IconName } from '../utils/types'
-  import FloatButton from './FloatButton.svelte'
+  import { FloatButton } from '.'
   import { fly } from 'svelte/transition'
   import { isUndef } from '../utils/tools'
 
