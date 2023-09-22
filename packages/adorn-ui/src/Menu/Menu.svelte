@@ -1,11 +1,14 @@
 <script lang="ts">
   import { default as Item } from './MenuItem.svelte'
-  import type { MenuItem } from './types'
+  import type { MenuContext, MenuItem } from './types'
   import type { Direction, IconName } from '../utils/types'
   import classes from '@renzp/classes'
-  import { createEventDispatcher, onMount } from 'svelte'
+  import { createEventDispatcher, onMount, setContext } from 'svelte'
   import { Icon } from '..'
-  import { throttle } from 'lodash-es'
+  import { throttle, uniq, values } from 'lodash-es'
+  import SubMenu from './SubMenu.svelte'
+  import { MENU_CONTEXT } from '.'
+  import { writable, type Writable } from 'svelte/store'
 
   const dispatch = createEventDispatcher()
 
@@ -20,6 +23,9 @@
   export let selectable = true
   export let active: string | undefined = defaultActive
   export let triggerSubMenuAction: 'hover' | 'click' = 'hover'
+
+  const ctx = writable<MenuContext>({ activeKey: active, openKeys: openKeys ?? [], mode })
+  $: setContext<Writable<MenuContext>>(MENU_CONTEXT, ctx)
 
   let className = ''
   export { className as class }
@@ -60,8 +66,16 @@
   })
 
   const onItemClick = (e: CustomEvent<string>) => {
-    active = e.detail
-    dispatch('click', active)
+    ctx.update(val => ({ ...val, activeKey: e.detail }))
+    dispatch('click', e.detail)
+  }
+  const onOpenChange = (e: CustomEvent<{ key: string; open: boolean }>) => {
+    const { key, open } = e.detail
+    ctx.update(val => ({
+      ...val,
+      openKeys: open ? uniq([...val.openKeys, key]) : val.openKeys.filter(item => item !== key)
+    }))
+    dispatch('openChange', $ctx.openKeys)
   }
   const onScrollPrev = throttle(() => {
     if (scrollIndex === 0) {
@@ -113,7 +127,16 @@
   {/if}
   <ul bind:this={rootEl} class="adorn-menu-container">
     {#each items as item (item.key)}
-      <Item {...item} on:click={onItemClick} active={active === item.key} />
+      {#if item?.children?.length}
+        <SubMenu
+          {...item}
+          on:itemClick={onItemClick}
+          on:openChange={onOpenChange}
+          {triggerSubMenuAction}
+        />
+      {:else}
+        <Item {...item} on:click={onItemClick} />
+      {/if}
     {/each}
   </ul>
   <!-- {#if scrollIndex < scrollIndexList.length - 1} -->

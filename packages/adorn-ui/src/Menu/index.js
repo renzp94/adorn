@@ -11,3 +11,5 @@ const Menu = Object.assign(
 )
 
 export { Menu }
+
+export const MENU_CONTEXT = "menu_context"

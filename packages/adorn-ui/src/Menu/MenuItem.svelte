@@ -2,7 +2,10 @@
   import classes from '@renzp/classes'
   import type { IconName } from '../utils/types'
   import { Icon } from '..'
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, getContext } from 'svelte'
+  import { MENU_CONTEXT } from '.'
+  import type { Writable } from 'svelte/store'
+  import type { MenuContext } from './types'
 
   const dispatch = createEventDispatcher()
 
@@ -12,7 +15,9 @@
   export let icon: IconName | undefined = undefined
   export let disabled = false
   export let danger = false
-  export let active = false
+
+  const ctx = getContext<Writable<MenuContext>>(MENU_CONTEXT)
+  $: active = $ctx.activeKey === key
 
   let className = ''
   export { className as class }
@@ -49,6 +54,8 @@
     margin-right: 16px;
     cursor: pointer;
     line-height: 42px;
+    border-radius: var(--adorn-radius);
+    transition: background-color 0.2s ease-out;
 
     &:hover {
       color: var(--adorn-primary-color);
@@ -88,7 +95,8 @@
     }
   }
 
-  :global(.adorn-menu--inline) {
+  :global(.adorn-menu--inline),
+  :global(.adorn-menu--horizontal .adorn-menu-submenu) {
     .adorn-menu-item {
       padding: 0 12px;
       margin-right: 0;
