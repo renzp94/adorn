@@ -107,7 +107,9 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="adorn-menu-submenu-title" on:click={onClick}>
     <Item {label} {title} {icon} {disabled} {danger} />
-    <Icon name={openIcon} size="18px" />
+    <span class="adorn-menu-submenu-open-icon">
+      <Icon name={openIcon} size="18px" />
+    </span>
   </div>
   {#if open}
     <div class="adorn-menu-submenu-container" transition:slide>
@@ -132,6 +134,11 @@
   .adorn-menu-submenu {
     display: inline-flex;
     flex-direction: column;
+    margin-bottom: var(--adorn-padding-sm);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &-title {
       display: inline-flex;
@@ -143,6 +150,11 @@
       &:hover {
         color: var(--adorn-primary-color);
       }
+    }
+
+    &-open-icon {
+      position: relative;
+      bottom: 1px;
     }
 
     &.active > &-title {
@@ -168,9 +180,25 @@
         top: 42px;
         left: 0;
         z-index: 99;
+        padding: var(--adorn-padding-sm) var(--adorn-padding);
         background-color: #fff;
         box-shadow: 0px 16px 24px 0px rgba(96, 97, 112, 0.16),
           0px 2px 8px 0px rgba(40, 41, 61, 0.04);
+
+        .adorn-menu-submenu-title::before,
+        .adorn-menu-submenu-title::after {
+          content: '';
+          height: 42px;
+          width: var(--adorn-padding);
+          position: absolute;
+          top: var(--adorn-padding-sm);
+        }
+        .adorn-menu-submenu-title::before {
+          left: 0;
+        }
+        .adorn-menu-submenu-title::after {
+          right: 0;
+        }
       }
 
       &.hasSubmenu {

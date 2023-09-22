@@ -56,6 +56,12 @@
     line-height: 42px;
     border-radius: var(--adorn-radius);
     transition: background-color 0.2s ease-out;
+    margin-bottom: var(--adorn-padding-sm);
+
+    &:last-child {
+      margin-right: 0;
+      margin-bottom: 0;
+    }
 
     &:hover {
       color: var(--adorn-primary-color);
@@ -84,10 +90,6 @@
     &.disabled {
       cursor: not-allowed;
       color: var(--adorn-disabled-text-color);
-    }
-
-    &:last-child {
-      margin-right: 0;
     }
 
     &-icon {
