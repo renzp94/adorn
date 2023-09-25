@@ -34,7 +34,7 @@
       itemClick = false
     }
   }
-  $: openIcon = `arrow-${hasSubmenu ? 'right' : open ? 'up' : 'down'}-s`
+  $: openIcon = `arrow-${hasSubmenu ? 'right' : open ? 'up' : 'down'}-s` as IconName
 
   let className = ''
   export { className as class }
