@@ -1,6 +1,6 @@
 import './theme/light/index.css'
 export { default as Affix } from './Affix/index.svelte'
-export { default as Anchor } from './Anchor/index.svelte'
+export { Anchor } from './Anchor'
 export { default as Button } from './Button/index.svelte'
 export { default as Breadcrumb } from './Breadcrumb/index.svelte'
 export { default as Divider } from './Divider/index.svelte'
