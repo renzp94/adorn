@@ -7,7 +7,8 @@
 		"docs:build": "pnpm run package && pnpm run --filter docs docs:build",
 		"package:dev": "pnpm run --filter adorn-ui package:dev",
 		"package": "pnpm run --filter adorn-ui package",
-    "pub": "zx ./scripts/publish.mjs"
+    "pub": "zx ./scripts/publish.mjs",
+		"icon": "node ./scripts/icon-helper.js"
 	},
 	"devDependencies": {
 		"zx": "^7.2.3"

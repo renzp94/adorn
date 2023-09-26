@@ -6,13 +6,13 @@
 <FloatButton
   type="primary"
   shape="circle"
-  icon="bilibili-fill"
+  icon="bilibili"
   style="bottom: 300px;"
 />
 <FloatButton
   type="primary"
   shape="square"
-  icon="bilibili-fill"
+  icon="bilibili"
   style="right: 80px;bottom: 295px;"
   description="B站"
 />

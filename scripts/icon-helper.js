@@ -364,7 +364,6 @@ const icons = [
   "ri-hashtag",
   "ri-asterisk",
   "ri-question-mark",
-  "ri-translate",
   "ri-translate-2",
   "ri-a-b",
   "ri-english-input",
@@ -410,7 +409,6 @@ const icons = [
   "ri-rounded-corner",
   "ri-sketching",
   "ri-draggable",
-  "ri-slash-commands",
   "ri-slash-commands-2",
   "ri-ai-generate",
   "ri-dropdown-list",
@@ -453,17 +451,13 @@ const icons = [
   "ri-baidu-line",
   "ri-baidu-fill",
   "ri-bilibili-line",
-  "ri-bilibili-fill",
   "ri-chrome-line",
-  "ri-chrome-fill",
   "ri-codepen-line",
-  "ri-codepen-fill",
   "ri-dingding-line",
   "ri-dingding-fill",
   "ri-discord-line",
   "ri-discord-fill",
   "ri-dribbble-line",
-  "ri-dribbble-fill",
   "ri-drive-line",
   "ri-drive-fill",
   "ri-github-line",
@@ -471,28 +465,19 @@ const icons = [
   "ri-gitlab-line",
   "ri-gitlab-fill",
   "ri-google-line",
-  "ri-google-fill",
   "ri-instagram-line",
-  "ri-instagram-fill",
   "ri-meta-line",
-  "ri-meta-fill",
   "ri-mini-program-line",
   "ri-mini-program-fill",
   "ri-notion-line",
-  "ri-notion-fill",
   "ri-npmjs-line",
-  "ri-npmjs-fill",
   "ri-qq-line",
   "ri-qq-fill",
   "ri-reactjs-line",
-  "ri-reactjs-fill",
   "ri-remixicon-line",
   "ri-remixicon-fill",
   "ri-stack-overflow-line",
-  "ri-stack-overflow-fill",
   "ri-switch-line",
-  "ri-switch-fill",
-  "ri-taobao-line",
   "ri-taobao-fill",
   "ri-tiktok-line",
   "ri-tiktok-fill",
@@ -537,8 +522,6 @@ const icons = [
   "ri-riding-line",
   "ri-footprint-line",
   "ri-footprint-fill",
-  "ri-restaurant-line",
-  "ri-restaurant-fill",
   "ri-restaurant-2-line",
   "ri-restaurant-2-fill",
   "ri-cup-line",
@@ -640,16 +623,10 @@ const icons = [
   "ri-upload-fill",
   "ri-download-cloud-line",
   "ri-download-cloud-fill",
-  "ri-download-cloud-2-line",
-  "ri-download-cloud-2-fill",
   "ri-login-box-line",
-  "ri-login-box-fill",
   "ri-logout-box-line",
-  "ri-logout-box-fill",
   "ri-login-circle-line",
-  "ri-login-circle-fill",
   "ri-logout-circle-line",
-  "ri-logout-circle-fill",
   "ri-refresh-line",
   "ri-delete-bin-line",
   "ri-delete-bin-fill",
@@ -681,7 +658,6 @@ const icons = [
   "ri-filter-fill",
   "ri-loader-line",
   "ri-loop-left-line",
-  "ri-loop-left-fill",
 
   // User & Faces
   "ri-user-3-line",
@@ -708,12 +684,9 @@ const icons = [
   "ri-moon-fill",
   "ri-flashlight-line",
   "ri-flashlight-fill",
-  "ri-cloudy-line",
-  "ri-cloudy-fill",
   "ri-cloudy-2-line",
   "ri-cloudy-2-fill",
   "ri-mist-line",
-  "ri-mist-fill",
   "ri-foggy-line",
   "ri-foggy-fill",
   "ri-cloud-windy-line",
@@ -744,8 +717,6 @@ const icons = [
   "ri-typhoon-fill",
   "ri-haze-line",
   "ri-haze-fill",
-  "ri-haze-2-line",
-  "ri-haze-2-fill",
   "ri-sun-foggy-line",
   "ri-sun-foggy-fill",
   "ri-moon-foggy-line",
@@ -757,9 +728,7 @@ const icons = [
   "ri-temp-cold-line",
   "ri-temp-cold-fill",
   "ri-celsius-line",
-  "ri-celsius-fill",
   "ri-fahrenheit-line",
-  "ri-fahrenheit-fill",
   "ri-water-percent-line",
   "ri-water-percent-fill",
   "ri-fire-line",
@@ -776,12 +745,8 @@ const icons = [
   "ri-rainbow-fill",
   "ri-shining-line",
   "ri-shining-fill",
-  "ri-shining-2-line",
-  "ri-shining-2-fill",
   "ri-sparkling-line",
   "ri-sparkling-fill",
-  "ri-sparkling-2-line",
-  "ri-sparkling-2-fill",
 
   // Others
   "ri-basketball-line",
@@ -792,12 +757,8 @@ const icons = [
   "ri-billiards-fill",
   "ri-boxing-line",
   "ri-boxing-fill",
-  "ri-cake-line",
-  "ri-cake-fill",
   "ri-cake-2-line",
   "ri-cake-2-fill",
-  "ri-cake-3-line",
-  "ri-cake-3-fill",
   "ri-door-lock-line",
   "ri-door-lock-fill",
   "ri-door-lock-box-line",
@@ -808,8 +769,6 @@ const icons = [
   "ri-game-fill",
   "ri-handbag-line",
   "ri-handbag-fill",
-  "ri-key-line",
-  "ri-key-fill",
   "ri-key-2-line",
   "ri-key-2-fill",
   "ri-knife-line",
@@ -820,14 +779,10 @@ const icons = [
   "ri-lightbulb-fill",
   "ri-lightbulb-flash-line",
   "ri-lightbulb-flash-fill",
-  "ri-outlet-line",
-  "ri-outlet-fill",
   "ri-outlet-2-line",
   "ri-outlet-2-fill",
   "ri-plug-line",
   "ri-plug-fill",
-  "ri-plug-2-line",
-  "ri-plug-2-fill",
   "ri-ping-pong-line",
   "ri-ping-pong-fill",
   "ri-reserved-line",
@@ -838,8 +793,6 @@ const icons = [
   "ri-sword-fill",
   "ri-t-shirt-line",
   "ri-t-shirt-fill",
-  "ri-t-shirt-2-line",
-  "ri-t-shirt-2-fill",
   "ri-t-shirt-air-line",
   "ri-t-shirt-air-fill",
   "ri-umbrella-line",
@@ -858,10 +811,6 @@ const icons = [
   "ri-tree-fill",
   "ri-recycle-line",
   "ri-recycle-fill",
-  "ri-scales-2-line",
-  "ri-scales-2-fill",
-  "ri-scales-line",
-  "ri-scales-fill",
   "ri-scales-3-line",
   "ri-scales-3-fill",
   "ri-fridge-line",
@@ -878,10 +827,6 @@ const icons = [
   "ri-door-closed-fill",
   "ri-graduation-cap-line",
   "ri-graduation-cap-fill",
-  "ri-box-1-line",
-  "ri-box-1-fill",
-  "ri-box-2-line",
-  "ri-box-2-fill",
   "ri-box-3-line",
   "ri-box-3-fill",
   "ri-candle-line",
@@ -907,21 +852,20 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const getIconNames = (css) => {
-  const list = css
-                .split('.adorn-icon-')
-                .map(item => {
-                  const [name] = item.split('::before')
-
-                  return name
-                })
-                .filter(Boolean)
-                .map(item => `"${item}"`)
-                .join("|")
-  console.log(list)
+  return css
+          .split('.adorn-icon-')
+          .map(item => {
+            const [name] = item.split('::before')
+            console.log(name)
+            return name
+          })
+          .filter(Boolean)
+          .map(item => `"${item}"`)
+          .join("|")
 }
 
 const replaceIconsNames = () => {
-  let filepath = path.resolve(__dirname,'../packages/src/Icon/fonts/remixicon.css')
+  let filepath = path.resolve(__dirname,'../packages/adorn-ui/src/Icon/fonts/remixicon.css')
   let css = fs.readFileSync(filepath,"utf-8") 
 
   css = css
@@ -931,6 +875,15 @@ const replaceIconsNames = () => {
           .replace(/-line/g, "")
           // 移除-数字
           .replace(/-\d/g,'')
+
+  Array.from({length:10}).forEach((_,index) => {
+    if(index === 9){
+      css = css.replace('.adorn-icon-number::before',`.adorn-icon-number-0::before`)
+      return
+    }
+    css = css.replace('.adorn-icon-h::before',`.adorn-icon-h-${index + 1}::before`)
+             .replace('.adorn-icon-number::before',`.adorn-icon-number-${index + 1}::before`)
+  })
 
   // 客服图标
   css = css.replace("adorn-icon-customer-service","adorn-icon-customer")
@@ -954,7 +907,15 @@ const replaceIconsNames = () => {
   css = css.replace("adorn-icon-error-warning","adorn-warning")
   css = css.replace("adorn-icon-error-warning-fill","adorn-icon-warning-fill")
 
-  getIconNames(css)
+
+  let types = getIconNames(css)
+  console.log("========类型========")
+  console.log(types)
+  console.log("========类型========")
+  console.log()
+  console.log("========名称========")
+  console.log(types.replaceAll('|',","))
+  console.log("========名称========")
 
   fs.writeFileSync(filepath,css)
 }
