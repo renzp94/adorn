@@ -7,10 +7,10 @@
   export { className as class }
   export let color: string | undefined = undefined
   export let name: IconName
-  export let size: string = '14px'
+  export let size: string | undefined = undefined
   export let style: string | undefined = undefined
 
-  $: styles = `font-size: ${size};${prefixConcat(color, 'color: ')};${style ?? ''}`
+  $: styles = classes([{ [`font-size: ${size};`]: size }, { [`color: ${color};`]: color }, style])
   $: classNames = classes(['adorn-icon', className, prefixConcat(name, 'adorn-icon-')])
 </script>
 
@@ -21,5 +21,7 @@
   .adorn-icon {
     display: inline-block;
     line-height: 1;
+    font-size: inherit;
+    color: inherit;
   }
 </style>

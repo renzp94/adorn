@@ -865,7 +865,9 @@
   <div class="grid">
     {#each list as name}
       <div class="item">
-        <Icon class="item__icon" size="36px" {name} />
+        <span class="item__icon">
+          <Icon {name} />
+        </span>
         <div class="item__name">{name}</div>
       </div>
     {/each}
@@ -914,6 +916,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .item__icon {
+    font-size: 36px;
   }
 
   .item__name {
