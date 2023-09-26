@@ -70,6 +70,10 @@ const components = [
           text: 'Pagination 分页',
           link: '/components/Pagination'
         },
+        {
+          text: 'Steps 步骤条',
+          link: '/components/Steps'
+        },
       ]
     },
 ]

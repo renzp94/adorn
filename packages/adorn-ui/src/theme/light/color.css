@@ -2,6 +2,7 @@
 :root{
   /* 主题色 */
   --adorn-primary-color: #4170FF;
+  --adorn-primary-color-15: #E3EAFF;
 
   /* 成功色 */
   --adorn-success-color: #00C48C;
@@ -14,6 +15,7 @@
 
   /* 文字色 */
   --adorn-text-color: #3C4761;
+  --adorn-text-secondary: #7487A3;
   --adorn-disabled-text-color: #C5CEE0;
 
   /* 白色 */
