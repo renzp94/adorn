@@ -39,7 +39,7 @@
 <div class={classList} {...$$restProps}>
   {#each items as item, index}
     {#if !item.icon}
-      <Item {...item}>
+      <Item status={getItemStatus(index)} {...item}>
         <span
           class={`adorn-step-item-${progressDot ? 'dot' : 'index'} ${getItemStatus(index)}`}
           class:dot={progressDot}
@@ -55,7 +55,7 @@
         </span>
       </Item>
     {:else}
-      <Item {...item} />
+      <Item status={getItemStatus(index)} {...item} />
     {/if}
   {/each}
 </div>

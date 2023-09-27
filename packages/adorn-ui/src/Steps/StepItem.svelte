@@ -6,22 +6,23 @@
   export let description: string | undefined = undefined
   export let icon: IconName | undefined = undefined
   export let title: string | undefined = undefined
+  export let status: 'active' | 'finish' | 'wait' = 'wait'
 
   let className = ''
   export { className as class }
-  $: classList = classes(['adorn-step-item', className])
+  $: classList = classes(['adorn-step-item', className, `adorn-step-item--${status}`])
 </script>
 
 <div class={classList}>
   <div class="adorn-step-item-tail" />
   <div class="adorn-step-item-indicator">
-    <slot name="icon">
-      {#if icon}
-        <span class="adorn-step-item-icon">
-          <Icon name={icon} />
-        </span>
-      {/if}
-    </slot>
+    {#if $$slots.icon}
+      <slot name="icon" />
+    {:else if icon}
+      <span class="adorn-step-item-icon">
+        <Icon name={icon} />
+      </span>
+    {/if}
   </div>
   <div class="adorn-step-item-content">
     {#if title}
@@ -229,11 +230,14 @@
           }
 
           &.active,
-          &.finish,
-          &.active::before,
-          &.finish::after {
+          &.finish {
             background-color: var(--adorn-primary-color);
           }
+        }
+
+        &--active .adorn-step-item-indicator::before,
+        &--finish .adorn-step-item-indicator::after {
+          background-color: var(--adorn-primary-color);
         }
 
         &:first-child .adorn-step-item-indicator::before,
