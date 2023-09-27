@@ -38,9 +38,7 @@
   {...$$restProps}
   on:click
 >
-  {#if $$slots.default}
-    <slot />
-  {:else}
+  <slot>
     {#if $$slots.icon}
       <slot name="icon" />
     {:else if icon}
@@ -49,7 +47,7 @@
     {#if shape === 'square' && description}
       <span>{description}</span>
     {/if}
-  {/if}
+  </slot>
 </svelte:element>
 
 <style lang="less" global>

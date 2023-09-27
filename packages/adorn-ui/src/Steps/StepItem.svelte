@@ -15,13 +15,13 @@
 <div class={classList}>
   <div class="adorn-step-item-tail" />
   <div class="adorn-step-item-indicator">
-    {#if $$slots.icon}
-      <slot name="icon" />
-    {:else if icon}
-      <span class="adorn-step-item-icon">
-        <Icon name={icon} />
-      </span>
-    {/if}
+    <slot name="icon">
+      {#if icon}
+        <span class="adorn-step-item-icon">
+          <Icon name={icon} />
+        </span>
+      {/if}
+    </slot>
   </div>
   <div class="adorn-step-item-content">
     {#if title}

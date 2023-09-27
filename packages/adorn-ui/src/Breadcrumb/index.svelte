@@ -43,11 +43,7 @@
     </span>
     {#if index < items.length - 1}
       <span class="adorn-breadcrumb__separator">
-        {#if $$slots.separator}
-          <slot name="separator" />
-        {:else}
-          /
-        {/if}
+        <slot name="separator">/</slot>
       </span>
     {/if}
   {/each}
