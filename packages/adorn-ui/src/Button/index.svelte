@@ -1,13 +1,12 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { createEventDispatcher } from 'svelte'
-  import type { IconName, Target } from '../utils/types'
+  import type { IconName, Size, Target } from '../utils/types'
   import { Icon } from '..'
 
   type ButtonType = 'primary' | 'dashed' | 'link' | 'text' | 'default'
   type ButtonHtmlType = 'submit' | 'reset' | 'button' | undefined | null
   type ButtonShape = 'default' | 'circle' | 'round'
-  type ButtonSize = 'large' | 'middle' | 'small'
 
   export let block = false
   let className = ''
@@ -20,7 +19,7 @@
   export let type: ButtonType = 'default'
   export let htmlType: ButtonHtmlType = 'button'
   export let shape: ButtonShape = 'default'
-  export let size: ButtonSize = 'middle'
+  export let size: Size = 'middle'
   export let target: Target = ''
   export let icon: IconName | undefined = undefined
   $: classLst = classes([

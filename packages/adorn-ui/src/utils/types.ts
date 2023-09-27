@@ -772,3 +772,5 @@ export type IconName =
 export type Direction = 'horizontal' | 'vertical'
 
 export type Target = '_self' | '_blank' | '_parent' | '_top' | string
+
+export type Size = 'large' | 'middle' | 'small'

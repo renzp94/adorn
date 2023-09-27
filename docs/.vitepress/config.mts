@@ -76,6 +76,16 @@ const components = [
         },
       ]
     },
+    {
+      text: '数据录入',
+      collapsed: false,
+      items: [
+        {
+          text: 'Input 输入框',
+          link: '/components/Input'
+        },
+      ]
+    },
 ]
 
 const nav = [
