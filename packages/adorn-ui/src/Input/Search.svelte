@@ -22,11 +22,7 @@
 
   let className = ''
   export { className as class }
-  $: classList = classes([
-    'adorn-input-search',
-    className,
-    { ['has-only-addon-before']: $$slots.addonBefore }
-  ])
+  $: classList = classes(['adorn-input-search', className])
 
   const onSearch = () => dispatch('search', value)
 
@@ -99,11 +95,6 @@
     }
 
     &.has-addon {
-      :global(.adorn-input) {
-        border-radius: 0 !important;
-      }
-    }
-    &.has-only-addon-before {
       :global(.adorn-input) {
         border-radius: 0 !important;
       }
