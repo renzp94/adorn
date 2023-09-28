@@ -20,4 +20,7 @@
   --adorn-padding: var(--adorn-size);
   --adorn-padding-xl: var(--adorn-size-xl);
   --adorn-padding-xxl: var(--adorn-size-xxl);
+
+  /* 行高 */
+  --adorn-line-height: 1.5715;
 }
