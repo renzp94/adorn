@@ -217,6 +217,9 @@
 
       &-content {
         width: 100%;
+        &::placeholder {
+          color: var(--adorn-disabled-text-color);
+        }
       }
 
       &-prefix {
