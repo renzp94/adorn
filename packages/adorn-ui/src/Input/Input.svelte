@@ -16,7 +16,7 @@
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
   export let size: Size = 'middle'
-  export const type = 'text'
+  export const type: string = 'text'
 
   let className = ''
   export { className as class }
@@ -161,7 +161,7 @@
     padding: var(--adorn-padding-sm) var(--adorn-padding);
     border-radius: var(--adorn-radius-sm);
     box-sizing: border-box;
-    line-height: 1.5715;
+    line-height: var(--adorn-line-height);
     transition: all 0.3s;
 
     &.bordered {
@@ -245,7 +245,7 @@
       &-addon-after {
         padding: var(--adorn-padding-sm) var(--adorn-padding);
         background-color: var(--adorn-bg-color);
-        line-height: 1.5715;
+        line-height: var(--adorn-line-height);
       }
 
       &-addon-before {
