@@ -68,7 +68,7 @@
 </script>
 
 {#if hasWrapper}
-  <div class={rootClass} class:disabled class:bordered>
+  <div class={rootClass} class:disabled class:bordered class:focused>
     {#if $$slots.addonBefore}
       <div class="adorn-input-addon-before">
         <slot name="addonBefore" />
