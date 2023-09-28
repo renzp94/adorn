@@ -2,7 +2,6 @@
   import classes from '@renzp/classes'
   import type { Size } from '../utils/types'
   import { Icon } from '..'
-  import { isUndef } from '../utils/tools'
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 
