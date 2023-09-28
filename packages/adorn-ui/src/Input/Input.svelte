@@ -55,6 +55,16 @@
       dispatch('input', value)
     }
   }
+
+  let focused = false
+  const onFocus = () => {
+    focused = true
+    dispatch('focus')
+  }
+  const onBlur = () => {
+    focused = false
+    dispatch('blur')
+  }
 </script>
 
 {#if hasWrapper}
@@ -64,7 +74,7 @@
         <slot name="addonBefore" />
       </div>
     {/if}
-    <div class="adorn-input">
+    <div class="adorn-input" class:focused>
       {#if $$slots.prefix}
         <div class="adorn-input-prefix">
           <slot name="prefix" />
@@ -82,8 +92,8 @@
         on:compositionstart={onCompositionStart}
         on:compositionend={onCompositionEnd}
         on:change
-        on:blur
-        on:focus
+        on:blur={onBlur}
+        on:focus={onFocus}
         on:keyup
         on:keydown
         on:keypress
@@ -131,8 +141,8 @@
     on:compositionstart={onCompositionStart}
     on:compositionend={onCompositionEnd}
     on:change
-    on:blur
-    on:focus
+    on:blur={onBlur}
+    on:focus={onFocus}
     on:keyup
     on:keydown
     on:keypress
@@ -210,11 +220,6 @@
       display: inline-flex;
       align-items: center;
 
-      &:hover,
-      &:focus {
-        border-color: var(--adorn-primary-color);
-      }
-
       &-content {
         width: 100%;
         &::placeholder {
@@ -224,10 +229,16 @@
 
       &-prefix {
         margin-right: var(--adorn-padding-sm);
+        &:empty {
+          display: none;
+        }
       }
 
       &-suffix {
         margin-left: var(--adorn-padding-sm);
+        &:empty {
+          display: none;
+        }
       }
 
       &-addon-before,
@@ -239,9 +250,15 @@
 
       &-addon-before {
         border-radius: var(--adorn-radius-sm) 0 0 var(--adorn-radius-sm);
+        &:empty {
+          display: none;
+        }
       }
       &-addon-after {
         border-radius: 0 var(--adorn-radius-sm) var(--adorn-radius-sm) 0;
+        &:empty {
+          display: none;
+        }
       }
 
       &-clear-icon {
@@ -263,6 +280,11 @@
     &.bordered {
       .adorn-input {
         border: 1px solid var(--adorn-border-color);
+
+        &:hover,
+        &.focused {
+          border-color: var(--adorn-primary-color);
+        }
 
         &-addon-before {
           border: 1px solid var(--adorn-border-color);
@@ -300,6 +322,7 @@
     &.has-addon {
       .adorn-input {
         border-radius: 0;
+        line-height: 1.6512;
       }
     }
     &.has-only-addon-before {
