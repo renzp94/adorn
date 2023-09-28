@@ -31,6 +31,11 @@ lang: zh-CN
 
 <demo src="../../../../example/input/addon.svelte"></demo>
 
+## 搜素框
+
+带有搜索按钮的输入框。
+
+<demo src="../../../../example/input/search.svelte"></demo>
 
 ## Input Props 属性
 
@@ -70,3 +75,24 @@ lang: zh-CN
 | addonAfter  | 带标签的`input`，设置后置标签 |
 | prefix      | 带有前缀图标的`input`         |
 | suffix      | 带有后缀图标的`input`         |
+
+## Input.Search Props 属性
+
+| 属性        | 说明                             | 类型      | 默认值  | 版本 |
+| ----------- | -------------------------------- | --------- | ------- | ---- |
+| enterButton | 是否有确认按钮，可设为按钮文字。 | `boolean` | `false` |      |
+| loading     | 搜索 loading                     | `boolean` | `false` |      |
+
+其余属性和`Input`一致。
+
+## Events 事件
+
+| 事件   | 说明                             | 类型                                   |
+| ------ | -------------------------------- | -------------------------------------- |
+| search | 点击搜索图标或按下回车键时的回调 | `(value: CustomEvent<string>) => void` |
+
+其余事件和`Input`一致。
+
+## Slots 插槽
+
+除了没有`addonAfter`插槽，其他的和`Input`一致。
