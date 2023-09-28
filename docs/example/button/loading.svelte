@@ -14,6 +14,9 @@
 </script>
 
 <p>
+  <Button loading>loading</Button>
+  <Button type="primary" loading ghost>loading</Button>
+  <Button type="primary" loading ghost danger>loading</Button>
   <Button type="primary" loading>loading</Button>
   <Button type="primary" size="small" icon="cloud-fill" loading>loading</Button>
   <Button type="primary" icon="cloud-fill" loading />

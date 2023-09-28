@@ -22,12 +22,16 @@
   export let size: Size = 'middle'
   export let target: Target = ''
   export let icon: IconName | undefined = undefined
+
+  $: hasIcon = loading || icon
+
   $: classLst = classes([
     'adorn-btn',
     className,
     { [`adorn-btn--${type}`]: !!type },
     { [`adorn-btn--${shape}`]: !!shape },
-    { [`adorn-btn--${size}`]: !!size }
+    { [`adorn-btn--${size}`]: !!size },
+    { [`adorn-btn-has-icon`]: hasIcon }
   ])
 
   const dispatcher = createEventDispatcher()
@@ -55,7 +59,7 @@
     <Icon name={icon} />
   {/if}
   {#if $$slots.default}
-    <span><slot /></span>
+    <span class="adorn-btn-text"><slot /></span>
   {/if}
 </svelte:element>
 

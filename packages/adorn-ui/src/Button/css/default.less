@@ -3,8 +3,10 @@
   outline: none;
   font-size: var(--adorn-font-size);
   text-decoration: none;
+  white-space: nowrap;
 
-  :global(.adorn-icon:not(:last-child)){
-    margin-inline-end: 8px;
+
+  &-has-icon &-text{
+    margin-left: 8px;
   }
 }
