@@ -15,7 +15,7 @@
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
   export let size: Size = 'middle'
-  export const type: string = 'text'
+  export let type: string = 'text'
 
   let className = ''
   export { className as class }
@@ -228,6 +228,8 @@
 
       &-prefix {
         margin-right: var(--adorn-padding-sm);
+        line-height: var(--adorn-line-height);
+
         &:empty {
           display: none;
         }
@@ -235,6 +237,8 @@
 
       &-suffix {
         margin-left: var(--adorn-padding-sm);
+        line-height: var(--adorn-line-height);
+
         &:empty {
           display: none;
         }
