@@ -110,8 +110,7 @@
     }
 
     :global(.adorn-btn) {
-      line-height: 1.5715;
-      // border-left: 0 !important;
+      line-height: var(--adorn-line-height);
       border-radius: 0 var(--adorn-radius-sm) var(--adorn-radius-sm) 0;
     }
   }
