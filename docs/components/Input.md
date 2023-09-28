@@ -37,6 +37,12 @@ lang: zh-CN
 
 <demo src="../../../../example/input/search.svelte"></demo>
 
+## 密码框
+
+密码框。
+
+<demo src="../../../../example/input/password.svelte"></demo>
+
 ## Input Props 属性
 
 | 属性         | 说明                                                                                                                                                                                           | 类型                       | 默认值   | 版本 |
@@ -96,3 +102,23 @@ lang: zh-CN
 ## Slots 插槽
 
 除了没有`addonAfter`插槽，其他的和`Input`一致。
+
+## Input.Password Props 属性
+
+| 属性    | 说明         | 类型      | 默认值  | 版本 |
+| ------- | ------------ | --------- | ------- | ---- |
+| visible | 是否显示密码 | `boolean` | `false` |      |
+
+其余属性和`Input`一致。
+
+## Events 事件
+
+| 事件          | 说明           | 类型                                    |
+| ------------- | -------------- | --------------------------------------- |
+| visibleChange | 显隐密码的回调 | `(value: CustomEvent<boolean>) => void` |
+
+其余事件和`Input`一致。
+
+## Slots 插槽
+
+除了没有`suffix`插槽，其他的和`Input`一致。
