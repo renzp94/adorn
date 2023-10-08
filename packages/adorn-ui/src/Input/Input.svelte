@@ -175,6 +175,7 @@
     &.disabled {
       background-color: var(--adorn-disabled-bg-color);
       cursor: not-allowed;
+      color: var(--adorn-disabled-text-color);
     }
 
     &:not(.disabled):hover,
@@ -215,6 +216,7 @@
       .adorn-input {
         &-content {
           cursor: not-allowed;
+          color: var(--adorn-disabled-text-color);
         }
 
         &:hover,
@@ -308,6 +310,12 @@
           border: 1px solid var(--adorn-border-color);
           border-left: none;
         }
+      }
+    }
+
+    &.bordered.disabled {
+      .adorn-input {
+        border-color: var(--adorn-border-color);
       }
     }
 
