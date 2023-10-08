@@ -14,6 +14,7 @@
   export let id: string | undefined = undefined
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
+  export let status: 'error' | 'warning' | undefined = undefined
   export let size: Size = 'middle'
   export let visible = false
 
@@ -43,6 +44,7 @@
     {id}
     {maxLength}
     {showCount}
+    {status}
     {size}
     type={visible ? 'text' : 'password'}
     on:input

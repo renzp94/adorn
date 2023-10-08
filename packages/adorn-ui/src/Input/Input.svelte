@@ -14,6 +14,7 @@
   export let id: string | undefined = undefined
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
+  export let status: 'error' | 'warning' | undefined = undefined
   export let size: Size = 'middle'
   export let type: string = 'text'
 
@@ -25,11 +26,16 @@
     `adorn-input-wrapper--${size}`,
     { ['has-addon']: $$slots.addonBefore || $$slots.addonAfter },
     { ['has-only-addon-before']: $$slots.addonBefore && !$$slots.addonAfter },
-    { ['has-only-addon-after']: $$slots.addonAfter && !$$slots.addonBefore }
+    { ['has-only-addon-after']: $$slots.addonAfter && !$$slots.addonBefore },
+    { [`adorn-input-wrapper--${status}`]: status }
   ])
-
   $: hasWrapper = Object.keys($$slots).length > 0 || allowClear || showCount
-  $: classList = classes(['adorn-input', className, `adorn-input--${size}`])
+  $: classList = classes([
+    'adorn-input',
+    className,
+    `adorn-input--${size}`,
+    { [`adorn-input--${status}`]: status }
+  ])
 
   const onClear = () => {
     value = ''
@@ -175,6 +181,12 @@
     &:not(.disabled):focus {
       border-color: var(--adorn-primary-color);
     }
+    &.bordered&--error {
+      border-color: var(--adorn-error-color);
+    }
+    &.bordered&--warning {
+      border-color: var(--adorn-warn-color);
+    }
     &::placeholder {
       color: var(--adorn-disabled-text-color);
     }
@@ -297,6 +309,13 @@
           border-left: none;
         }
       }
+    }
+
+    &.bordered&--error .adorn-input {
+      border-color: var(--adorn-error-color);
+    }
+    &.bordered&--warning .adorn-input {
+      border-color: var(--adorn-warn-color);
     }
 
     &--small {

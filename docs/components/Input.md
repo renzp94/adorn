@@ -49,6 +49,12 @@ lang: zh-CN
 
 <demo src="../../../../example/input/textarea.svelte"></demo>
 
+## 自定义状态
+
+使用`status`为`Input`添加状态，可选`error`或者`warning`。
+
+<demo src="../../../../example/input/status.svelte"></demo>
+
 ## Input Props 属性
 
 | 属性         | 说明                                                                                                                                                                                           | 类型                       | 默认值   | 版本 |
@@ -60,6 +66,7 @@ lang: zh-CN
 | id           | 输入框的id                                                                                                                                                                                     | `string`                   | -        |      |
 | maxLength    | 最大长度                                                                                                                                                                                       | `number`                   | -        |      |
 | showCount    | 是否展示字数                                                                                                                                                                                   | `boolean`                  | `false`  |      |
+| status       | 设置校验状态                                                                                                                                                                                   | `error \| warning`         | -        |      |
 | size         | 控件大小。                                                                                                                                                                                     | `large \| middle \| small` | `middle` |      |
 | type         | 声明`input`类型，同原生`input`标签的`type`属性，见：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#%E5%B1%9E%E6%80%A7)(请直接使用`Input.TextArea`代替`type="textarea"`) | `string`                   | `text`   |      |
 | value        | 输入框内容                                                                                                                                                                                     | `string`                   | -        |      |
@@ -131,16 +138,16 @@ lang: zh-CN
 
 ## Input.TextArea Props 属性
 
-| 属性         | 说明                     | 类型                       | 默认值   | 版本 |
-| ------------ | ------------------------ | -------------------------- | -------- | ---- |
-| allowClear   | 可以点击清除图标删除内容 | `boolean`                  | `false`  |      |
-| bordered     | 是否有边框               | `boolean`                  | `true`   |      |
-| defaultValue | 输入框默认内容           | `string`                   | -        |      |
-| disabled     | 设置按是否禁用状态       | `boolean`                  | `false`  |
-| maxLength    | 最大长度                 | `number`                   | -        |      |
-| showCount    | 是否展示字数             | `boolean`                  | `false`  |      |
-| size         | 控件大小。               | `large \| middle \| small` | `middle` |      |
-| value        | 输入框内容               | `string`                   | -        |      |
+| 属性         | 说明                     | 类型               | 默认值  | 版本 |
+| ------------ | ------------------------ | ------------------ | ------- | ---- |
+| allowClear   | 可以点击清除图标删除内容 | `boolean`          | `false` |      |
+| bordered     | 是否有边框               | `boolean`          | `true`  |      |
+| defaultValue | 输入框默认内容           | `string`           | -       |      |
+| disabled     | 设置按是否禁用状态       | `boolean`          | `false` |
+| maxLength    | 最大长度                 | `number`           | -       |      |
+| showCount    | 是否展示字数             | `boolean`          | `false` |      |
+| status       | 设置校验状态             | `error \| warning` | -       |      |
+| value        | 输入框内容               | `string`           | -       |      |
 
 ## Events 事件
 

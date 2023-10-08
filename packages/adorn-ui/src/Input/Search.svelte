@@ -15,6 +15,7 @@
   export let id: string | undefined = undefined
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
+  export let status: 'error' | 'warning' | undefined = undefined
   export let size: Size = 'middle'
   export let enterButton: boolean | string = false
   export let loading = false
@@ -22,7 +23,11 @@
 
   let className = ''
   export { className as class }
-  $: classList = classes(['adorn-input-search', className])
+  $: classList = classes([
+    'adorn-input-search',
+    className,
+    { [`adorn-input-search--${status}`]: status }
+  ])
 
   const onSearch = () => dispatch('search', value)
 
@@ -44,6 +49,7 @@
     {id}
     {maxLength}
     {showCount}
+    {status}
     {size}
     {type}
     on:input
@@ -85,6 +91,14 @@
       :global(.adorn-btn) {
         border-left: 1px solid var(--adorn-primary-color);
       }
+    }
+
+    &--error :global(.adorn-btn) {
+      border-left: 1px solid var(--adorn-error-color) !important;
+    }
+
+    &--warning :global(.adorn-btn) {
+      border-left: 1px solid var(--adorn-warn-color) !important;
     }
 
     :global(.adorn-input-wrapper.bordered .adorn-input) {

@@ -10,10 +10,16 @@
   export let value: string | undefined = defaultValue
   export let maxLength: number | undefined = undefined
   export let showCount: boolean = false
+  export let status: 'error' | 'warning' | undefined = undefined
 
   let className = ''
   export { className as class }
-  $: classList = classes(['adorn-textarea', className, { 'adorn-textarea-has-count': showCount }])
+  $: classList = classes([
+    'adorn-textarea',
+    className,
+    { 'adorn-textarea-has-count': showCount },
+    { [`adorn-textarea--${status}`]: status }
+  ])
 
   let isCompositionInput = false
   const onCompositionStart = (e: any) => {
@@ -102,6 +108,14 @@
     &:not(.disabled):hover,
     &:not(.disabled):focus {
       border-color: var(--adorn-primary-color);
+    }
+
+    &.bordered&--error {
+      border-color: var(--adorn-warn-color);
+    }
+
+    &.bordered&--warning {
+      border-color: var(--adorn-error-color);
     }
 
     &-count {
