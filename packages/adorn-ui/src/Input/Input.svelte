@@ -155,13 +155,12 @@
   .adorn-input {
     color: var(--adorn-text-color);
     font-size: var(--adorn-font-size);
-    transition: all 0.2s;
+    transition: all 0.3s;
     width: 100%;
     padding: var(--adorn-padding-sm) var(--adorn-padding);
     border-radius: var(--adorn-radius-sm);
     box-sizing: border-box;
     line-height: var(--adorn-line-height);
-    transition: all 0.3s;
 
     &.bordered {
       border: 1px solid var(--adorn-border-color);

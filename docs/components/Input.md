@@ -43,11 +43,18 @@ lang: zh-CN
 
 <demo src="../../../../example/input/password.svelte"></demo>
 
+## 文本域
+
+用于多行输入。
+
+<demo src="../../../../example/input/textarea.svelte"></demo>
+
 ## Input Props 属性
 
 | 属性         | 说明                                                                                                                                                                                           | 类型                       | 默认值   | 版本 |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------- | ---- |
 | allowClear   | 可以点击清除图标删除内容                                                                                                                                                                       | `boolean`                  | `false`  |      |
+| bordered     | 是否有边框                                                                                                                                                                                     | `boolean`                  | `true`   |      |
 | defaultValue | 输入框默认内容                                                                                                                                                                                 | `string`                   | -        |      |
 | disabled     | 设置按是否禁用状态                                                                                                                                                                             | `boolean`                  | `false`  |
 | id           | 输入框的id                                                                                                                                                                                     | `string`                   | -        |      |
@@ -56,7 +63,6 @@ lang: zh-CN
 | size         | 控件大小。                                                                                                                                                                                     | `large \| middle \| small` | `middle` |      |
 | type         | 声明`input`类型，同原生`input`标签的`type`属性，见：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#%E5%B1%9E%E6%80%A7)(请直接使用`Input.TextArea`代替`type="textarea"`) | `string`                   | `text`   |      |
 | value        | 输入框内容                                                                                                                                                                                     | `string`                   | -        |      |
-
 
 ## Events 事件
 
@@ -122,3 +128,20 @@ lang: zh-CN
 ## Slots 插槽
 
 除了没有`suffix`插槽，其他的和`Input`一致。
+
+## Input.TextArea Props 属性
+
+| 属性         | 说明                     | 类型                       | 默认值   | 版本 |
+| ------------ | ------------------------ | -------------------------- | -------- | ---- |
+| allowClear   | 可以点击清除图标删除内容 | `boolean`                  | `false`  |      |
+| bordered     | 是否有边框               | `boolean`                  | `true`   |      |
+| defaultValue | 输入框默认内容           | `string`                   | -        |      |
+| disabled     | 设置按是否禁用状态       | `boolean`                  | `false`  |
+| maxLength    | 最大长度                 | `number`                   | -        |      |
+| showCount    | 是否展示字数             | `boolean`                  | `false`  |      |
+| size         | 控件大小。               | `large \| middle \| small` | `middle` |      |
+| value        | 输入框内容               | `string`                   | -        |      |
+
+## Events 事件
+
+事件和`Input`一致。
