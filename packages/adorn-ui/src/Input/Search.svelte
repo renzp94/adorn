@@ -26,7 +26,8 @@
   $: classList = classes([
     'adorn-input-search',
     className,
-    { [`adorn-input-search--${status}`]: status }
+    { [`adorn-input-search--${status}`]: status },
+    { ['has-addon']: $$slots.addonBefore }
   ])
 
   const onSearch = () => dispatch('search', value)
@@ -107,8 +108,8 @@
     }
 
     &.has-addon {
-      :global(.adorn-input) {
-        border-radius: 0 !important;
+      :global(.adorn-input-wrapper.bordered .adorn-input) {
+        border-radius: 0;
       }
     }
 
