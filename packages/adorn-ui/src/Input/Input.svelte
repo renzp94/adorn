@@ -60,6 +60,7 @@
       dispatch('input', value)
     }
   }
+  const onChange = (e: any) => dispatch('change', e.target?.value)
 
   let focused = false
   const onFocus = () => {
@@ -96,7 +97,7 @@
         on:input={onInput}
         on:compositionstart={onCompositionStart}
         on:compositionend={onCompositionEnd}
-        on:change
+        on:change={onChange}
         on:blur={onBlur}
         on:focus={onFocus}
         on:keyup
@@ -145,7 +146,7 @@
     on:input={onInput}
     on:compositionstart={onCompositionStart}
     on:compositionend={onCompositionEnd}
-    on:change
+    on:change={onChange}
     on:blur={onBlur}
     on:focus={onFocus}
     on:keyup
