@@ -84,6 +84,10 @@ const components = [
           text: 'Input 输入框',
           link: '/components/Input'
         },
+        {
+          text: 'InputNumber 数字输入框',
+          link: '/components/InputNumber'
+        },
       ]
     },
 ]

@@ -79,6 +79,7 @@
 	},
 	"dependencies": {
 		"@renzp/classes": "^0.0.3",
+		"@renzp/number-correct": "^0.0.6",
 		"lodash-es": "^4.17.21"
 	}
 }

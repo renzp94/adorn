@@ -53,6 +53,9 @@ importers:
       '@renzp/classes':
         specifier: ^0.0.3
         version: 0.0.3
+      '@renzp/number-correct':
+        specifier: ^0.0.6
+        version: 0.0.6
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -707,6 +710,10 @@ packages:
 
   /@renzp/classes@0.0.3:
     resolution: {integrity: sha512-imuC92ILS4s/SLnJzf4C6hbmwS6EBuwQXBfceoveT0VEmpfenCAK66cbzzfjt/+lkmmSgIuifIo4SoZUknPR6A==}
+    dev: false
+
+  /@renzp/number-correct@0.0.6:
+    resolution: {integrity: sha512-dDMxL5MCRwBOVXNMAAb7rdBrtAe19/7Eycz/L1JJ5V54A9ib0LmK0m+iAsI/K74Um1s7kQbhKBwLJJC34X3j9w==}
     dev: false
 
   /@sveltejs/kit@1.23.0(svelte@4.2.0)(vite@4.4.9):

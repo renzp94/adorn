@@ -60,6 +60,7 @@
       dispatch('input', value)
     }
   }
+
   const onChange = (e: any) => dispatch('change', e.target?.value)
 
   let focused = false
