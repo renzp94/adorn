@@ -774,3 +774,12 @@ export type Direction = 'horizontal' | 'vertical'
 export type Target = '_self' | '_blank' | '_parent' | '_top' | string
 
 export type Size = 'large' | 'middle' | 'small'
+
+export type Justify = 'start'
+| 'end'
+| 'center'
+| 'space-around'
+| 'space-between'
+| 'space-evenly'
+
+export type Align = 'top' | 'middle' | 'bottom' | 'stretch'

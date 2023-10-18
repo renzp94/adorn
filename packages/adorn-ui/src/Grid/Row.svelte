@@ -3,19 +3,14 @@
   import { prefixConcat } from '../utils/tools'
   import { CONTEXT_ROW_GUTTER } from './index'
   import { setContext } from 'svelte'
+  import type { Align, Justify } from '../utils/types'
 
   let className = ''
   export { className as class }
-  export let align: 'top' | 'middle' | 'bottom' | 'stretch' = 'top'
+  export let align: Align = 'top'
   export let gutter: number | number[] | undefined = undefined
   export let style: string | undefined = undefined
-  export let justify:
-    | 'start'
-    | 'end'
-    | 'center'
-    | 'space-around'
-    | 'space-between'
-    | 'space-evenly' = 'start'
+  export let justify: Justify = 'start'
   export let wrap: boolean = true
 
   let styles: string = ''
