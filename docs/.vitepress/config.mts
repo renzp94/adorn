@@ -33,6 +33,10 @@ const components = [
           link: '/components/Divider'
         },
         {
+          text: 'Flex 弹性布局',
+          link: '/components/Flex'
+        },
+        {
           text: 'Grid 栅格',
           link: '/components/Grid'
         },
