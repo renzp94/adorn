@@ -20,7 +20,7 @@ do {
 // 移动到包目录
 cd(`./packages/${packageName}`)
 
-const pkg = await fs.readJson('./package.json')
+let pkg = await fs.readJson('./package.json')
 let version
 // 更新版本号
 if(!isRepublish){
@@ -36,7 +36,9 @@ if(!isRepublish){
     )
   } while (!updateTypes.includes(version))
   // 更新版本
-  version = (await $`pnpm version ${version}`)?.stdout?.replace('\n', '')?.toUpperCase()
+  await $`pnpm release --release-as ${version}`
+  pkg = await fs.readJson('./package.json')
+  version = pkg.version
 } else {
   version = pkg.version
 }
@@ -53,8 +55,8 @@ const publishFlags = ['--access=public', '--no-git-checks']
 // 发布
 await spinner(chalk.blue('发布中...'), () => $`pnpm publish ${publishFlags}`)
 echo(`✨ ${chalk.blue(`${pkg.name} ${chalk.bold(version)}`)} 发布成功`)
-// 提交
-cd('../../')
-await $`git add ./packages/${packageName}`
-await $`git commit -m "chore(${packageName}): publish ${version}"`
+// // 提交
+// cd('../../')
+// await $`git add ./packages/${packageName}`
+// await $`git commit -m "chore(${packageName}): publish ${version}"`
 
