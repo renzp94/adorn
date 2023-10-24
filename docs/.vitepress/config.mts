@@ -113,6 +113,7 @@ const sidebar = {
 export default defineConfig({
   title: "Adorn",
   description: "adorn site",
+  head:[['link',{ rel:'icon', href:'/favicon.ico' }]],
   themeConfig: {
 		logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
