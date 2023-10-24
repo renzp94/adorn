@@ -783,3 +783,11 @@ export type Justify = 'start'
 | 'space-evenly'
 
 export type Align = 'top' | 'middle' | 'bottom' | 'stretch'
+
+export interface RadioGroupCtx {
+  disabled: boolean
+  name: string | undefined
+  optionType: 'default' | 'button'
+  size: Size | undefined
+  value: number | string | undefined
+}

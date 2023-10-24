@@ -92,6 +92,10 @@ const components = [
           text: 'InputNumber 数字输入框',
           link: '/components/InputNumber'
         },
+        {
+          text: 'Radio 单选框',
+          link: '/components/Radio'
+        },
       ]
     },
 ]

@@ -1,0 +1,14 @@
+:root{
+  /* 主题色 */
+  --adorn-primary-color: #4170FF;
+  --adorn-primary-color-15: #E3EAFF;
+
+  /* 成功色 */
+  --adorn-success-color: #00C48C;
+
+  /* 警告色 */
+  --adorn-warn-color: #ffc245;
+
+  /* 错误色 */
+  --adorn-error-color: #ff4d4f;
+}
