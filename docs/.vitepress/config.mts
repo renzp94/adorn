@@ -85,6 +85,10 @@ const components = [
       collapsed: false,
       items: [
         {
+          text: 'Checkbox 多选框',
+          link: '/components/Checkbox'
+        },
+        {
           text: 'Input 输入框',
           link: '/components/Input'
         },

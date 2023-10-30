@@ -791,3 +791,21 @@ export interface RadioGroupCtx {
   size: Size | undefined
   value: number | string | undefined
 }
+
+export interface CheckboxGroupOption {
+  label?: string
+  value: string | number
+  disabled?: boolean
+}
+
+export interface CheckboxGroupCtx {
+  disabled: boolean
+  name: string | undefined
+  value: Array<string | number>
+}
+
+export interface RadioGroupOption {
+  label: string
+  value: string | number
+  disabled?: boolean
+}

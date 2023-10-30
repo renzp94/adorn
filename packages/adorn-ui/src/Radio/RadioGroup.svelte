@@ -1,16 +1,11 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { RadioGroupCtx, Size } from '../utils/types'
+  import type { RadioGroupCtx, RadioGroupOption, Size } from '../utils/types'
   import { createEventDispatcher, setContext } from 'svelte'
   import { CONTEXT_RADIO, CONTEXT_RADIO_CHANGE } from '.'
   import { writable, type Writable } from 'svelte/store'
   import Radio from './Radio.svelte'
 
-  interface RadioGroupOption {
-    label: string
-    value: string | number
-    disabled?: boolean
-  }
   const dispatch = createEventDispatcher()
 
   export let buttonStyle: 'outline' | 'solid' = 'outline'
