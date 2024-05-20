@@ -2,12 +2,13 @@ name: Deploy
 on:
   push:
     branches: main
+    paths: "docs/**"
   pull_request:
     branches: main
 
 jobs:
   deploy:
-    name: Deploy
+    name: Docs Deploy
     runs-on: ubuntu-latest
 
     permissions:
