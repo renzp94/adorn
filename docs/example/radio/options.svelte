@@ -1,6 +1,6 @@
 <script>
   import { Radio, Space } from 'adorn-ui'
-  let value = 'Apple'
+  let value = $state('Apple')
 
   const options = [
     { label: 'Apple', value: 'Apple' },

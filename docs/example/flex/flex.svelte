@@ -1,7 +1,7 @@
 <script>
   import { Button, Flex, Space } from 'adorn-ui'
 
-  const justifys = [
+  const justifies = [
     'start',
     'end',
     'center',
@@ -10,21 +10,21 @@
     'space-evenly',
   ]
 
-  const aligns = ['flex-start', 'center', 'flex-end', 'stretch']
+  const aligns = ['top', 'middle', 'bottom', 'stretch']
 
-  let justify = 'start'
-  let align = 'flex-start'
+  let justify = $state('start')
+  let align = $state('top')
 </script>
 
 <Space direction="vertical" size="middle">
   <Space direction="vertical">
     <div>Justify:</div>
     <Space>
-      {#each justifys as v}
+      {#each justifies as v}
         <Button
           key={v}
           type={justify === v ? 'primary' : undefined}
-          on:click={() => (justify = v)}
+          onclick={() => (justify = v)}
         >
           {v}
         </Button>
@@ -38,7 +38,7 @@
         <Button
           key={v}
           type={align === v ? 'primary' : undefined}
-          on:click={() => (align = v)}
+          onclick={() => (align = v)}
         >
           {v}
         </Button>

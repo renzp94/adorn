@@ -772,11 +772,11 @@
     'infinity-fill',
   ]
 
-  let search = ''
-  let type = ''
+  let search = $state('')
+  let type = $state('')
 
   const onChangeType = v => (type = v)
-  $: list =
+  const list = $derived(
     search || type
       ? iconNames.filter(name => {
           const hasName = name.includes(search)
@@ -786,6 +786,7 @@
           return hasName && (!type || isType)
         })
       : iconNames
+  )
 </script>
 
 <div class="page">
@@ -793,15 +794,15 @@
     <div class="type">
       <Button
         type={!type ? 'primary' : 'default'}
-        on:click={() => onChangeType('')}>全部</Button
+        onclick={() => onChangeType('')}>全部</Button
       >
       <Button
         type={type === 'line' ? 'primary' : 'default'}
-        on:click={() => onChangeType('line')}>线框风格</Button
+        onclick={() => onChangeType('line')}>线框风格</Button
       >
       <Button
         type={type === 'fill' ? 'primary' : 'default'}
-        on:click={() => onChangeType('fill')}>实底风格</Button
+        onclick={() => onChangeType('fill')}>实底风格</Button
       >
     </div>
     <input class="search" bind:value={search} />

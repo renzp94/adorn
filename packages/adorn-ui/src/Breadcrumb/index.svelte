@@ -1,36 +1,33 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { IconName } from '../utils/types'
   import { Icon } from '..'
-  import { createEventDispatcher } from 'svelte'
+  import { isString } from 'lodash-es'
+  import type { BreadcrumbProps } from '../types'
 
-  interface BreadcrumbItem {
-    title?: string
-    path?: string
-    icon?: IconName
-    disabled?: boolean
-  }
-  export let items: BreadcrumbItem[] = []
-  let className = ''
-  export { className as class }
-  $: classLst = classes(['adorn-breadcrumb', className])
+  let {
+    items = [],
+    class: className,
+    item: itemRender,
+    separator = '/',
+    onItemClick,
+    ...props
+  }: BreadcrumbProps = $props()
 
-  const dispatch = createEventDispatcher()
-  const onClick = (target: BreadcrumbItem) => dispatch('click', target)
+  const classLst = $derived(classes(['adorn-breadcrumb', className]))
 </script>
 
-<div class={classLst}>
+<div {...props} class={classLst}>
   {#each items as item, index}
     <span class="adorn-breadcrumb__item" class:disabled={item.disabled} class:has-icon={item.icon}>
-      {#if $$slots.item}
-        <slot name="item" {item} />
+      {#if itemRender}
+        {@render itemRender(item)}
       {:else}
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <svelte:element
           this={item.path ? 'a' : 'span'}
+          role={item.path ? 'a' : 'span'}
           class="adorn-breadcrumb__item-content"
           href={item.disabled ? undefined : item.path}
-          on:click={item.disabled ? undefined : () => onClick(item)}
+          onclick={item.disabled ? undefined : () => onItemClick?.(item)}
         >
           {#if item.icon}
             <Icon name={item.icon} />
@@ -43,7 +40,11 @@
     </span>
     {#if index < items.length - 1}
       <span class="adorn-breadcrumb__separator">
-        <slot name="separator">/</slot>
+        {#if isString(separator)}
+          {separator}
+        {:else}
+          {@render separator()}
+        {/if}
       </span>
     {/if}
   {/each}

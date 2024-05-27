@@ -2,4 +2,4 @@
   import { Pagination } from 'adorn-ui'
 </script>
 
-<Pagination defaultCurrent={1} total={50} />
+<Pagination current={1} total={50} />

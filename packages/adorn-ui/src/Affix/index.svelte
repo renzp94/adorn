@@ -1,33 +1,45 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import { createEventDispatcher, onMount } from 'svelte'
+  import { onMount } from 'svelte'
   import { getElement, getScrollContainer } from '../utils/tools'
+  import type { AffixProps } from '../types'
 
-  let className = ''
-  export { className as class }
-  $: classList = classes(['adorn-affix', className])
+  let {
+    class: className,
+    offset = 0,
+    position = 'top',
+    target,
+    zIndex = 100,
+    onChange,
+    onScroll,
+    children,
+    ...props
+  }: AffixProps = $props()
 
-  export let offset = 0
-  export let position: 'top' | 'bottom' = 'top'
-  export let target: string | undefined = undefined
-  export let zIndex = 100
+  const classList = $derived(classes(['adorn-affix', className]))
 
-  let rootEl: HTMLElement
-  let height = 0
-  let width = 0
-  let transform = 0
+  let rootEl: HTMLElement | null = $state(null)
+  let height = $state(0)
+  let width = $state(0)
+  let transform = $state(0)
 
-  $: rootStyles = rootEl ? `height: ${height}px;width: ${width}px;` : undefined
-  $: fixedStyles = `${position}: ${offset}px;z-index: ${zIndex};${
-    transform ? `transform: translateY(${transform}px);` : ''
-  }${rootStyles ?? ''}`
+  const rootStyles = $derived.by(() =>
+    rootEl ? `height: ${height}px;width: ${width}px;` : undefined
+  )
+  const fixedStyles = $derived.by(
+    () =>
+      `${position}: ${offset}px;z-index: ${zIndex};${
+        transform ? `transform: translateY(${transform}px);` : ''
+      }${rootStyles ?? ''}`
+  )
 
-  let scrollTop = 0
-  let fixed = false
+  let scrollTop = $state(0)
+  let fixed = $state(false)
 
-  $: {
+  $effect(() => {
     if (rootEl) {
       const isTop = position === 'top'
+      let oldFixed = fixed
 
       if (target) {
         const { bottom: targetBottom, top: targetTop } = document
@@ -50,35 +62,43 @@
         transform = gap < 0 ? (isTop ? gap : -gap) : 0
       } else {
         const { top, bottom } = rootEl.getBoundingClientRect()
-        fixed = isTop ? scrollTop >= top + offset : window.innerHeight - bottom < offset
+        const isFixed = scrollTop >= top + offset
+        fixed = isTop ? isFixed : window.innerHeight - bottom < offset
+      }
+
+      if (oldFixed !== fixed) {
+        onChange?.(fixed)
       }
     }
-  }
-  const dispatch = createEventDispatcher()
-  $: dispatch('change', fixed)
+  })
 
   onMount(() => {
-    const rootRect = rootEl.getBoundingClientRect()
-    height = rootRect.height
-    width = rootRect.width
+    if (rootEl) {
+      const rootRect = rootEl.getBoundingClientRect()
+      height = rootRect.height
+      width = rootRect.width
 
-    const scrollContainer = getScrollContainer(rootEl, true)
-    const scrollEl = getElement(scrollContainer)
-    scrollTop = scrollEl?.scrollTop ?? 0
-
-    const onScroll = () => {
+      const scrollContainer = getScrollContainer(rootEl, true)
+      const scrollEl = getElement(scrollContainer)
       scrollTop = scrollEl?.scrollTop ?? 0
-      dispatch('scroll', { scrollTop, fixed })
-    }
-    scrollContainer?.addEventListener('scroll', onScroll, { capture: true, passive: true })
 
-    return () => scrollContainer?.removeEventListener('scroll', onScroll)
+      const onContainerScroll = () => {
+        scrollTop = scrollEl?.scrollTop ?? 0
+        onScroll?.({ scrollTop, fixed })
+      }
+      scrollContainer?.addEventListener('scroll', onContainerScroll, {
+        capture: true,
+        passive: true
+      })
+
+      return () => scrollContainer?.removeEventListener('scroll', onContainerScroll)
+    }
   })
 </script>
 
-<div bind:this={rootEl} class={classList} style={rootStyles}>
+<div bind:this={rootEl} class={classList} style={rootStyles} {...props}>
   <div class="adorn-affix__container" class:fixed style={fixedStyles}>
-    <slot />
+    {@render children()}
   </div>
 </div>
 

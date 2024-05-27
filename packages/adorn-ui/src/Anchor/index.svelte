@@ -2,25 +2,20 @@
   import classes from '@renzp/classes'
   import { Affix } from '..'
   import AnchorLink from './AnchorLink.svelte'
-  import type { Direction } from '../utils/types'
   import { onMount } from 'svelte'
-  import { setContext } from 'svelte'
-  import { ANCHOR_DIRECTION } from '.'
+  import type { AnchorProps } from '../types'
 
-  interface AnchorItem {
-    key: string
-    title: string
-    href: string
-  }
+  let {
+    affix = true,
+    items = [],
+    direction = 'vertical',
+    offsetTop = 0,
+    class: className,
+    onItemClick,
+    ...props
+  }: AnchorProps = $props()
 
-  export let affix = true
-  export let items: AnchorItem[] = []
-  export let direction: Direction = 'vertical'
-  export let offsetTop = 0
-
-  let activeLink = decodeURI(window.location.hash)
-
-  $: setContext(ANCHOR_DIRECTION, direction)
+  let activeLink = $state(decodeURI(window.location.hash))
 
   onMount(() => {
     const topList = items
@@ -41,30 +36,30 @@
     window.addEventListener('scroll', onScroll)
   })
 
-  let className: string = ''
-  export { className as class }
-  $: classList = classes(['adorn-anchor', className, `adorn-anchor--${direction}`])
+  const classList = $derived(
+    classes(['adorn-anchor', className, { [`adorn-anchor--${direction}`]: direction }])
+  )
 </script>
+
+{#snippet render()}
+  <div {...props} class={classList}>
+    {#each items as item (item.key)}
+      <AnchorLink
+        href={item.href}
+        title={item.title}
+        active={item.href === activeLink}
+        onclick={() => onItemClick?.(item)}
+      />
+    {/each}
+  </div>
+{/snippet}
 
 {#if affix}
   <Affix target="body" offset={offsetTop}>
-    <div class={classList} {...$$restProps}>
-      {#each items as item (item.key)}
-        <AnchorLink
-          href={item.href}
-          title={item.title}
-          active={item.href === activeLink}
-          on:click
-        />
-      {/each}
-    </div>
+    {@render render()}
   </Affix>
 {:else}
-  <div class={classList} {...$$restProps}>
-    {#each items as item (item.key)}
-      <AnchorLink href={item.href} title={item.title} active={item.href === activeLink} on:click />
-    {/each}
-  </div>
+  {@render render()}
 {/if}
 
 <style lang="less" global>
@@ -86,6 +81,13 @@
       &::before {
         top: 0;
       }
+
+      :global(.adorn-anchor-link.active::before) {
+        top: 0;
+        left: -2px;
+        height: 100%;
+        border-left: 2px solid var(--adorn-primary-color);
+      }
     }
 
     &--horizontal {
@@ -96,6 +98,13 @@
         width: 100%;
         bottom: 0;
         border-bottom: 2px solid var(--adorn-border-color);
+      }
+
+      :global(.adorn-anchor-link.active::before) {
+        bottom: 0;
+        left: 16px;
+        width: calc(100% - 16px);
+        border-bottom: 2px solid var(--adorn-primary-color);
       }
     }
   }

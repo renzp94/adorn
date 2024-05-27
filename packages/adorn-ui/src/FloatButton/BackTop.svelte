@@ -1,39 +1,41 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { FloatButton } from '.'
-  import type { IconName } from '../utils/types'
   import { scrollTo } from '../utils/tools'
-  import { createEventDispatcher, onMount, tick } from 'svelte'
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
+  import type { BackTopProps } from '../types'
 
-  export let icon: IconName | undefined = 'arrow-up'
-  export let description: string | undefined = undefined
-  export let type: 'primary' | 'default' = 'default'
-  export let shape: 'circle' | 'square' = 'circle'
-  export let href = ''
-  export let duration = 450
-  export let target: HTMLElement | Window = window
-  export let visibilityHeight = 100
+  let {
+    icon = 'arrow-up',
+    description,
+    type = 'default',
+    shape = 'circle',
+    href,
+    duration = 450,
+    target = window,
+    visibilityHeight = 100,
+    class: className,
+    children,
+    ...props
+  }: BackTopProps = $props()
 
-  let className = ''
-  export { className as class }
-  $: classLst = classes(['adorn-float-btn__back-top', className])
+  const classList = $derived(classes(['adorn-float-btn__back-top', className]))
 
-  let top = 0
-  $: visible = top > visibilityHeight
-  let scrollEl: HTMLElement | Window
-
-  const onScroll = (e: Event) => {
-    if ((e.target as any).scrollTop) {
-      top = (e.target as any).scrollTop
-    } else {
-      top = window.document.documentElement.scrollTop ?? window.document.body.scrollTop
-    }
-  }
+  let top = $state(0)
+  const visible = $derived(top > visibilityHeight)
+  let scrollEl: HTMLElement | Window | undefined = $state()
 
   let timer: any
   onMount(() => {
     scrollEl = target
+    const onScroll = (e: Event) => {
+      if ((e.target as any).scrollTop) {
+        top = (e.target as any).scrollTop
+      } else {
+        top = window.document.documentElement.scrollTop ?? window.document.body.scrollTop
+      }
+    }
     target.addEventListener('scroll', onScroll)
 
     return () => {
@@ -44,15 +46,18 @@
     }
   })
 
-  const dispatch = createEventDispatcher()
-  const onClick = () => {
+  const _onClick = (e: MouseEvent) => {
     timer = scrollTo(scrollEl, duration)
-    dispatch('click')
+    props?.onclick?.(e)
   }
 </script>
 
 {#if visible}
-  <div class={classLst} {...$$restProps} transition:fade>
-    <FloatButton {icon} {description} {type} {shape} {href} on:click={onClick} />
+  <div role="button" tabindex="-1" {...props} class={classList} onclick={_onClick} transition:fade>
+    {#if children}
+      {@render children()}
+    {:else}
+      <FloatButton {icon} {description} {type} {shape} {href} />
+    {/if}
   </div>
 {/if}

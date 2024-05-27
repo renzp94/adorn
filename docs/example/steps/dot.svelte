@@ -1,5 +1,5 @@
 <script>
-  import { Space, Steps } from 'adorn-ui'
+  import { Steps } from 'adorn-ui'
   const description = 'This is a description.'
 
   let items = [

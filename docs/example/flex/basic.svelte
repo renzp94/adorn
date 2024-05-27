@@ -1,20 +1,20 @@
 <script>
   import { Button, Flex, Space } from 'adorn-ui'
 
-  let direction = 'horizontal'
+  let direction = $state('horizontal')
 </script>
 
 <Flex vertical gap="small">
   <Space>
     <Button
       type={direction === 'horizontal' ? 'primary' : undefined}
-      on:click={() => (direction = 'horizontal')}
+      onclick={() => (direction = 'horizontal')}
     >
       horizontal
     </Button>
     <Button
       type={direction === 'vertical' ? 'primary' : undefined}
-      on:click={() => (direction = 'vertical')}
+      onclick={() => (direction = 'vertical')}
     >
       vertical
     </Button>
@@ -25,7 +25,7 @@
         style:background={`${i % 2 ? '#1677ff' : '#1677ffbf'}`}
         style:width="20%"
         style:height="54px"
-      />
+      ></div>
     {/each}
   </Flex>
 </Flex>

@@ -2,81 +2,79 @@
   import classes from '@renzp/classes'
   import { Button } from '..'
   import type { IconName } from '../utils/types'
-  import { createEventDispatcher } from 'svelte'
   import type { KeyboardEventHandler } from 'svelte/elements'
+  import type { PaginationProps } from '../types'
 
-  export let current: number | undefined = undefined
-  export let defaultCurrent = 1
-  export let defaultPageSize = 10
-  export let disabled: boolean | undefined = undefined
-  export let hideOnSinglePage = false
-  export let pageSize: number | undefined = undefined
-  export let pageSizeOptions: number[] = [10, 20, 50, 100]
-  export let showQuickJumper = false
-  export let showSizeChanger: boolean | undefined = undefined
-  export let showTitle = true
-  export let total = 0
+  let {
+    current = $bindable(1),
+    disabled,
+    hideOnSinglePage,
+    pageSize = 10,
+    pageSizeOptions = [10, 20, 50, 100],
+    showQuickJumper,
+    showSizeChanger,
+    showTitle = true,
+    total = 0,
+    class: className,
+    onChange,
+    onShowSizeChange,
+    showTotal,
+    ...props
+  }: PaginationProps = $props()
 
-  const dispatch = createEventDispatcher()
+  const pages = $derived(Array.from({ length: total / pageSize }).map((_, i) => i + 1))
+  const hidden = $derived(hideOnSinglePage && pages.length < 2)
+  const classList = $derived(classes(['adorn-pagination', className]))
 
-  $: hidden = hideOnSinglePage && pages.length < 2
-
-  let pageCurrent = (current ?? defaultCurrent) as number
-  let pageCurrentSize = (pageSize ?? defaultPageSize) as number
-
-  let className = ''
-  export { className as class }
-  $: classList = classes(['adorn-pagination', className])
-
-  $: pages = Array.from({ length: total / pageCurrentSize }).map((_, i) => i + 1)
-
-  $: showPages = pages
-    .filter(page => {
-      // 超过7个才省略
-      if (pages.length <= 7) {
-        return true
-      }
-
-      if (pageCurrent > 4) {
-        if (page === 1) {
+  const showPages = $derived(
+    pages
+      .filter(page => {
+        // 超过7个才省略
+        if (pages.length <= 7) {
           return true
         }
 
-        if (
-          page === pageCurrent - 2 ||
-          page === pageCurrent - 1 ||
-          page === pageCurrent + 1 ||
-          page === pageCurrent + 2 ||
-          page === pageCurrent
-        ) {
+        if (current > 4) {
+          if (page === 1) {
+            return true
+          }
+
+          if (
+            page === current - 2 ||
+            page === current - 1 ||
+            page === current + 1 ||
+            page === current + 2 ||
+            page === current
+          ) {
+            return true
+          }
+        } else if (page <= 4) {
           return true
         }
-      } else if (page <= 4) {
-        return true
-      }
 
-      if (pageCurrent > pages.length - 4) {
-        if (page >= pages.length - 4) {
+        if (current > pages.length - 4) {
+          if (page >= pages.length - 4) {
+            return true
+          }
+        } else if (page === pages.length) {
           return true
         }
-      } else if (page === pages.length) {
-        return true
-      }
-    })
-    .reduce((prev, page) => {
-      const prevPage = prev.at(-1)
-      const nextPages = [page]
-      if (page - 1 > 0 && page - 1 !== prevPage) {
-        const flag = prev.includes(-1) ? -2 : -1
-        nextPages.unshift(flag)
-      }
+      })
+      .reduce((prev, page) => {
+        const prevPage = prev.at(-1)
+        const nextPages = [page]
+        if (page - 1 > 0 && page - 1 !== prevPage) {
+          const flag = prev.includes(-1) ? -2 : -1
+          nextPages.unshift(flag)
+        }
 
-      return [...prev, ...nextPages]
-    }, [] as number[])
+        return [...prev, ...nextPages]
+      }, [] as number[])
+  )
 
   const onJumpPage = (page: number) => {
-    pageCurrent = page
-    dispatch('change', { page, pageSize: pageCurrentSize })
+    current = page
+    onChange?.({ page, pageSize })
   }
   let ellipsisNumber = 0
   const onMouseEnter = (page: number) => {
@@ -90,13 +88,13 @@
     }
   }
 
-  const onPrev = () => onJumpPage(pageCurrent - 1)
-  $: prevDisabled = pageCurrent === 1 || disabled
-  const onNext = () => onJumpPage(pageCurrent + 1)
-  $: nextDisabled = pageCurrent === pages.length || disabled
-  $: getPageButtonType = (page: number) => (pageCurrent === page ? 'primary' : 'text')
+  const onPrev = () => onJumpPage(current - 1)
+  const prevDisabled = $derived(current === 1 || disabled)
+  const onNext = () => onJumpPage(current + 1)
+  const nextDisabled = $derived(current === pages.length || disabled)
+  const getPageButtonType = (page: number) => (current === page ? 'primary' : 'text')
 
-  $: getEllipsisIcon = (page: number, index: number): IconName => {
+  const getEllipsisIcon = (page: number, index: number): IconName => {
     return ellipsisNumber !== page ? 'more' : `arrow-${index === 1 ? 'left' : 'right'}-double`
   }
 
@@ -107,32 +105,32 @@
     let jumpPage = 1
     let gap = 5
     if (index === 1) {
-      jumpPage = pageCurrent - gap
+      jumpPage = current - gap
       jumpPage = jumpPage > 0 ? jumpPage : 1
     } else {
-      jumpPage = pageCurrent + gap
+      jumpPage = current + gap
       jumpPage = jumpPage > pages.length ? pages.length : jumpPage
     }
 
     onJumpPage(jumpPage)
   }
 
-  $: {
+  $effect(() => {
     if (total > 50) {
       showSizeChanger = true
     }
-  }
+  })
 
   const onPageSizeChange = () => {
-    let page = pageCurrent
-    if (pages.length < pageCurrent) {
+    let page = current
+    if (pages.length < current) {
       page = pages.length
     }
 
-    dispatch('showSizeChange', { current: page, size: pageCurrentSize })
+    onShowSizeChange?.({ current: page, size: pageSize })
     onJumpPage(page)
   }
-  let inputPage: number | undefined
+  let inputPage: number | undefined = $state()
   const onSearchKeyup: KeyboardEventHandler<any> = e => {
     if (e.key === 'Enter') {
       onSearch()
@@ -152,41 +150,41 @@
 </script>
 
 {#if !hidden}
-  <div class={classList}>
-    {#if $$slots.total}
+  <div class={classList} {...props}>
+    {#if showTotal}
       <span class="adorn-pagination-total">
-        <slot name="total" {total} />
+        {showTotal(total, current)}
       </span>
     {/if}
     <span class="adorn-pagination--prev">
-      <Button type="text" disabled={prevDisabled} icon="arrow-left-s" on:click={onPrev} />
+      <Button type="text" disabled={prevDisabled} icon="arrow-left-s" onclick={onPrev} />
     </span>
     {#each showPages as page, index}
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
       {#if page < 0}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_interactive_supports_focus -->
         <span
+          role="button"
           class="adorn-pagination--ellipsis"
           class:disabled
-          on:mouseenter={() => onMouseEnter(page)}
-          on:mouseleave={onMouseLeave}
-          on:click={() => onFastJumpPage(index)}
+          onmouseenter={() => onMouseEnter(page)}
+          onmouseleave={onMouseLeave}
+          onclick={() => onFastJumpPage(index)}
         >
           <Button icon={getEllipsisIcon(page, index)} {disabled} type="text" />
         </span>
       {:else}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <span
           class="adorn-pagination-item"
           title={showTitle ? `${page}` : undefined}
-          on:mouseenter={onMouseLeave}
+          onmouseenter={onMouseLeave}
         >
           <Button
             type={getPageButtonType(page)}
-            ghost={pageCurrent === page}
+            ghost={current === page}
             {disabled}
-            on:click={() => onJumpPage(page)}
+            onclick={() => onJumpPage(page)}
           >
             {page}
           </Button>
@@ -194,15 +192,15 @@
       {/if}
     {/each}
     <span class="adorn-pagination--next">
-      <Button icon="arrow-right-s" type="text" disabled={nextDisabled} on:click={onNext} />
+      <Button icon="arrow-right-s" type="text" disabled={nextDisabled} onclick={onNext} />
     </span>
     {#if showSizeChanger}
       <select
         class="adorn-pagination-options"
-        bind:value={pageCurrentSize}
+        bind:value={pageSize}
         {disabled}
         class:disabled
-        on:change={onPageSizeChange}
+        onchange={onPageSizeChange}
       >
         {#each pageSizeOptions as item}
           <option value={item}>{item}条/页</option>
@@ -212,13 +210,14 @@
     {#if showQuickJumper}
       <div class="adorn-pagination-jumper">
         <span>跳至</span>
+        <!-- svelte-ignore deprecated_event_handler -->
         <input
           type="number"
           class="adorn-pagination-input"
           class:disabled
           {disabled}
-          on:keyup={onSearchKeyup}
-          on:blur={onSearch}
+          onkeyup={onSearchKeyup}
+          onblur={onSearch}
           bind:value={inputPage}
         />
         <span>页</span>

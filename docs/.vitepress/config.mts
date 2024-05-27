@@ -1,113 +1,20 @@
 import { defineConfig } from 'vitepress'
 import { applyPlugins } from './plugins/code';
-
-const components = [
-    {
-      text: '通用',
-      collapsed: false,
-      items: [
-        {
-          text: 'Button 按钮',
-          link: '/components/Button'
-        },
-        {
-          text: 'FloatButton 悬浮按钮',
-          link: '/components/FloatButton'
-        },
-        {
-          text: 'Icon 图标',
-          link: '/components/Icon'
-        },
-        {
-          text: 'Typography 排版',
-          link: '/components/Typography'
-        }
-      ]
-    },
-    {
-      text: '布局',
-      collapsed: false,
-      items: [
-        {
-          text: 'Divider 分割线',
-          link: '/components/Divider'
-        },
-        {
-          text: 'Flex 弹性布局',
-          link: '/components/Flex'
-        },
-        {
-          text: 'Grid 栅格',
-          link: '/components/Grid'
-        },
-        {
-          text: 'Layout 布局',
-          link: '/components/Layout'
-        },
-        {
-          text: 'Space 间距',
-          link: '/components/Space'
-        }
-      ]
-    },
-    {
-      text: '导航',
-      collapsed: false,
-      items: [
-        {
-          text: 'Affix 固钉',
-          link: '/components/Affix'
-        },
-        {
-          text: 'Anchor 锚点',
-          link: '/components/Anchor'
-        },
-        {
-          text: 'Breadcrumb 面包屑',
-          link: '/components/Breadcrumb'
-        },
-        {
-          text: 'Menu 导航菜单',
-          link: '/components/Menu'
-        },
-        {
-          text: 'Pagination 分页',
-          link: '/components/Pagination'
-        },
-        {
-          text: 'Steps 步骤条',
-          link: '/components/Steps'
-        },
-      ]
-    },
-    {
-      text: '数据录入',
-      collapsed: false,
-      items: [
-        {
-          text: 'Checkbox 多选框',
-          link: '/components/Checkbox'
-        },
-        {
-          text: 'Input 输入框',
-          link: '/components/Input'
-        },
-        {
-          text: 'InputNumber 数字输入框',
-          link: '/components/InputNumber'
-        },
-        {
-          text: 'Radio 单选框',
-          link: '/components/Radio'
-        },
-      ]
-    },
-]
+import pkg from '../../packages/adorn-ui/package.json'
+import components from '../components/config';
 
 const nav = [
-	{ text: '首页', link: '/' },
 	{ text: '指南', link: '/guide/getting-started' },
-	{ text: '组件', items: components },
+	{ text: '组件', link: '/components/overview' },
+  {
+    text: pkg.version,
+    items: [
+      {
+        text: '更新日志',
+        link: 'https://github.com/renzp94/adorn/blob/main/packages/adorn-ui/CHANGELOG.md',
+      },
+    ],
+  },
 ];
 const sidebar = {
 	'/components': components,
@@ -116,17 +23,56 @@ const sidebar = {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Adorn",
-  description: "adorn site",
-  head:[['link',{ rel:'icon', href:'/favicon.ico' }]],
+  description: "一款基于Svelte 5开发的组件库",
+  head: [['link', { rel: 'icon', type: 'image/svg', href: '/logo.svg' }]],
+  lastUpdated: true,
+  metaChunk: true,
   themeConfig: {
 		logo: '/logo.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav,
     sidebar,
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/renzp94/adorn' }
-    ]
+    ],
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索文档',
+            buttonAriaLabel: '搜索文档',
+          },
+          modal: {
+            noResultsText: '无法找到相关结果',
+            resetButtonTitle: '清除查询条件',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭'
+            },
+          },
+        },
+      },
+    },
+    editLink: {
+      pattern: 'https://github.com/renzp94/adorn/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页面',
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    outline: {
+      label: '页面导航',
+    },
   },
 	markdown: {
 		config: (md) => {
@@ -136,5 +82,6 @@ export default defineConfig({
 			light: 'vitesse-light',
 			dark: 'vitesse-dark'
 		}
-	}
+	},
+  
 })

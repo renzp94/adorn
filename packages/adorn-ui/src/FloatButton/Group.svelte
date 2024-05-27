@@ -1,80 +1,82 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import { createEventDispatcher, setContext } from 'svelte'
+  import { setContext } from 'svelte'
   import { FLOAT_BUTTON_CONTEXT } from '.'
-  import type { IconName } from '../utils/types'
   import { FloatButton } from '.'
   import { fly } from 'svelte/transition'
-  import { isUndef } from '../utils/tools'
+  import { isDef, isUnDef } from '@renzp/utils'
+  import { isFunction } from 'lodash-es'
+  import type { GroupProps, IconName } from '../types'
 
-  type ButtonTarget = '_self' | '_blank' | '_parent' | '_top' | string
+  let {
+    icon,
+    description,
+    type = 'default',
+    shape = 'circle',
+    href,
+    target,
+    trigger,
+    open = $bindable(),
+    class: className,
+    children,
+    onOpenChange,
+    ...props
+  }: GroupProps = $props()
 
-  export let icon: IconName | undefined = undefined
-  export let description: string | undefined = undefined
-  export let type: 'primary' | 'default' = 'default'
-  export let shape: 'circle' | 'square' = 'circle'
-  export let href = ''
-  export let target: ButtonTarget = ''
-  export let trigger: 'click' | 'hover' | undefined = undefined
-  export let open: boolean | undefined = undefined
+  const hasGroupMain = $derived(isDef(trigger) && (icon || description))
 
-  $: isOpenModel = !isUndef(open)
+  $effect(() => {
+    setContext(FLOAT_BUTTON_CONTEXT, { shape, href, target })
+  })
 
-  let btnGroupVisible = false
-  $: hasGroupMain = $$slots.icon || icon || description
-
-  $: {
-    btnGroupVisible = isOpenModel ? (open as boolean) : !hasGroupMain
-  }
-
-  $: setContext(FLOAT_BUTTON_CONTEXT, { shape, href, target })
-
-  const dispatch = createEventDispatcher()
-  const _onMouseEnter = () => {
-    if (trigger === 'hover') {
-      isOpenModel ? dispatch('openChange', true) : (btnGroupVisible = true)
+  $effect(() => {
+    if (isDef(open)) {
+      onOpenChange?.(open)
     }
+  })
+
+  const _onMouseEnter = (e: MouseEvent) => {
+    open = true
+    props?.onmouseenter?.(e)
   }
-  const _onMouseLeave = () => {
-    if (trigger === 'hover') {
-      isOpenModel ? dispatch('openChange', false) : (btnGroupVisible = false)
-    }
+  const _onMouseLeave = (e: MouseEvent) => {
+    open = false
+    props?.onmouseleave?.(e)
   }
-  const _onClick = () => {
-    if (trigger === 'click') {
-      isOpenModel ? dispatch('openChange', !btnGroupVisible) : (btnGroupVisible = !btnGroupVisible)
-    }
+  const _onClick = (e: MouseEvent) => {
+    open = !open
+    props?.onclick?.(e)
   }
 
-  let className = ''
-  export { className as class }
-  $: classLst = classes(['adorn-float-btn-group', className, `adorn-float-btn-group-${shape}`])
+  const classList = $derived(
+    classes(['adorn-float-btn-group', className, `adorn-float-btn-group-${shape}`])
+  )
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  class={classLst}
-  {...$$restProps}
-  on:mouseenter={_onMouseEnter}
-  on:mouseleave={_onMouseLeave}
-  on:click={_onClick}
+  role="button"
+  tabindex="-1"
+  {...props}
+  class={classList}
+  onmouseenter={trigger === 'hover' ? _onMouseEnter : props?.onmouseenter}
+  onmouseleave={trigger === 'hover' ? _onMouseLeave : props?.onmouseleave}
+  onclick={trigger === 'click' ? _onClick : props?.onclick}
 >
-  {#if btnGroupVisible}
+  {#if isUnDef(trigger) || (isDef(trigger) && open)}
     <div class="adorn-float-btn-group__list" transition:fly={{ duration: 300, y: '50%' }}>
-      <slot />
+      {@render children()}
     </div>
   {/if}
   {#if hasGroupMain}
     <div class="adorn-float-btn-group__main">
-      {#if btnGroupVisible}
+      {#if open}
         <FloatButton {type} icon="close" {shape} />
-      {:else if $$slots.icon}
-        <FloatButton {type} {icon} {description} {shape}>
-          <slot slot="icon" name="icon" />
+      {:else if isFunction(icon)}
+        <FloatButton {type} {description} {shape}>
+          {@render icon()}
         </FloatButton>
-      {:else}
-        <FloatButton {type} {icon} {description} {shape} />
+      {:else if isDef(icon)}
+        <FloatButton {type} icon={icon as IconName} {shape} />
       {/if}
     </div>
   {/if}
@@ -94,7 +96,9 @@
     border-radius: var(--adorn-radius);
 
     &-square {
-      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      box-shadow:
+        0 6px 16px 0 rgba(0, 0, 0, 0.08),
+        0 3px 6px -4px rgba(0, 0, 0, 0.12),
         0 9px 28px 8px rgba(0, 0, 0, 0.05);
     }
 

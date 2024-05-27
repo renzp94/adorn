@@ -70,16 +70,25 @@ lang: zh-CN
 
 <demo src="../../../../example/grid/flex.svelte"></demo>
 
-## Row Props 属性
+## Row
 
-| 属性    | 说明                                                                    | 类型                                                                     | 默认值  | 版本 |
-| ------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------- | ---- |
-| align   | 垂直对齐方式                                                            | `top  \| middle  \| bottom\| stretch`                                    | `top`   |      |
-| gutter  | 栅格间隔，可以写成像素值。或者使用数组形式同时设置 [水平间距, 垂直间距] | `number \| number[]`                                                     | -       |      |
-| justify | 水平排列方式                                                            | `start  \| end  \| center\| space-around\| space-between\| space-evenly` | `start` |      |
-| wrap    | 是否自动换行                                                            | `boolean`                                                                | `true`  |      |
+### Props 属性
 
-## Col Props 属性
+| 属性    | 说明                                                                    | 类型                 | 默认值  | 版本 |
+| ------- | ----------------------------------------------------------------------- | -------------------- | ------- | ---- |
+| align   | 垂直对齐方式                                                            | `Align`              | `top`   |      |
+| gutter  | 栅格间隔，可以写成像素值。或者使用数组形式同时设置 [水平间距, 垂直间距] | `number \| number[]` | -       |      |
+| justify | 水平排列方式                                                            | `Justify`            | `start` |      |
+| wrap    | 是否自动换行                                                            | `boolean`            | `true`  |      |
+
+```ts
+export type Justify = 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'
+export type Align = 'top' | 'middle' | 'bottom' | 'stretch' | 'normal'
+```
+
+## Col
+
+### Props 属性
 
 | 属性   | 说明                                       | 类型                | 默认值 | 版本 |
 | ------ | ------------------------------------------ | ------------------- | ------ | ---- |
@@ -90,8 +99,12 @@ lang: zh-CN
 | push   | 栅格向右移动格数                           | `number`            | -      |      |
 | span   | 栅格占位格数，为 0 时相当于`display: none` | `number`            | -      |      |
 
-## Slots 插槽
+## Events 事件
 
-| 插槽名  | 说明           |
-| ------- | -------------- |
-| default | 自定义默认内容 |
+支持所有原生事件
+
+## Snippets 片段
+
+| 插槽名   | 说明           |
+| -------- | -------------- |
+| children | 自定义默认内容 |

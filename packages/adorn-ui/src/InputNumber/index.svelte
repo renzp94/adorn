@@ -4,8 +4,8 @@
   import type { IconName, Size } from '../utils/types'
   import { createEventDispatcher } from 'svelte'
   import type { KeyboardEventHandler } from 'svelte/elements'
-  import { isUndef } from '../utils/tools'
   import { plus, isGreat, isLess, isGreatEqual, isLessEqual } from '@renzp/number-correct'
+  import { isUnDef } from '@renzp/utils'
   const dispatch = createEventDispatcher()
   type Controls = { upIconName: IconName; downIconName: IconName }
 
@@ -29,7 +29,7 @@
 
   const numberFilter = (v: string | undefined) => v?.replace(/[^-0-9\.]/g, '')
 
-  const parseNumber = (v: string | undefined) => (!isUndef(v) ? numberFilter(v) : undefined)
+  const parseNumber = (v: string | undefined) => (!isUnDef(v) ? numberFilter(v) : undefined)
   const formatterStr = (v: string | undefined) => (formatter ? formatter(v) : v?.toString())
 
   let model: string | undefined

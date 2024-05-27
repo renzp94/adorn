@@ -17,5 +17,7 @@
 </script>
 
 <Breadcrumb {items}>
-  <Icon name="arrow-right-double" slot="separator" />
+  {#snippet  separator()}
+    <Icon name="arrow-right-double" />
+  {/snippet}
 </Breadcrumb>

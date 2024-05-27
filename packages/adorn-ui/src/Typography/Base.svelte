@@ -1,101 +1,104 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { BaseType, CopyConfig, EditConfig, EllipsisConfig } from './types'
+  import type { CopyConfig, EllipsisConfig, TypographyBaseProps } from './types'
   import { Icon } from '..'
   import { copyText } from '../utils/tools'
   import type { IconName } from '../utils/types'
-  import { createEventDispatcher } from 'svelte'
 
-  export let tag = 'span'
-  export let title: string | undefined = undefined
-  // export let editable: boolean | EditConfig = false
-  export let copyable: boolean | CopyConfig = false
-  export let type: BaseType | undefined = undefined
-  export let disabled: boolean = false
-  export let ellipsis: boolean | EllipsisConfig = false
-  export let keyboard: boolean = false
-  export let mark: boolean = false
-  export let underline: boolean = false
-  export let deleted: boolean = false
-  export let strong: boolean = false
-  export let italic: boolean = false
+  let {
+    tag = 'span',
+    code,
+    copyable = false,
+    type,
+    disabled,
+    ellipsis = false,
+    keyboard,
+    mark,
+    underline,
+    deleted,
+    strong,
+    italic,
+    class: className,
+    style,
+    children,
+    onCopy,
+    ...props
+  }: TypographyBaseProps = $props()
 
-  let className = ''
-  export { className as class }
-  $: classLst = classes(['adorn-typography', className, { [`adorn-typography--${type}`]: !!type }])
-  let styles: string
+  const classList = $derived(
+    classes(['adorn-typography', className, { [`adorn-typography--${type}`]: !!type }])
+  )
+  let styles: string = $state('')
 
-  $: {
+  $effect(() => {
     const rows = (ellipsis as EllipsisConfig)?.rows
     if (rows) {
-      styles = `display: -webkit-box;-webkit-line-clamp: ${rows};-webkit-box-orient: vertical;white-space: wrap;`
+      styles = `display: -webkit-box;-webkit-line-clamp: ${rows};-webkit-box-orient: vertical;white-space: wrap;${style}`
     }
-  }
+  })
 
-  let innerText: string
-  let isCopying = false
+  let innerText: string = $state('')
+  let isCopying = $state(false)
   const ready = (node: HTMLElement) => {
     innerText = node.innerText
   }
 
-  const dispatch = createEventDispatcher()
-  const onCopy = async () => {
-    isCopying = true
-    await copyText((copyable as CopyConfig)?.text ?? innerText)
-    setTimeout(() => {
+  const _onCopy = async () => {
+    try {
+      isCopying = true
+      await copyText((copyable as CopyConfig)?.text ?? innerText)
+      setTimeout(() => {
+        isCopying = false
+      }, 3000)
+      onCopy?.(true)
+    } catch (e) {
       isCopying = false
-    }, 3000)
-
-    dispatch('copy')
-  }
-  const onClick = () => {
-    if (disabled) {
-      return
+      console.log(e)
+      onCopy?.(false)
     }
-
-    dispatch('click')
   }
-
-  $: copyIcon = ((copyable as CopyConfig)?.icon ?? 'file-copy') as IconName
+  const copyIcon = $derived(((copyable as CopyConfig)?.icon ?? 'file-copy') as IconName)
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+{#snippet tagRender()}
+  {#if mark}
+    <mark>
+      {@render children()}
+    </mark>
+  {:else if code}
+    <code>
+      {@render children()}
+    </code>
+  {:else}
+    {@render children()}
+  {/if}
+{/snippet}
+
 <svelte:element
   this={tag}
+  role={tag}
   use:ready
-  {title}
-  class={classLst}
   class:disabled
   class:underline
   class:deleted
   class:strong
   class:italic
   class:ellipsis
+  {...props}
+  class={classList}
   style={styles}
-  {...$$restProps}
-  on:click={onClick}
+  onclick={disabled ? undefined : props?.onclick}
 >
   {#if keyboard}
     <kbd>
-      {#if mark}
-        <mark>
-          <slot />
-        </mark>
-      {:else}
-        <slot />
-      {/if}
+      {@render tagRender()}
     </kbd>
-  {:else if mark}
-    <mark>
-      <slot />
-    </mark>
   {:else}
-    <slot />
+    {@render tagRender()}
   {/if}
   {#if copyable}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div class="adorn-typography-copy" on:click={onCopy}>
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <div class="adorn-typography-copy" role="button" tabindex="-1" onclick={_onCopy}>
       <Icon name={isCopying ? 'check' : copyIcon} />
     </div>
   {/if}

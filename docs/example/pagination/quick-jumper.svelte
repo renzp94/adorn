@@ -3,6 +3,6 @@
 </script>
 
 <Space direction="vertical">
-  <Pagination defaultCurrent={1} total={50} showQuickJumper />
-  <Pagination defaultCurrent={1} total={50} showQuickJumper disabled />
+  <Pagination current={1} total={50} showQuickJumper />
+  <Pagination current={1} total={50} showQuickJumper disabled />
 </Space>

@@ -18,10 +18,10 @@
 </script>
 
 <Breadcrumb {items}>
-  <svelte:fragment slot="item" let:item>
+  {#snippet item(item)}
     <span>{item.title}</span>
     {#if item.icon}
       <Icon name={item.icon} />
     {/if}
-  </svelte:fragment>
+  {/snippet}
 </Breadcrumb>

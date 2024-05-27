@@ -1,3 +1,21 @@
+import type { CommonProps } from "../utils/types"
+
+export interface TypographyBaseProps extends CommonProps {
+  tag?: string
+  title?: string
+  copyable: boolean | CopyConfig
+  type?: BaseType
+  disabled?: boolean
+  ellipsis?: boolean | EllipsisConfig
+  keyboard?: boolean
+  code?: boolean
+  mark?: boolean
+  underline?: boolean
+  deleted?: boolean
+  strong?: boolean
+  italic?: boolean
+  onCopy?: (status: boolean) => void
+}
 
 export type BaseType = 'info'| "primary" | 'success' | 'warning' | 'danger'
 
@@ -7,23 +25,6 @@ export interface EllipsisConfig {
   // suffix?: string;
   // onExpand?: MouseEvent;
   // onEllipsis?: (ellipsis: boolean) => void;
-}
-
-export interface BlockProps  {
-  title?: string;
-  editable?: boolean | EditConfig;
-  copyable?: boolean | CopyConfig;
-  type?: BaseType;
-  disabled?: boolean;
-  ellipsis?: boolean | EllipsisConfig;
-  // decorations
-  code?: boolean;
-  mark?: boolean;
-  underline?: boolean;
-  delete?: boolean;
-  strong?: boolean;
-  keyboard?: boolean;
-  italic?: boolean;
 }
 
 export interface CopyConfig {

@@ -1,65 +1,64 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import { createEventDispatcher } from 'svelte'
-  import type { IconName, Size, Target } from '../utils/types'
   import { Icon } from '..'
+  import type { ButtonProps } from '../types'
 
-  type ButtonType = 'primary' | 'dashed' | 'link' | 'text' | 'default'
-  type ButtonHtmlType = 'submit' | 'reset' | 'button' | undefined | null
-  type ButtonShape = 'default' | 'circle' | 'round'
+  let {
+    block,
+    class: className,
+    danger,
+    disabled,
+    ghost,
+    loading,
+    href,
+    type = 'default',
+    htmlType = 'button',
+    shape = 'default',
+    size = 'middle',
+    icon,
+    children,
+    ...props
+  }: ButtonProps = $props()
 
-  export let block = false
-  let className = ''
-  export { className as class }
-  export let danger = false
-  export let disabled = false
-  export let ghost = false
-  export let loading = false
-  export let href = ''
-  export let type: ButtonType = 'default'
-  export let htmlType: ButtonHtmlType = 'button'
-  export let shape: ButtonShape = 'default'
-  export let size: Size = 'middle'
-  export let target: Target = ''
-  export let icon: IconName | undefined = undefined
+  const hasIcon = $derived(loading || icon)
+  const classList = $derived(
+    classes([
+      'adorn-btn',
+      className,
+      { [`adorn-btn--${type}`]: !!type },
+      { [`adorn-btn--${shape}`]: !!shape },
+      { [`adorn-btn--${size}`]: !!size },
+      { [`adorn-btn-has-icon`]: hasIcon }
+    ])
+  )
 
-  $: hasIcon = loading || icon
-
-  $: classLst = classes([
-    'adorn-btn',
-    className,
-    { [`adorn-btn--${type}`]: !!type },
-    { [`adorn-btn--${shape}`]: !!shape },
-    { [`adorn-btn--${size}`]: !!size },
-    { [`adorn-btn-has-icon`]: hasIcon }
-  ])
-
-  const dispatcher = createEventDispatcher()
-  const onClick = (e: Event) => dispatcher('click', e)
+  const _disabled = $derived(disabled || loading)
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
   this={href ? 'a' : 'button'}
+  role={href ? 'a' : 'button'}
   class:block
-  class={classLst}
   class:danger
   class:disabled
   class:ghost
   class:loading
   {href}
-  {target}
-  {...$$restProps}
-  on:click={loading || disabled ? undefined : onClick}
+  disabled={_disabled}
+  {...props}
+  class={classList}
   type={href ? undefined : htmlType}
+  onclick={_disabled ? undefined : props?.onclick}
 >
   {#if loading}
     <Icon name="loader" />
   {:else if icon}
     <Icon name={icon} />
   {/if}
-  {#if $$slots.default}
-    <span class="adorn-btn-text"><slot /></span>
+  {#if children}
+    <span class="adorn-btn-text">
+      {@render children()}
+    </span>
   {/if}
 </svelte:element>
 

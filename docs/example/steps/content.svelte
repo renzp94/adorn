@@ -1,6 +1,6 @@
 <script>
   import { Button, Space, Steps } from 'adorn-ui'
-  let current = 0
+  let current = $state(0)
 
   let items = [
     {
@@ -25,14 +25,14 @@
 <Space>
   <Button
     type="primary"
-    on:click={() => (current = current - 1)}
+    onclick={() => (current = current - 1)}
     disabled={current === 0}
   >
     上一步
   </Button>
   <Button
     type="primary"
-    on:click={() => (current = current + 1)}
+    onclick={() => (current = current + 1)}
     disabled={current === items.length - 1}
   >
     下一步

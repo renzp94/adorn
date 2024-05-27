@@ -3,12 +3,12 @@
 layout: home
 
 title: Adorn
-titleTemplate: 基于Svelte 4开发的组件库
+titleTemplate: 基于Svelte 5开发的组件库
 
 hero:
   name: "Adorn✨"
   text: "给您的UI加点彩"
-  tagline: 一款基于Svelte 4开发的组件库
+  tagline: 一款基于Svelte 5开发的组件库
   actions:
     - theme: brand
       text: 开始使用

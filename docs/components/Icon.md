@@ -19,3 +19,7 @@ lang: zh-CN
 | color | 图标颜色(默认继承父元素的`color`)     | `string` | -      |      |
 | name  | 图标名                                | `string` | -      |      |
 | size  | 图标大小(默认继承父元素的`font-size`) | `string` | -      |      |
+
+## Events 事件
+
+支持所有原生事件

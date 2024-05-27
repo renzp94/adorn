@@ -1,7 +1,7 @@
 <script>
   import { Radio, Space, Input } from 'adorn-ui'
 
-  let value = 1
+  let value = $state(1)
 </script>
 
 <Radio.Group bind:value>

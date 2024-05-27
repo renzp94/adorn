@@ -3,7 +3,7 @@
 
   const sizes = ['small', 'middle', 'large']
 
-  let size = 'small'
+  let size = $state('small')
 </script>
 
 <Space direction="vertical" size="middle">
@@ -12,7 +12,7 @@
       <Button
         key={v}
         type={size === v ? 'primary' : undefined}
-        on:click={() => (size = v)}
+        onclick={() => (size = v)}
       >
         {v}
       </Button>

@@ -1,7 +1,20 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { Direction } from '../utils/types'
-  const getGap = (size: Size) => {
+  import type { Size, SpaceProps } from '../types'
+
+  let {
+    align,
+    direction = 'horizontal',
+    size = 'small',
+    wrap,
+    class: className,
+    style,
+    children,
+    split,
+    ...props
+  }: SpaceProps = $props()
+
+  const getGap = (size: Size | number) => {
     const gaps = {
       small: 8,
       middle: 16,
@@ -17,17 +30,7 @@
     return gap
   }
 
-  let className = ''
-  export { className as class }
-  export let align: 'start' | 'end' | 'center' | 'baseline' | undefined = undefined
-  export let direction: Direction = 'horizontal'
-  type Size = 'small' | 'middle' | 'large' | number
-  export let size: Size | [Size, Size] = 'small'
-  export let style: string | undefined = undefined
-  export let wrap: boolean = false
-
-  let styles: string
-  $: {
+  const styles = $derived.by(() => {
     let gapValue: string
     if (size instanceof Array) {
       let [col, row] = size
@@ -36,31 +39,33 @@
       gapValue = getGap(size)
     }
 
-    styles = classes([{ [`gap: ${gapValue};`]: gapValue }, style]) ?? ''
-  }
+    return classes([{ [`gap: ${gapValue};`]: gapValue }, style]) ?? ''
+  })
 
-  $: classList = classes([
-    'adorn-space',
-    className,
-    { [`adorn-space-${align}`]: align },
-    { [`adorn-space-split`]: $$slots.split },
-    `adorn-space-${direction}`
-  ])
+  const classList = $derived(
+    classes([
+      'adorn-space',
+      className,
+      { [`adorn-space-${align}`]: align },
+      { [`adorn-space-split`]: split },
+      `adorn-space-${direction}`
+    ])
+  )
 
-  let children: Element[] = []
+  let childElementList = $state.frozen<Element[]>([])
   const ready = (node: HTMLElement) => {
-    children = Array.from(node.children)
+    childElementList = Array.from(node.children)
   }
 </script>
 
-<div use:ready {...$$restProps} class={classList} class:wrap style={styles}>
-  {#if !$$slots.split || children.length === 0}
-    <slot />
+<div use:ready {...props} class={classList} class:wrap style={styles}>
+  {#if !split || childElementList.length === 0}
+    {@render children()}
   {:else}
-    {#each children as item, index}
-      {#if index !== children.length - 1}
+    {#each childElementList as item, index}
+      {#if index !== childElementList.length - 1}
         {@html item.outerHTML}
-        <slot name="split" />
+        {@render split()}
       {:else}
         {@html item.outerHTML}
       {/if}
@@ -93,9 +98,10 @@
   }
 
   @alignItemsList: {
-    start: flex-start;
-    center: center;
-    end: flex-end;
+    normal: normal;
+    top: flex-start;
+    middle: center;
+    bottom: flex-end;
     baseline: baseline;
   };
 </style>

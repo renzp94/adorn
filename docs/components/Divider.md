@@ -46,8 +46,12 @@ lang: zh-CN
 | orientation | 分割线标题的位置           | `left  \| center  \| right` | `center`     |      |
 | plain       | 文字是否显示为普通正文样式 | `boolean`                   | `false`      |      |
 
-## Slots 插槽
+## Events 事件
 
-| 插槽名  | 说明           |
-| ------- | -------------- |
-| default | 自定义默认内容 |
+支持所有原生事件
+
+## Snippets 片段
+
+| 插槽名   | 说明           |
+| -------- | -------------- |
+| children | 自定义默认内容 |

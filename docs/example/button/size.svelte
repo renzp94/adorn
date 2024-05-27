@@ -1,13 +1,13 @@
 <script>
   import { Button } from 'adorn-ui'
-  let size = 'middle'
+  let size = $state('middle')
   const onChange = v => (size = v)
 </script>
 
 <p>
-  <Button type="primary" on:click={() => onChange('large')}>large</Button>
-  <Button type="primary" on:click={() => onChange('middle')}>middle</Button>
-  <Button type="primary" on:click={() => onChange('small')}>small</Button>
+  <Button type="primary" onclick={() => onChange('large')}>large</Button>
+  <Button type="primary" onclick={() => onChange('middle')}>middle</Button>
+  <Button type="primary" onclick={() => onChange('small')}>small</Button>
 </p>
 
 <p>

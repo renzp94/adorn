@@ -1,29 +1,32 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { Direction } from '../utils/types'
   import Item from './StepItem.svelte'
-  import type { StepItem } from './types'
   import { Icon } from '..'
+  import type { StepsProps } from '../types'
 
-  export let current = 0
-  export let direction: Direction = 'horizontal'
-  export let items: StepItem[] = []
-  export let labelPlacement: Direction = 'horizontal'
-  export let progressDot = false
-  export let size: 'default' | 'small' = 'default'
+  let {
+    current = 0,
+    direction = 'horizontal',
+    items = [],
+    labelPlacement = 'horizontal',
+    progressDot,
+    size = 'default',
+    class: className,
+    ...props
+  }: StepsProps = $props()
 
-  let className = ''
-  export { className as class }
-  $: classList = classes([
-    'adorn-step',
-    className,
-    `adorn-step--${direction}`,
-    `adorn-step--${size}`,
-    `adorn-step-label-${labelPlacement}`,
-    { ['adorn-step--dot']: progressDot }
-  ])
+  const classList = $derived(
+    classes([
+      'adorn-step',
+      className,
+      `adorn-step--${direction}`,
+      `adorn-step--${size}`,
+      `adorn-step-label-${labelPlacement}`,
+      { ['adorn-step--dot']: progressDot }
+    ])
+  )
 
-  $: getItemStatus = (index: number) => {
+  const getItemStatus = (index: number) => {
     if (current === index) {
       return 'active'
     }
@@ -36,23 +39,27 @@
   }
 </script>
 
-<div class={classList} {...$$restProps}>
+<div {...props} class={classList}>
   {#each items as item, index}
     {#if !item.icon}
       <Item status={getItemStatus(index)} {...item}>
-        <span
-          class={`adorn-step-item-${progressDot ? 'dot' : 'index'} ${getItemStatus(index)}`}
-          class:dot={progressDot}
-          slot="icon"
-        >
-          {#if !progressDot}
-            {#if getItemStatus(index) === 'finish'}
-              <Icon name="check" />
-            {:else}
-              {index + 1}
+        {#snippet icon()}
+          <span
+            class={classes([
+              `adorn-step-item-${progressDot ? 'dot' : 'index'}`,
+              getItemStatus(index)
+            ])}
+            class:dot={progressDot}
+          >
+            {#if !progressDot}
+              {#if getItemStatus(index) === 'finish'}
+                <Icon name="check" />
+              {:else}
+                {index + 1}
+              {/if}
             {/if}
-          {/if}
-        </span>
+          </span>
+        {/snippet}
       </Item>
     {:else}
       <Item status={getItemStatus(index)} {...item} />

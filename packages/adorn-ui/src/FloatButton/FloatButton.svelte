@@ -1,53 +1,53 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { Icon } from '..'
-  import type { IconName } from '../utils/types'
+  import type { ButtonTarget } from '../types'
   import { getContext } from 'svelte'
   import { FLOAT_BUTTON_CONTEXT } from '.'
+  import type { FloatButtonProps } from '../types'
 
-  type ButtonTarget = '_self' | '_blank' | '_parent' | '_top' | string
-
-  export let icon: IconName | undefined = undefined
-  export let description: string | undefined = undefined
-  export let type: 'primary' | 'default' = 'default'
-  export let shape: 'circle' | 'square' = 'circle'
-  export let href = ''
-  export let target: ButtonTarget = ''
-
-  $: ctx = (getContext(FLOAT_BUTTON_CONTEXT) as {
+  let {
+    icon,
+    description,
+    type = 'default',
+    shape = 'circle',
+    href,
+    target,
+    class: className,
+    children,
+    ...props
+  }: FloatButtonProps = $props()
+  const ctx: {
     shape: 'circle' | 'square'
     href: String
     target: ButtonTarget
-  }) ?? { shape, href, target }
+  } = $derived(getContext(FLOAT_BUTTON_CONTEXT) ?? { shape, href, target })
 
-  let className = ''
-  export { className as class }
-  $: classLst = classes([
-    'adorn-float-btn',
-    className,
-    { [`adorn-float-btn--${type}`]: !!type },
-    `adorn-float-btn-${ctx?.shape}`
-  ])
+  const classList = $derived(
+    classes([
+      'adorn-float-btn',
+      className,
+      { [`adorn-float-btn--${type}`]: !!type },
+      `adorn-float-btn-${ctx?.shape}`
+    ])
+  )
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
   this={ctx?.href ? 'a' : 'button'}
-  class={classLst}
+  role={ctx?.href ? 'a' : 'button'}
   target={ctx?.target}
-  {...$$restProps}
-  on:click
+  {...props}
+  class={classList}
 >
-  <slot>
-    {#if $$slots.icon}
-      <slot name="icon" />
-    {:else if icon}
-      <Icon size="24px" name={icon} />
-    {/if}
-    {#if shape === 'square' && description}
-      <span>{description}</span>
-    {/if}
-  </slot>
+  {#if children}
+    {@render children()}
+  {:else if icon}
+    <Icon size="24px" name={icon} />
+  {/if}
+  {#if shape === 'square' && description}
+    <span>{description}</span>
+  {/if}
 </svelte:element>
 
 <style lang="less" global>
@@ -68,7 +68,9 @@
     padding: var(--adorn-padding-mini);
     inset-inline-end: 24px;
     inset-block-end: 48px;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    box-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
       0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
     &:not(.disabled):hover {

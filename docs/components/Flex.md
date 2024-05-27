@@ -44,18 +44,28 @@ lang: zh-CN
 
 ## Props 属性
 
-| 属性     | 说明                                                  | 类型                                                                      | 默认值    | 版本 |
-| -------- | ----------------------------------------------------- | ------------------------------------------------------------------------- | --------- | ---- |
-| vertical | flex 主轴的方向是否垂直，使用`flex-direction: column` | `boolean`                                                                 | `false`   |      |
-| wrap     | 设置元素单行显示还是多行显示                          | `nowrap \| wrap \| wrap-reverse`                                          | `no-wrap` |      |
-| justify  | 设置元素在主轴方向上的对齐方式                        | `start \| end \| center \| space-around \| space-between \| space-evenly` | `start`   |      |
-| align    | 设置元素在交叉轴方向上的对齐方式                      | `flex-start \| center \| flex-end \| stretch \| normal`                   | `normal`  |      |
-| flex     | flex CSS 简写属性                                     | 参考[flex](https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex)         | -         |      |
-| gap      | 设置网格之间的间隙                                    | `small \| middle \| large \| string`                                      | -         |      |
-| tag      | 自定义元素类型                                        | `string`                                                                  | `div`     |      |
+| 属性     | 说明                                                  | 类型                                                              | 默认值    | 版本 |
+| -------- | ----------------------------------------------------- | ----------------------------------------------------------------- | --------- | ---- |
+| vertical | flex 主轴的方向是否垂直，使用`flex-direction: column` | `boolean`                                                         | `false`   |      |
+| wrap     | 设置元素单行显示还是多行显示                          | `nowrap \| wrap \| wrap-reverse`                                  | `no-wrap` |      |
+| justify  | 设置元素在主轴方向上的对齐方式                        | `Justify`                                                         | `start`   |      |
+| align    | 设置元素在交叉轴方向上的对齐方式                      | `Align`                                                           | `normal`  |      |
+| flex     | flex CSS 简写属性                                     | 参考[flex](https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex) | -         |      |
+| gap      | 设置网格之间的间隙                                    | `Size \| string`                                                  | -         |      |
+| tag      | 自定义元素类型                                        | `string`                                                          | `div`     |      |
 
-## Slots 插槽
+```ts
+export type Size = 'large' | 'middle' | 'small'
+export type Justify = 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'
+export type Align = 'top' | 'middle' | 'bottom' | 'stretch' | 'normal'
+```
 
-| 插槽名  | 说明           |
-| ------- | -------------- |
-| default | 自定义默认内容 |
+## Events 事件
+
+支持所有原生事件
+
+## Snippets 片段
+
+| 插槽名   | 说明           |
+| -------- | -------------- |
+| children | 自定义默认内容 |

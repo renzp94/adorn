@@ -1,34 +1,41 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { Align, Justify, Size } from '../utils/types'
+  import type { FlexProps } from '../types'
 
-  export let vertical = false
-  export let wrap: 'nowrap' | 'wrap' | 'wrap-reverse' = 'nowrap'
-  export let justify: Justify = 'start'
-  export let align: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'normal' = 'normal'
-  export let flex: string | undefined = undefined
-  export let gap: 'small' | 'middle' | 'large' | string | undefined = undefined
-  export let tag: string = 'div'
+  let {
+    vertical,
+    wrap = 'nowrap',
+    justify = 'start',
+    align = 'normal',
+    flex,
+    gap,
+    tag = 'div',
+    class: className,
+    style,
+    children,
+    ...props
+  }: FlexProps = $props()
 
-  $: isPresetGap = ['small', 'middle', 'large'].includes(gap as string)
+  const isPresetGap = $derived(['small', 'middle', 'large'].includes(gap as string))
 
-  let className = ''
-  export { className as class }
-  $: classLst = classes([
-    'adorn-flex',
-    className,
-    `adorn-flex--${wrap}`,
-    `adorn-flex-justify--${justify}`,
-    `adorn-flex-align--${align}`,
-    { [`adorn-flex--${gap}`]: gap && isPresetGap }
-  ])
+  const classList = $derived(
+    classes([
+      'adorn-flex',
+      className,
+      `adorn-flex--${wrap}`,
+      `adorn-flex-justify--${justify}`,
+      `adorn-flex-align--${align}`,
+      { [`adorn-flex--${gap}`]: gap && isPresetGap }
+    ])
+  )
 
-  export let style: string | undefined = undefined
-  $: styles = classes([{ [`${flex};`]: flex }, { [`gap: ${gap};`]: gap && !isPresetGap }, style])
+  const styles = $derived(
+    classes([{ [`${flex};`]: flex }, { [`gap: ${gap};`]: gap && !isPresetGap }, style])
+  )
 </script>
 
-<svelte:element this={tag} class={classLst} class:vertical style={styles} {...$$restProps}>
-  <slot />
+<svelte:element this={tag} class:vertical {...props} class={classList} style={styles}>
+  {@render children()}
 </svelte:element>
 
 <style lang="less" global>
@@ -47,9 +54,9 @@
   };
   @alignItemsList: {
     normal: normal;
-    flex-start: flex-start;
-    center: center;
-    flex-end: flex-end;
+    top: flex-start;
+    middle: center;
+    bottom: flex-end;
     stretch: stretch;
   };
   @gaps: {

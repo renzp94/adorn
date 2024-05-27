@@ -43,11 +43,6 @@ lang: zh-CN
 
 <demo src="../../../../example/typography/copy.svelte"></demo>
 
-## Typography Props 属性
-
-| 属性 | 说明             | 类型     | 默认值    | 版本 |
-| ---- | ---------------- | -------- | --------- | ---- |
-| tag  | 组件渲染元素标签 | `string` | `article` |      |
 
 
 ## Text/Link/Title Props 共同属性
@@ -57,23 +52,36 @@ lang: zh-CN
 | title     | 元素`title`属性                      | `string`                    | -       |      |
 | copyable  | 是否可拷贝，为对象时可进行各种自定义 | `boolean  \| CopyConfig `   | `false` |      |
 | type      | 是否可拷贝，为对象时可进行各种自定义 | `BaseType`                  | -       |
-| disabled  | 禁用文本                             | `boolean`                   | `false` |      |
-| ellipsis  | 自动溢出省略                         | `boolean \| EllipsisConfig` | `false` |      |
-| underline | 添加下划线样式                       | `boolean`                   | `false` |      |
-| deleted   | 添加删除线样式                       | `boolean`                   | `false` |      |
-| strong    | 是否加粗                             | `boolean`                   | `false` |      |
-| italic    | 是否斜体                             | `boolean`                   | `false` |      |
+| disabled  | 禁用文本                             | `boolean`                   | -       |      |
+| ellipsis  | 自动溢出省略                         | `boolean \| EllipsisConfig` | -       |      |
+| underline | 添加下划线样式                       | `boolean`                   | -       |      |
+| deleted   | 添加删除线样式                       | `boolean`                   | -       |      |
+| strong    | 是否加粗                             | `boolean`                   | -       |      |
+| italic    | 是否斜体                             | `boolean`                   | -       |      |
 
-## Typography.Text Props 属性
+## Typography
 
-| 属性     | 说明             | 类型      | 默认值  | 版本 |
-| -------- | ---------------- | --------- | ------- | ---- |
-| tag      | 组件渲染元素标签 | `string`  | `span`  |      |
-| keyboard | 添加键盘样式     | `boolean` | `false` |      |
-| mark     | 添加标记样式     | `boolean` | `false` |      |
+### Props 属性
+
+| 属性 | 说明             | 类型     | 默认值    | 版本 |
+| ---- | ---------------- | -------- | --------- | ---- |
+| tag  | 组件渲染元素标签 | `string` | `article` |      |
+
+## Typography.Text
+
+### Props 属性
+
+| 属性     | 说明             | 类型      | 默认值 | 版本 |
+| -------- | ---------------- | --------- | ------ | ---- |
+| code     | 添加代码样式     | `boolean` | -      |      |
+| tag      | 组件渲染元素标签 | `string`  | `span` |      |
+| keyboard | 添加键盘样式     | `boolean` | -      |      |
+| mark     | 添加标记样式     | `boolean` | -      |      |
 
 
-## Typography.Link Props 属性
+## Typography.Link
+
+### Props 属性
 
 | 属性   | 说明                  | 类型     | 默认值  | 版本 |
 | ------ | --------------------- | -------- | ------- | ---- |
@@ -81,23 +89,27 @@ lang: zh-CN
 | target | `a`标签的`target`属性 | `string` | `_self` |      |
 
 
-## Typography.Title Props 属性
+## Typography.Title 
 
-| 属性     | 说明         | 类型      | 默认值  | 版本 |
-| -------- | ------------ | --------- | ------- | ---- |
-| keyboard | 添加键盘样式 | `boolean` | `false` |      |
-| mark     | 添加标记样式 | `boolean` | `false` |      |
+### Props 属性
+
+| 属性     | 说明         | 类型      | 默认值 | 版本 |
+| -------- | ------------ | --------- | ------ | ---- |
+| code     | 添加代码样式 | `boolean` | -      |      |
+| keyboard | 添加键盘样式 | `boolean` | -      |      |
+| mark     | 添加标记样式 | `boolean` | -      |      |
 
 
-### Events 事件
+## Events 事件
 
-| 事件  | 说明     | 类型                   |
-| ----- | -------- | ---------------------- |
-| click | 点击事件 | `MouseEventHandler<T>` |
-| copy  | 拷贝事件 | `() => void`           |
+支持所有原生事件
 
-## Slots 插槽
+| 事件   | 说明     | 类型                        |
+| ------ | -------- | --------------------------- |
+| onCopy | 拷贝事件 | `(status: boolean) => void` |
 
-| 插槽名  | 说明           |
-| ------- | -------------- |
-| default | 自定义默认内容 |
+## Snippets 片段
+
+| 插槽名   | 说明           |
+| -------- | -------------- |
+| children | 自定义默认内容 |

@@ -1,23 +1,26 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { Icon } from '..'
-  import type { IconName } from '../utils/types'
+  import type { StepsItemsProps } from '../types'
+  import { isFunction } from '@renzp/utils'
 
-  export let description: string | undefined = undefined
-  export let icon: IconName | undefined = undefined
-  export let title: string | undefined = undefined
-  export let status: 'active' | 'finish' | 'wait' = 'wait'
+  let {
+    description,
+    icon,
+    title,
+    status = 'wait',
+    class: className,
+    ...props
+  }: StepsItemsProps = $props()
 
-  let className = ''
-  export { className as class }
-  $: classList = classes(['adorn-step-item', className, `adorn-step-item--${status}`])
+  const classList = $derived(classes(['adorn-step-item', className, `adorn-step-item--${status}`]))
 </script>
 
-<div class={classList}>
-  <div class="adorn-step-item-tail" />
+<div {...props} class={classList}>
+  <div class="adorn-step-item-tail"></div>
   <div class="adorn-step-item-indicator">
-    {#if $$slots.icon}
-      <slot name="icon" />
+    {#if isFunction(icon)}
+      {@render icon()}
     {:else if icon}
       <span class="adorn-step-item-icon">
         <Icon name={icon} />

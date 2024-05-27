@@ -1,40 +1,44 @@
 <script lang="ts">
   import classes from '@renzp/classes'
-  import type { RadioGroupCtx, RadioGroupOption, Size } from '../utils/types'
-  import { createEventDispatcher, setContext } from 'svelte'
+  import { setContext } from 'svelte'
   import { CONTEXT_RADIO, CONTEXT_RADIO_CHANGE } from '.'
   import { writable, type Writable } from 'svelte/store'
   import Radio from './Radio.svelte'
+  import type { RadioGroupCtx, RadioGroupProps, Value } from '../types'
 
-  const dispatch = createEventDispatcher()
+  let {
+    buttonStyle,
+    disabled,
+    name,
+    options = [],
+    optionType = 'default',
+    size,
+    value = $bindable(),
+    class: className,
+    children,
+    label,
+    onChange,
+    ...props
+  }: RadioGroupProps = $props()
 
-  export let buttonStyle: 'outline' | 'solid' = 'outline'
-  export let defaultValue: number | string | undefined = undefined
-  export let disabled = false
-  export let name: string | undefined = undefined
-  export let options: RadioGroupOption[] = []
-  export let optionType: 'default' | 'button' = 'default'
-  export let size: Size | undefined = undefined
-  export let value = defaultValue
-
-  const onChange = (v?: string | number) => {
+  const _onChange = (v?: Value) => {
     value = v
-    dispatch('change', v)
+    onChange?.(v)
   }
 
   const ctx = writable<RadioGroupCtx>({ disabled, name, optionType, size, value })
-  $: ctx.update(() => ({ disabled, name, optionType, size, value }))
+  $effect(() => {
+    ctx.update(() => ({ disabled, name, optionType, size, value }))
+  })
   setContext<Writable<RadioGroupCtx>>(CONTEXT_RADIO, ctx)
-  setContext(CONTEXT_RADIO_CHANGE, onChange)
+  setContext(CONTEXT_RADIO_CHANGE, _onChange)
 
-  let className = ''
-  export { className as class }
-  $: classList = classes(['adorn-radio-group', className])
+  const classList = $derived(classes(['adorn-radio-group', className]))
 </script>
 
-<div class={classList} {...$$restProps}>
-  {#if $$slots.default}
-    <slot />
+<div {...props} class={classList}>
+  {#if children}
+    {@render children()}
   {:else}
     {#each options as item}
       <Radio
@@ -44,10 +48,9 @@
         {size}
         value={item.value}
         disabled={item?.disabled}
-        on:change={() => onChange(item.value)}
       >
-        {#if $$slots.label}
-          <slot name="label" {item} />
+        {#if label}
+          {@render label(item)}
         {:else}
           {item.label}
         {/if}

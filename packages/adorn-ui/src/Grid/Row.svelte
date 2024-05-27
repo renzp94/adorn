@@ -3,19 +3,21 @@
   import { prefixConcat } from '../utils/tools'
   import { CONTEXT_ROW_GUTTER } from './index'
   import { setContext } from 'svelte'
-  import type { Align, Justify } from '../utils/types'
+  import type { RowProps } from '../types'
 
-  let className = ''
-  export { className as class }
-  export let align: Align = 'top'
-  export let gutter: number | number[] | undefined = undefined
-  export let style: string | undefined = undefined
-  export let justify: Justify = 'start'
-  export let wrap: boolean = true
+  let {
+    align = 'top',
+    gutter,
+    justify = 'start',
+    wrap = true,
+    class: className,
+    style,
+    children,
+    ...props
+  }: RowProps = $props()
 
-  let styles: string = ''
-
-  $: {
+  let styles: string = $state('')
+  $effect(() => {
     if (typeof gutter === 'number') {
       styles = `${prefixConcat(gutter, 'margin: ', `0 -${(gutter as number) / 2}px;`)}`
       setContext(CONTEXT_ROW_GUTTER, gutter)
@@ -32,17 +34,20 @@
     }
 
     styles += style
-  }
-  $: classLst = classes([
-    'adorn-row',
-    className,
-    { [`adorn-row-${align}`]: align },
-    { [`adorn-row-${justify}`]: justify }
-  ])
+  })
+
+  const classList = $derived(
+    classes([
+      'adorn-row',
+      className,
+      { [`adorn-row-${align}`]: align },
+      { [`adorn-row-${justify}`]: justify }
+    ])
+  )
 </script>
 
-<div {...$$restProps} class={classLst} class:wrap style={styles}>
-  <slot />
+<div class:wrap {...props} class={classList} style={styles}>
+  {@render children()}
 </div>
 
 <style lang="less" global>
@@ -55,6 +60,7 @@
     space-evenly: space-evenly;
   };
   @alignItemsList: {
+    normal: normal;
     top: flex-start;
     middle: center;
     bottom: flex-end;

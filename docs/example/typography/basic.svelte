@@ -24,23 +24,13 @@
     We recommend using <Link href="https://kit.svelte.dev/">SvelteKit</Link>,
     the official application framework from the Svelte team:
   </p>
-  <div class="code">
+  <Text code>
     <div>npm create svelte@latest myapp</div>
     <div>cd myapp</div>
     <div>npm install</div>
     <div>npm run dev</div>
-  </div>
+  </Text>
   <p>
     Press <Text keyboard>Esc</Text> to exit...
   </p>
 </Typography>
-
-<style>
-  .code {
-    background-color: var(--vp-c-bg);
-    filter: brightness(0.98);
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 4px;
-    padding: 12px;
-  }
-</style>

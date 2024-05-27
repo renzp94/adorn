@@ -1,7 +1,11 @@
 <script lang="ts">
-  export let tag: string = 'article'
+  import type { TypographyBaseProps } from './types'
+
+  type TypographyProps = Omit<TypographyBaseProps, 'keyboard' | 'mark' | 'code'>
+
+  let { tag = 'article', children, ...props }: TypographyProps = $props()
 </script>
 
-<svelte:element this={tag} {...$$props}>
-  <slot />
+<svelte:element this={tag} role={tag} {...props}>
+  {@render children()}
 </svelte:element>

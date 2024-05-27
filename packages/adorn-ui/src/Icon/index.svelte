@@ -1,23 +1,21 @@
 <script lang="ts">
   import { prefixConcat } from '../utils/tools'
   import classes from '@renzp/classes'
-  import type { IconName } from '../utils/types'
+  import './fonts/remixicon.css'
+  import type { IconProps } from '../types'
 
-  let className: string = ''
-  export { className as class }
-  export let color: string | undefined = undefined
-  export let name: IconName
-  export let size: string | undefined = undefined
-  export let style: string | undefined = undefined
+  let { color, name, size, style, class: className, ...props }: IconProps = $props()
 
-  $: styles = classes([{ [`font-size: ${size};`]: size }, { [`color: ${color};`]: color }, style])
-  $: classNames = classes(['adorn-icon', className, prefixConcat(name, 'adorn-icon-')])
+  const styles = $derived(
+    classes([{ [`font-size: ${size};`]: size }, { [`color: ${color};`]: color }, style])
+  )
+
+  const classList = $derived(classes(['adorn-icon', className, prefixConcat(name, 'adorn-icon-')]))
 </script>
 
-<i {...$$restProps} class={classNames} style={styles} />
+<i {...props} class={classList} style={styles}></i>
 
 <style global>
-  @import url('./fonts/remixicon.css');
   .adorn-icon {
     display: inline-block;
     line-height: 1;

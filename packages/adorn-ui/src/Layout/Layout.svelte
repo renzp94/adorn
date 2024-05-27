@@ -1,11 +1,10 @@
 <script lang="ts">
   import classes from '@renzp/classes'
   import { onMount } from 'svelte'
-  import type { Direction } from '../utils/types'
+  import type { LayoutProps } from '../types'
 
-  let className = ''
-  export { className as class }
-  export let direction: Direction = 'vertical'
+  let { direction = 'vertical', class: className, children, ...props }: LayoutProps = $props()
+
   let layoutEl: HTMLElement
 
   onMount(() => {
@@ -16,11 +15,11 @@
     direction = hasSidebar ? 'horizontal' : direction
   })
 
-  $: classList = classes(['adorn-layout', className, `adorn-layout-${direction}`])
+  const classList = $derived(classes(['adorn-layout', className, `adorn-layout-${direction}`]))
 </script>
 
-<section bind:this={layoutEl} {...$$restProps} class={classList}>
-  <slot />
+<section bind:this={layoutEl} {...props} class={classList}>
+  {@render children()}
 </section>
 
 <style lang="less" global>

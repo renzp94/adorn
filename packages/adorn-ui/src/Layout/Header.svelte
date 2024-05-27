@@ -1,14 +1,14 @@
 <script lang="ts">
   import classes from '@renzp/classes'
+  import type { ComponentBaseProps } from '../types'
 
-  let className = ''
-  export { className as class }
+  let { class: className, children, ...props }: ComponentBaseProps = $props()
 
-  $: classList = classes(['adorn-layout-header', className])
+  const classList = $derived(classes(['adorn-layout-header', className]))
 </script>
 
-<header class={classList} {...$$restProps}>
-  <slot />
+<header {...props} class={classList}>
+  {@render children()}
 </header>
 
 <style lang="less" global>

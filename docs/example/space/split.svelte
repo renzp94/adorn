@@ -1,12 +1,11 @@
 <script>
   import { Button, Divider, Space } from 'adorn-ui'
-  let size = 'small'
-
-  const onChange = v => (size = v)
 </script>
 
 <Space>
-  <Divider type="vertical" slot="split" />
+  {#snippet split()}
+    <Divider type="vertical" />
+  {/snippet}
   <Button type="link">link</Button>
   <Button type="link">link</Button>
   <Button type="link">link</Button>

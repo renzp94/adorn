@@ -88,32 +88,32 @@
     display: inline-flex;
 
     &:hover,
-    & :global(.adorn-input-wrapper.bordered.focused +) {
-      :global(.adorn-btn) {
+    & .adorn-input-wrapper.bordered.focused + {
+      .adorn-btn {
         border-left: 1px solid var(--adorn-primary-color);
       }
     }
 
-    &--error :global(.adorn-btn) {
+    &--error .adorn-btn {
       border-left: 1px solid var(--adorn-error-color) !important;
     }
 
-    &--warning :global(.adorn-btn) {
+    &--warning .adorn-btn {
       border-left: 1px solid var(--adorn-warn-color) !important;
     }
 
-    :global(.adorn-input-wrapper.bordered .adorn-input) {
+    .adorn-input-wrapper.bordered .adorn-input {
       border-right: none;
       border-radius: var(--adorn-radius-sm) 0 0 var(--adorn-radius-sm);
     }
 
     &.has-addon {
-      :global(.adorn-input-wrapper.bordered .adorn-input) {
+      .adorn-input-wrapper.bordered .adorn-input {
         border-radius: 0;
       }
     }
 
-    :global(.adorn-btn) {
+    .adorn-btn {
       line-height: var(--adorn-line-height);
       border-radius: 0 var(--adorn-radius-sm) var(--adorn-radius-sm) 0;
     }

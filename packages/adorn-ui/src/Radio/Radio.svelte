@@ -4,34 +4,40 @@
   import { getContext } from 'svelte'
   import type { RadioGroupCtx, Size } from '../utils/types'
   import type { Writable } from 'svelte/store'
+  import type { RadioProps } from '../types'
 
   const ctx = getContext<Writable<RadioGroupCtx>>(CONTEXT_RADIO)
 
-  export let buttonStyle: 'outline' | 'solid' = 'outline'
-  export let defaultChecked = false
-  export let checked = defaultChecked
-  export let disabled = $ctx?.disabled || false
-  export let name: string | undefined = $ctx?.name
-  export let size: Size | undefined = undefined
-  export let type: 'default' | 'button' = 'default'
-  export let value: string | number | undefined = undefined
+  let {
+    buttonStyle = 'outline',
+    checked = $bindable(),
+    disabled = $ctx?.disabled,
+    name = $ctx?.name,
+    size,
+    type = 'default',
+    value,
+    class: className,
+    children,
+    ...props
+  }: RadioProps = $props()
 
-  $: classPrefix = type === 'button' ? '-btn' : ''
+  const classPrefix = $derived(type === 'button' ? '-btn' : '')
 
   const onChange = getContext<(v?: string | number) => void>(CONTEXT_RADIO_CHANGE)
 
-  let className = ''
-  export { className as class }
-  $: classList = classes([
-    `adorn-radio${classPrefix}-wrapper`,
-    className,
-    { checked: checkedModel },
-    `adorn-radio${classPrefix}-wrapper-${buttonStyle}`,
-    { [`adorn-radio-btn-wrapper--${size}`]: type === 'button' && size }
-  ])
+  const classList = $derived(
+    classes([
+      `adorn-radio${classPrefix}-wrapper`,
+      className,
+      { checked },
+      `adorn-radio${classPrefix}-wrapper-${buttonStyle}`,
+      { [`adorn-radio-btn-wrapper--${size}`]: type === 'button' && size }
+    ])
+  )
 
-  let checkedModel = checked
-  $: checkedModel = $ctx?.value ? $ctx?.value === value : checked
+  $effect(() => {
+    checked = $ctx?.value ? $ctx?.value === value : checked
+  })
 
   const onChecked = () => {
     if (disabled) {
@@ -41,27 +47,26 @@
     if ($ctx?.value) {
       ctx.update(v => ({ ...v, value }))
     } else {
-      checkedModel = true
+      checked = true
     }
     onChange?.(value)
   }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<label class={classList} class:disabled on:click={onChecked} {...$$restProps}>
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<label class:disabled {...props} class={classList} onclick={onChecked}>
   <span class={`adorn-radio${classPrefix}`}>
     <input
       {name}
       {value}
       class={`adorn-radio${classPrefix}-input`}
       type="radio"
-      checked={checkedModel}
+      {checked}
       disabled
     />
-    <span class={`adorn-radio${classPrefix}-inner`} />
+    <span class={`adorn-radio${classPrefix}-inner`}></span>
   </span>
-  <span class={`adorn-radio${classPrefix}-content`}><slot /></span>
+  <span class={`adorn-radio${classPrefix}-content`}>{@render children()}</span>
 </label>
 
 <style lang="less" global>

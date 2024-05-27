@@ -1,3 +1,5 @@
+import { isUnDef } from "@renzp/utils"
+
 /**
  * 有条件的拼接前缀
  * @param val 判断条件
@@ -7,13 +9,6 @@
  */
 export const prefixConcat = <T,K>(val: T, prefix = '', concatVal: K | undefined = undefined) =>
 	val ? `${prefix}${concatVal ? concatVal : val}` : ''
-
-/**
- * 判断是否未定义
- * @param v 变量
- * @returns 如果变量定义则返回true,否则返回false
-*/
-export const isUndef = (v: unknown): boolean => v === undefined || v === null
 
 export const copyText = async (text: string) => {
 	// navigator.clipboard只能用于https或者localhost。
@@ -106,22 +101,4 @@ export const getScrollContainer = (
   return parent
 }
 
-export const getElement = (el?:Window|HTMLElement):HTMLElement => isUndef(el) || el instanceof Window ? document.documentElement : el as HTMLElement
-
-type FlattenDeepByKey<T = any> = (list: Array<T>, key: string) => Array<T>
-/**
- * 通过指定key深度递归扁平化数组
- * @param list 要扁平化的数组
- * @param key 扁平化依据的字段
- * @returns 返回扁平化后的数组
- */
-export const flattenDeepByKey: FlattenDeepByKey = (list, key) => {
-  return list.reduce(
-    (prev: Parameters<FlattenDeepByKey>[0], curr: Parameters<FlattenDeepByKey>[0][0]) => [
-      ...prev,
-      curr,
-      ...(curr[key] ? flattenDeepByKey(curr[key], key) : []),
-    ],
-    []
-  ) as ReturnType<FlattenDeepByKey>
-}
+export const getElement = (el?:Window|HTMLElement):HTMLElement => isUnDef(el) || el instanceof Window ? document.documentElement : el as HTMLElement
