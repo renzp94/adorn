@@ -58,7 +58,6 @@
 	"devDependencies": {
 		"@sveltejs/kit": "^1.23.0",
 		"@sveltejs/package": "^2.2.2",
-		"@types/lodash-es": "^4.17.9",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
 		"eslint": "^8.48.0",
@@ -82,6 +81,6 @@
 	"dependencies": {
 		"@renzp/classes": "^0.0.3",
 		"@renzp/number-correct": "^0.0.6",
-		"lodash-es": "^4.17.21"
+		"@renzp/utils": "^0.3.4"
 	}
 }

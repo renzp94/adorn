@@ -1,11 +1,11 @@
 <script lang="ts">
   import { default as Item } from './MenuItem.svelte'
   import type { MenuContext, MenuItem } from './types'
-  import type { Direction, IconName } from '../utils/types'
+  import type { Direction } from '../utils/types'
   import classes from '@renzp/classes'
   import { createEventDispatcher, onMount, setContext } from 'svelte'
   import { Icon } from '..'
-  import { throttle, uniq, values } from 'lodash-es'
+  import { throttle, unique } from '@renzp/utils'
   import SubMenu from './SubMenu.svelte'
   import { MENU_CONTEXT } from '.'
   import { writable, type Writable } from 'svelte/store'
@@ -72,7 +72,7 @@
     const { key, open } = e.detail
     ctx.update(val => ({
       ...val,
-      openKeys: open ? uniq([...val.openKeys, key]) : val.openKeys.filter(item => item !== key)
+      openKeys: open ? unique([...val.openKeys, key]) : val.openKeys.filter(item => item !== key)
     }))
     dispatch('openChange', $ctx.openKeys)
   }
