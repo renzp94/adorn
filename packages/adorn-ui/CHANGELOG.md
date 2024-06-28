@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/renzp94/adorn/compare/v0.0.9...v0.0.10) (2024-06-28)
+
+
+### Features
+
+* 添加Checkbox组件 ([bae04a1](https://github.com/renzp94/adorn/commit/bae04a1daadadc9bd589808d833ca6f6060719e6))
+
 ### [0.0.9](https://github.com/renzp94/adorn/compare/v0.0.8...v0.0.9) (2023-10-24)
 
 
